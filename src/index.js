@@ -7,16 +7,22 @@ requirejs.config({
 
 requirejs([
 	'./utils/spaces',
-	'./utils/patterns',
 	'./utils/keywords',
 	'./utils/conversions'
 ], 
 function(
 	cs,
-	re,
 	kw,
 	cv
 ) {'use strict';
+
+var re = 
+	[
+		/./,
+		/^hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/,
+		/^rgba?\(\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/,
+		/^#([a-f0-9])([a-f0-9])([a-f0-9])(?:([a-f0-9])([a-f0-9])([a-f0-9]))?$/
+	];
 
 function am (v) {
 	return {}.toString.call(v).split(/\W+/)[2].toLowerCase();
@@ -38,6 +44,10 @@ function cp (d, o) {
 function Color (v, s) {
 	return !(this instanceof Color) ? new Color(v, s) : v instanceof Color ? (s ? v.clone() : v) : this.color(s, v);
 }
+
+cp(Color, {
+	keywords : kw
+});
 
 cp(Color.prototype, {
 	clone   : function () {
@@ -104,6 +114,22 @@ cp(Color.prototype, {
 	},
 	opacity : function (v) {
 		return v === undefined ? this.alpha : this.alpha = kv(v, [ 0, 100 ]); 
+	},
+	css     : function (v, b) {
+		if (am(v) === 'string') return this.color(0, v);
+		v = +v || 0;
+		b =  b && v;
+		var s = (v > 1 ? 'hsl' : 'rgb') + (b ? 'a' : ''),
+			c = this.color(s),
+			l = c.length,
+			i;
+		for (; l--;) {
+			i = Math.round(c[l]);
+			c[l] = l > 2 ? i / 100 :
+			       !v ? i.toString(16).replace(/^.$/, '0$&') :
+			       v > 1 && l ? i + '%' : i;
+		}
+		return v ? s + '(' + c + ')' : '#' + c.join('').toUpperCase();
 	}
 });
 
@@ -111,9 +137,11 @@ var xxx = new Color([ 255, 255, 0 ]);
 console.log(xxx.color('hsla'));
 console.log(xxx.color('cmyk'));
 xxx.color('rgb', [ 255, 255, 0, 50 ]);
-console.log(xxx);
+console.log(xxx.css(0));
 var zzz = xxx.clone();
-console.log(zzz);
+console.log(zzz.css(1, true));
+console.log(zzz.css(2));
+console.log(zzz.css(2, true));
 console.log(xxx == zzz);
 console.log(xxx.equal(zzz));
 

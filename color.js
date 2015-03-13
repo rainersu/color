@@ -1,39 +1,4 @@
 
-define(
-[
-	'../core/cp',
-	'../core/type',
-	'../var/slice',
-	'../var/hasOP',
-	'../object/ECMA/keys',
-	'./util/chkVal',
-	'./util/chkArr',
-	'./conversions/index',
-	'./patterns',
-	'./keywords',
-	'./spaces',
-	'./blendings',
-	'./filters',
-	'./schemas'
-]
-, function (
-	cp,
-	type,
-	slice,
-	hasOP,
-	keys,
-	chkVal,
-	chkArr,
-	C,
-	R,
-	K,
-	S,
-	B,
-	F,
-	M
-) 
-{'use strict';
-
 function J () {
 	return this.css(1, 1);
 }
@@ -66,7 +31,7 @@ cp(
 			}
 			return v ? s + '(' + c + ')' : '#' + c.join('').toUpperCase();
 		}, 
-		color      : function (s, v) {
+		/*color      : function (s, v) {
 			var c = this.cache,
 				p = this.space,
 				x = R.length,
@@ -135,11 +100,7 @@ cp(
 			}
 			this.space = s;
 			return f || this;
-		},
-		clone      : function () {
-			var n = this.space;
-			return new Color(this.color(n + 'a'), n);
-		},	
+		},*/
         websafe    : function () {
 			var r = this.color('rgb'),
 				l = 3,
@@ -247,10 +208,6 @@ cp(
 		}
 	}
 );
-
-return Color;
-
-});
 
 /**
 * 色彩类型。

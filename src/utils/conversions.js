@@ -1,20 +1,11 @@
 
-define(function () {'use strict';
-
-var M   = Math,
-	min = M.min,
-	max = M.max,
-	cos = M.cos,
-	pow = M.pow,
-	P   = M.PI;
-
-return {
+define({
 	rgb2hsl   : function (v) {
 		var r = v[0] / 255,
 			g = v[1] / 255,
 			b = v[2] / 255,
-			n = min(r, g, b),
-			x = max(r, g, b),
+			n = Math.min(r, g, b),
+			x = Math.max(r, g, b),
 			d = x - n,
 			h = n === x ? 0 : 
 				r === x ? (g - b) / d : 
@@ -52,8 +43,8 @@ return {
 		var r = v[0],
 			g = v[1],
 			b = v[2],
-			n = min(r, g, b),
-			x = max(r, g, b);
+			n = Math.min(r, g, b),
+			x = Math.max(r, g, b);
 		return [
 			this.rgb2hsl(v)[0], 
 			x ? 100 - 100 * n / x : 0, 
@@ -84,8 +75,8 @@ return {
 			x = 100 / 255;
 		return [
 			this.rgb2hsl(v)[0], 
-			x * min(r, min(g, b)),
-			100 - x * max(r, max(g, b))
+			x * Math.min(r, Math.min(g, b)),
+			100 - x * Math.max(r, Math.max(g, b))
 		];
 	},
 	hwb2rgb   : function (v) {
@@ -114,7 +105,7 @@ return {
 		var r = v[0],
 			g = v[1],
 			b = v[2],
-			x = max(r, g, b) / 255,
+			x = Math.max(r, g, b) / 255,
 			a = v.slice(),
 			i = 3;
 		for(a[i] = 100 - x * 100; i--;) {
@@ -128,7 +119,7 @@ return {
 			a = v.slice(0, 3),
 			i = 3;
 		for(; i--;) {
-			a[i] = 255 * (1 - min(1, a[i] * l / 100 + k));
+			a[i] = 255 * (1 - Math.min(1, a[i] * l / 100 + k));
 		}
 		return a;
 	},
@@ -138,7 +129,7 @@ return {
 			i;
 		for(; l--;) {
 			i = v[l] / 255;
-			a[l] = i > 0.04045 ? pow((i + 0.055) / 1.055, 2.4) : i / 12.92;
+			a[l] = i > 0.04045 ? Math.pow((i + 0.055) / 1.055, 2.4) : i / 12.92;
 		}
 		l = a[0];
 		i = a[1];
@@ -160,7 +151,7 @@ return {
 			];
 		for(x = 3; x--;) {
 			z = r[x] / 100;
-			r[x] = 255 * (z > 0.0031308 ? 1.055 * pow(z, 1.0 / 2.4) - 0.055 : z * 12.92);
+			r[x] = 255 * (z > 0.0031308 ? 1.055 * Math.pow(z, 1.0 / 2.4) - 0.055 : z * 12.92);
 		}
 		return r;
 	},
@@ -170,7 +161,7 @@ return {
 			l = 3;
 		for(; l--;) {
 			v = a[l] / c[l];
-			a[l] = v > 0.008856 ? pow(v, 1 / 3) : 7.787 * v + 16 / 116;
+			a[l] = v > 0.008856 ? Math.pow(v, 1 / 3) : 7.787 * v + 16 / 116;
 		}
 		l = a[0];
 		c = a[1];
@@ -191,7 +182,7 @@ return {
 		a = [ x, y, z ];
 		z = [ 95.047, 100, 108.883 ];
 		for(l = 3; l--;) {
-			x = pow(b = a[l], 3);
+			x = Math.pow(b = a[l], 3);
 			a[l] = (x > 0.008856 ? x : (b - 16 / 116) / 7.787) * z[l];
 		}
 		return this.xyz2rgb(a);
@@ -241,19 +232,19 @@ return {
 		var c = this.rgb2lab(v),
 			a = c[1],
 			b = c[2],
-			h = M.atan2(b, a) * 360 / 2 / P % 360;
+			h = Math.atan2(b, a) * 360 / 2 / Math.PI % 360;
 		return [
 			c[0],
-			M.sqrt(a * a + b * b), 
+			Math.sqrt(a * a + b * b), 
 			h < 0 ? h + 360 : h
 		];
 	},
 	lch2rgb   : function (v) {
-		var x = (v[2] % 360) * 2 * P / 360;
+		var x = (v[2] % 360) * 2 * Math.PI / 360;
 		return this.lab2rgb([
 			v[0], 
-			v[1] * cos(x), 
-			v[1] * M.sin(x)
+			v[1] * Math.cos(x), 
+			v[1] * Math.sin(x)
 		]);
 	},
 	rgb2xyy   : function (v) {
@@ -269,6 +260,4 @@ return {
 			z = v[2];
 		return this.xyz2rgb(y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ]);
 	}
-};
-
 });
