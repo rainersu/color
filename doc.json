@@ -1,28 +1,40 @@
 {
-	"tags"      : {
+	"tags"       : {
 		"allowUnknownTags" : true
 	},
 	"plugins"   : ["plugins/markdown"],
-
 	"templates" : {
+		"default"   : {
+			"outputSourceFiles" : true
+		},
+		"openGraph" : {
+			"title"             : "",
+			"type"              : "website",
+			"image"             : "",
+			"site_name"         : "",
+			"url"               : ""
+		},
+		"meta"  : {
+			"title"             : "",
+			"description"       : "",
+			"keyword"           : ""
+		},
 		"cleverLinks"           : true,
 		"monospaceLinks"        : true,
 		"dateFormat"            : "ddd MMM Do YYYY",
 		"outputSourceFiles"     : true,
 		"outputSourcePath"      : true,
-		"systemName"            : "DocStrap",
 		"footer"                : "",
-		"copyright"             : "DocStrap Copyright © 2012-2014 The contributors to the JSDoc3 and DocStrap projects.",
 		"navType"               : "vertical",
 		"theme"                 : "flatly",
 		"linenums"              : true,
-		"collapseSymbols"       : false,
+		"collapseSymbols"       : true,
 		"inverseNav"            : true,
 		"highlightTutorialCode" : true,
-		"protocol": "fred://"
+		"protocol"              : "fred://"
 	},
 	"markdown"  : {
-		"parser"   : "gfm",
-		"hardwrap" : true
+		"parser"                : "gfm",
+		"hardwrap"              : true
 	}
 }

@@ -1,5 +1,8 @@
 
-define({
+define(function() {'use strict';
+	
+var cv = {
+	
 	rgb2hsl   : function (v) {
 		var r = v[0] / 255,
 			g = v[1] / 255,
@@ -20,6 +23,95 @@ define({
 			l * 100
 		];
 	},
+	rgb2hsv   : function (v) {
+		var r = v[0],
+			g = v[1],
+			b = v[2],
+			n = Math.min(r, g, b),
+			x = Math.max(r, g, b);
+		return [
+			cv.rgb2hsl(v)[0], 
+			x ? 100 - 100 * n / x : 0, 
+			x * 100 / 255
+		];
+	},
+	rgb2hwb   : function (v) {
+		var r = v[0],
+			g = v[1],
+			b = v[2],
+			x = 100 / 255;
+		return [
+			cv.rgb2hsl(v)[0], 
+			x * Math.min(r, Math.min(g, b)),
+			100 - x * Math.max(r, Math.max(g, b))
+		];
+	},
+	rgb2cmy   : function (v) {
+		for(var l = 3, r = []; l--;) {
+			r[l] = (1 - v[l] / 255) * 100;
+		}
+		return r;
+	},
+	rgb2cmyk  : function (v) {
+		var r = v[0],
+			g = v[1],
+			b = v[2],
+			x = Math.max(r, g, b) / 255,
+			a = v.slice(),
+			i = 3;
+		for(a[i] = 100 - x * 100; i--;) {
+			a[i] = x ? (1 - a[i] / 255 / x) * 100 : 0;
+		}
+		return a;
+	},
+	rgb2yuv   : function (v) {
+		var r = v[0],
+			g = v[1],
+			b = v[2],
+			y = 0.299 * r + 0.587 * g + 0.114 * b;
+		return [
+			y,
+			((b - y) * 0.493 + 111) / 222 * 255,
+			((r - y) * 0.877 + 155) / 312 * 255
+		];
+	},
+	rgb2yiq   : function (v) {
+		var r = v[0] / 255,
+			g = v[1] / 255,
+			b = v[2] / 255;
+		return [
+			0.299 * r + 0.587 * g + 0.114 * b,
+			0.596 * r - 0.275 * g - 0.321 * b,
+			0.212 * r - 0.528 * g + 0.311 * b
+		];
+	},
+	rgb2xyz   : function (v) {
+		var a = [],
+			l = 3,
+			i;
+		for(; l--;) {
+			i = v[l] / 255;
+			a[l] = i > 0.04045 ? Math.pow((i + 0.055) / 1.055, 2.4) : i / 12.92;
+		}
+		l = a[0];
+		i = a[1];
+		a = a[2];
+		return [
+			l * 41.24 + i * 35.76 + a * 18.05, 
+			l * 21.26 + i * 71.52 + a *  7.22, 
+			l *  1.93 + i * 11.92 + a * 95.05
+		];
+	},
+	rgb2xyy   : function (v) {
+		return cv.xyz2xyy(cv.rgb2xyz(v));
+	},
+	rgb2lab   : function (v) {
+		return cv.xyz2lab(cv.rgb2xyz(v));
+	},
+	rgb2lch   : function (v) {
+		return cv.lab2lch(cv.rgb2lab(v));
+	},
+	
 	hsl2rgb   : function (v) {
 		var h = v[0] /  60,
 			s = v[1] / 100,
@@ -39,18 +131,7 @@ define({
 		}
 		return r;
 	},
-	rgb2hsv   : function (v) {
-		var r = v[0],
-			g = v[1],
-			b = v[2],
-			n = Math.min(r, g, b),
-			x = Math.max(r, g, b);
-		return [
-			this.rgb2hsl(v)[0], 
-			x ? 100 - 100 * n / x : 0, 
-			x * 100 / 255
-		];
-	},
+	
 	hsv2rgb   : function (x) {
 		var h = x[0] /  60,
 			s = x[1] / 100,
@@ -68,50 +149,37 @@ define({
 		       z > 1 ? [p, v, t] :
 		       z     ? [q, v, p] : [v, t, p];
 	},
-	rgb2hwb   : function (v) {
-		var r = v[0],
-			g = v[1],
-			b = v[2],
-			x = 100 / 255;
-		return [
-			this.rgb2hsl(v)[0], 
-			x * Math.min(r, Math.min(g, b)),
-			100 - x * Math.max(r, Math.max(g, b))
+	hsv2hwb   : function (v) {
+		return [ 
+			v[0],
+			v[2] * (100 - v[1]) / 100,
+			100 - v[2]
 		];
 	},
+	
 	hwb2rgb   : function (v) {
 		var w = v[1] / 100,
 			b = v[2] / 100,
 			i = 3,
-			r = this.hsl2rgb([ v[0], 100, 50 ]);
+			r = cv.hsl2rgb([ v[0], 100, 50 ]);
 		for(b = 1 - w - b, w*= 255; i--;) {
 			r[i] = r[i] * b + w;
 		}
 		return r;
 	},
-	rgb2cmy   : function (v) {
-		for(var l = 3, r = []; l--;) {
-			r[l] = (1 - v[l] / 255) * 100;
-		}
-		return r;
+	hwb2hsv   : function (v) {
+		return [
+			v[0],
+			100 - v[1] / (1 - v[2] / 100),
+			100 - v[2]
+		];
 	},
+	
 	cmy2rgb   : function (v) {
 		for(var l = 3, r = []; l--;) {
 			r[l] = (1 - v[l] / 100) * 255;
 		}
 		return r;
-	},
-	rgb2cmyk  : function (v) {
-		var r = v[0],
-			g = v[1],
-			b = v[2],
-			x = Math.max(r, g, b) / 255,
-			a = v.slice(),
-			i = 3;
-		for(a[i] = 100 - x * 100; i--;) {
-			a[i] = x ? (1 - a[i] / 255 / x) * 100 : 0;
-		}
-		return a;
 	},
 	cmyk2rgb  : function (v) {
 		var k = v[3] / 100,
@@ -123,23 +191,27 @@ define({
 		}
 		return a;
 	},
-	rgb2xyz   : function (v) {
-		var a = [],
-			l = 3,
-			i;
-		for(; l--;) {
-			i = v[l] / 255;
-			a[l] = i > 0.04045 ? Math.pow((i + 0.055) / 1.055, 2.4) : i / 12.92;
-		}
-		l = a[0];
-		i = a[1];
-		a = a[2];
+	yuv2rgb   : function (x) {
+		var y = x[0],
+			u = x[1] / 255 * 222 - 111,
+			v = x[2] / 255 * 312 - 155;
 		return [
-			l * 41.24 + i * 35.76 + a * 18.05, 
-			l * 21.26 + i * 71.52 + a *  7.22, 
-			l *  1.93 + i * 11.92 + a * 95.05
+			y + v / 0.877,
+			y - 0.39466 * u - 0.5806 * v,
+			y + u / 0.493
 		];
 	},
+	yiq2rgb   : function (v) {
+		var y = v[0],
+			i = v[1],
+			q = v[2];
+		return [
+			(y + 0.956 * i + 0.620 * q) * 255,
+			(y - 0.272 * i - 0.647 * q) * 255,
+			(y - 1.108 * i + 1.705 * q) * 255
+		];
+	},
+	
 	xyz2rgb   : function (v) {
 		var x = v[0],
 			y = v[1],
@@ -155,8 +227,14 @@ define({
 		}
 		return r;
 	},
-	rgb2lab   : function (v) {
-		var a = this.rgb2xyz(v),
+	xyz2xyy   : function (a) {
+		var x = a[0], 
+			y = a[1],
+			m = x + y + a[2];
+		return m ? [ x / m, y / m, y ] : [ 0, 0, y ];
+	},
+	xyz2lab   : function (a) {
+		var v,
 			c = [ 95.047, 100, 108.883 ],
 			l = 3;
 		for(; l--;) {
@@ -172,7 +250,11 @@ define({
 			200 * (c - a)
 		];
 	},
+	
 	lab2rgb   : function (v) {
+		return cv.xyz2rgb(cv.lab2xyz(v));
+	},
+	lab2xyz   : function (v) {
 		var l = v[0],
 			a = v[1],
 			b = v[2],
@@ -185,52 +267,10 @@ define({
 			x = Math.pow(b = a[l], 3);
 			a[l] = (x > 0.008856 ? x : (b - 16 / 116) / 7.787) * z[l];
 		}
-		return this.xyz2rgb(a);
-	},
-	rgb2yuv   : function (v) {
-		var r = v[0],
-			g = v[1],
-			b = v[2],
-			y = 0.299 * r + 0.587 * g + 0.114 * b;
-		return [
-			y,
-			((b - y) * 0.493 + 111) / 222 * 255,
-			((r - y) * 0.877 + 155) / 312 * 255
-		];
-	},
-	yuv2rgb   : function (x) {
-		var y = x[0],
-			u = x[1] / 255 * 222 - 111,
-			v = x[2] / 255 * 312 - 155;
-		return [
-			y + v / 0.877,
-			y - 0.39466 * u - 0.5806 * v,
-			y + u / 0.493
-		];
-	},
-	rgb2yiq   : function (v) {
-		var r = v[0] / 255,
-			g = v[1] / 255,
-			b = v[2] / 255;
-		return [
-			0.299 * r + 0.587 * g + 0.114 * b,
-			0.596 * r - 0.275 * g - 0.321 * b,
-			0.212 * r - 0.528 * g + 0.311 * b
-		];
-	},
-	yiq2rgb   : function (v) {
-		var y = v[0],
-			i = v[1],
-			q = v[2];
-		return [
-			(y + 0.956 * i + 0.620 * q) * 255,
-			(y - 0.272 * i - 0.647 * q) * 255,
-			(y - 1.108 * i + 1.705 * q) * 255
-		];
-	},
-	rgb2lch   : function (v) {
-		var c = this.rgb2lab(v),
-			a = c[1],
+		return a;
+	},	
+	lab2lch   : function (c) {
+		var a = c[1],
 			b = c[2],
 			h = Math.atan2(b, a) * 360 / 2 / Math.PI % 360;
 		return [
@@ -239,25 +279,33 @@ define({
 			h < 0 ? h + 360 : h
 		];
 	},
+		
 	lch2rgb   : function (v) {
+		return cv.lab2rgb(cv.lch2lab(v));
+	},
+	lch2lab   : function (v) {
 		var x = (v[2] % 360) * 2 * Math.PI / 360;
-		return this.lab2rgb([
+		return [
 			v[0], 
 			v[1] * Math.cos(x), 
 			v[1] * Math.sin(x)
-		]);
+		];
 	},
-	rgb2xyy   : function (v) {
-		var a = this.rgb2xyz(v),
-			x = a[0], 
-			y = a[1],
-			m = x + y + a[2];
-		return m ? [ x / m, y / m, y ] : [ 0, 0, y ];
-	},
+	
+	
 	xyy2rgb   : function (v) {
+		return cv.xyz2rgb(cv.xyy2xyz(v));
+	},
+	xyy2xyz   : function (v) {
 		var x = v[0], 
 			y = v[1], 
 			z = v[2];
-		return this.xyz2rgb(y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ]);
+		return y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ];
 	}
+
+};
+
+return cv;
+
 });
+

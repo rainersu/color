@@ -1,2 +1,2 @@
 # color
-A Javascript color library.
+Just a JavaScript library for all kinds of color manipulations .
