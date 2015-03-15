@@ -5,7 +5,7 @@ grunt.initConfig({
 	pkg     : grunt.file.readJSON("package.json"),
 	jsdoc   : {
 		dist   : {
-			src     : [ 'src/**/*.js', 'README.md' ],
+			src     : [ 'src_doc/**/*.js', 'README.md' ],
 			options : {
 				destination : 'doc',
 				template    : "node_modules/jaguarjs-jsdoc",

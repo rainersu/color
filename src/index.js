@@ -286,17 +286,13 @@ mix         : function (y, p, r) {
 	]);
 },
 blend      : function (y, f) {
-	var n = 'rgba',
-		x = this.color(n),
+	var x = this.color('rgba'),
 		r = [],
 		l = 4;
-	y = new Color(y).color(n);
+	y = new Color(y).color('rgba');
 	if (f in bl) f = bl[f];
-	for(l = 3; l--;) {
-		r[l] = f(b[l], c[l]);
-	}
-
-	return new Color(r, n);
+	for(l = 3; l--;) r[l] = f(b[l], c[l]);
+	return new Color(r);
 },
 opaque : function () {},shade : function () {},tint : function () {},tone : function () {}
 });
