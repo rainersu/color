@@ -8,12 +8,14 @@ requirejs.config({
 requirejs([
 	'./utils/spaces',
 	'./utils/keywords',
-	'./utils/conversions'
+	'./utils/conversions',
+	'./utils/blendings'
 ], 
 function(
 	cs,
 	kw,
-	cv
+	cv,
+	bl
 ) {'use strict';
 
 var re = 
@@ -23,7 +25,11 @@ var re =
 		/^rgba?\(\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i,
 		/^#([a-f0-9])([a-f0-9])([a-f0-9])(?:([a-f0-9])([a-f0-9])([a-f0-9]))?$/i
 	],
-	co = [ 'hsl', 'hsv', 'hwb' ],
+	co = [ 'hsl', 'hsv', 'hwb', 'rgb' ],
+	gs = fb(function (r, g, b, a, m) {
+		var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
+		return [ x, x, x, a ];
+	}),
 	slice = re.slice;
 
 function am (v) {
@@ -242,12 +248,12 @@ difference  : function (c) {
 },
 hue         : fv(0),
 saturation  : fv(1),
-chroma      : fv(1, 1),
 lightness   : fv(2),
+chroma      : fv(1, 1),
 brightness  : fv(2, 1),
 whiteness   : fv(1, 2),
 blackness   : fv(2, 2),
-complement  : fb(function (r, g, b, a) {
+invert      : fb(function (r, g, b, a) {
 	return [ r ^ 0xFF, g ^ 0xFF, b ^ 0xFF, a ];
 }),
 sepia       : fb(function (r, g, b, a) {
@@ -258,21 +264,45 @@ sepia       : fb(function (r, g, b, a) {
 		a
 	];
 }),
-greyscale   : fb(function (r, g, b, a, m) {
-	var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
-	return [ x, x, x, a ];
-}),
-shade : function () {},tint : function () {},tone : function () {}
+greyscale   : function (m) {
+	return m > 2 ? this.clone().saturation(0) : gs.call(this, m);
+},
+complement  : function ( ) {
+	return this.clone().hue(180, true);
+},
+mix         : function (y, p, r) {
+    y = new Color(y).color('rgba');
+	var p = isNaN(p) ? .5 : p / 100,
+    	w = p * 2 - 1,
+		x = this.color('rgba'),
+		a = r ? (x[3] - y[3]) / 100 : 0,
+		m = ((w * a == -1 ? w : (w + a) / (1 + w * a)) + 1) / 2.0,
+		n = 1 - m;
+	return new Color([
+		x[0] * m + y[0] * n,
+        x[1] * m + y[1] * n,
+        x[2] * m + y[2] * n,
+		r ? x[3] * p + y[3] * (1 - p) : x[3]
+	]);
+},
+blend      : function (y, f) {
+	var n = 'rgba',
+		x = this.color(n),
+		r = [],
+		l = 4;
+	y = new Color(y).color(n);
+	if (f in bl) f = bl[f];
+	for(l = 3; l--;) {
+		r[l] = f(b[l], c[l]);
+	}
+
+	return new Color(r, n);
+},
+opaque : function () {},shade : function () {},tint : function () {},tone : function () {}
 });
 
+console.log(Color('hsla(300, 50%, 30%, 0.6)').space);   // hsl
 
 
-
-
-console.log(Color('#000').luminance( ));   // 0
-console.log(Color('#FFF').luminance( ));   // 1
-console.log(Color('hsl(90, 90%, 50%)').luminance( ));   // 0.7893499999999999
-console.log(Color('hsl(90, 90%, 50%)').luminance(0));   // 0.6823211883804896
-console.log(Color('hsl(90, 90%, 50%)').luminance(1));   // 0.7893499999999999
 
 });

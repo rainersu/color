@@ -2,9 +2,9 @@
 module.exports = function(grunt) {"use strict";
 
 grunt.initConfig({
-	pkg   : grunt.file.readJSON("package.json"),
-	jsdoc : {
-		dist : {
+	pkg     : grunt.file.readJSON("package.json"),
+	jsdoc   : {
+		dist   : {
 			src     : [ 'src/**/*.js', 'README.md' ],
 			options : {
 				destination : 'doc',
@@ -12,11 +12,23 @@ grunt.initConfig({
 				configure   : "doc.json"
 			}
 		}
+	},
+	connect : {
+		server : {
+			options : {
+				port        : 0,
+				hostname    : '*',
+				base        : 'doc',
+				keepalive   : true,
+				open        : true
+			}
+		}
 	}
 });
 
 require("load-grunt-tasks")(grunt);
 
-grunt.registerTask('default', [ 'jsdoc:dist' ]);
+grunt.registerTask('default', [ 'jsdoc' ]);
+grunt.registerTask('dist',    [ 'jsdoc' , 'connect' ]);
 
 };

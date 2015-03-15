@@ -58,7 +58,7 @@
 /**
 * 当前支持的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 集合。
 * @see {@link Color.support}
-* @see {@link http://en.wikipedia.org/wiki/Color_space}
+* @see {@link Color#space}
 * @access public
 * @var {object} Color.spaces
 * @example
@@ -142,9 +142,29 @@
 */
 
 
+
 /*--------------------------------------------*/
 /*--------------------------------------------*/
 
+
+
+/**
+* Color 对象当前色值的不透明度。取值范围从完全透明到完全不透明为 0 -100 。不建议直接访问，请通过 {@link Color#opacity} 方法读取或修改。
+* @see {@link Color#opacity}
+* @access public
+* @var {number} Color.prototype.alpha
+* @example
+* console.log(Color('hsla(300, 50%, 30%, 0.6)').alpha);   // 60
+*/
+
+/**
+* Color 对象当前激活 (最近一次使用) 的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 名称。
+* @see {@link Color.spaces}
+* @access public
+* @var {string} Color.prototype.space
+* @example
+* console.log(Color('hsla(300, 50%, 30%, 0.6)').space);   // hsl
+*/
 
 /**
 * 将一个 Color 对象处理为 JSON 字符串。转化结果为该 Color 对象 RGB 色彩空间色值的 CSS 语法描述格式。
@@ -612,17 +632,42 @@ for(; l--;) {
 */
 
 /**
-* 计算出当前 Color 对象色值的 {@link http://en.wikipedia.org/wiki/Complementary_colors|互补色}，作为新 Color 对象返回。
+* 计算出当前 Color 对象色值的 {@link http://en.wikipedia.org/wiki/Complementary_colors|补色}，作为新 Color 对象返回。
+* @see {@link Color#invert}
 * @see {@link http://en.wikipedia.org/wiki/Complementary_colors}
 * @access public
 * @func Color.prototype.complement
 * @returns {Color} 
 * @example
-* console.log(Color('#000').complement().css(0));   // #FFFFFF
-* console.log(Color('#FFF').complement().css(0));   // #000000
+* console.log(Color('#000').complement().css(0));   // #000000
+* console.log(Color('#FFF').complement().css(0));   // #FFFFFF
 * console.log(Color('#F00').complement().css(0));   // #00FFFF
 * console.log(Color('#0F0').complement().css(0));   // #FF00FF
 * console.log(Color('#00F').complement().css(0));   // #FFFF00
+* @example
+* var c = Color('#80F20D');
+* console.log(c.invert().equal(c.complement()));   // true
+* var c = Color('#000000');
+* console.log(c.invert().equal(c.complement()));   // false
+*/
+
+/**
+* 计算出当前 Color 对象色值的 {@link http://en.wikipedia.org/wiki/Complementary_colors|反色}，作为新 Color 对象返回。
+* @see {@link Color#complement}
+* @access public
+* @func Color.prototype.invert
+* @returns {Color} 
+* @example
+* console.log(Color('#000').invert().css(0));   // #FFFFFF
+* console.log(Color('#FFF').invert().css(0));   // #000000
+* console.log(Color('#F00').invert().css(0));   // #00FFFF
+* console.log(Color('#0F0').invert().css(0));   // #FF00FF
+* console.log(Color('#00F').invert().css(0));   // #FFFF00
+* @example
+* var c = Color('#80F20D');
+* console.log(c.invert().equal(c.complement()));   // true
+* var c = Color('#000000');
+* console.log(c.invert().equal(c.complement()));   // false
 */
 
 /**
@@ -644,6 +689,7 @@ for(; l--;) {
 * 将当前 Color 对象色值转换为 {@link http://en.wikipedia.org/wiki/Grayscale|灰度} 值，作为新 Color 对象返回。
 * @see {@link Color.grayscale}
 * @see {@link Color#luminance}
+* @see {@link Color#saturation}
 * @see {@link Color#sepia}
 * @access public
 * @func Color.prototype.greyscale
@@ -651,9 +697,11 @@ for(; l--;) {
 * @param {number}  algorithm.0 - 默认算法。
 * @param {number}  algorithm.1 - 基于 {@link Color#luminance|luminance} 方法的算法。
 * @param {number}  algorithm.2 - 基于 {@link Color#luminance|luminance} 方法但不使用 {@link http://en.wikipedia.org/wiki/Gamma_correction|伽马校正} 的算法。
+* @param {number}  algorithm.3 - 简单的调用 {@link Color#saturation|saturation} 方法去饱和度的算法。
 * @returns {Color} 
 * @example
 * var c = Color('hsl(90, 90%, 50%)');
+* console.log(c.greyscale(3).css(1));   // rgb(128,128,128)
 * console.log(c.greyscale(2).css(1));   // rgb(201,201,201)
 * console.log(c.greyscale(1).css(1));   // rgb(174,174,174)
 * console.log(c.greyscale( ).css(1));   // rgb(183,183,183)
@@ -662,12 +710,68 @@ for(; l--;) {
 * var l = c.length, r;
 * while(l--) {
 *     r = c[l].css(0) + ' -> ';
-*     for(var i = 3; i--;) r+= ' ' + i + ' : ' + c[l].greyscale(i).css(0);
+*     for(var i = 4; i--;) r+= ' ' + i + ' : ' + c[l].greyscale(i).css(0);
 *     console.log(r);
 * }
-* // #0000FF ->   2 : #121212   1 : #121212   0 : #1C1C1C
-* // #00FF00 ->   2 : #B6B6B6   1 : #B6B6B6   0 : #969696
-* // #FF0000 ->   2 : #363636   1 : #363636   0 : #4D4D4D
-* // #FFFFFF ->   2 : #FFFFFF   1 : #FFFFFF   0 : #FFFFFF
-* // #000000 ->   2 : #000000   1 : #000000   0 : #000000
+* // #0000FF ->   3 : #808080   2 : #121212   1 : #121212   0 : #1C1C1C
+* // #00FF00 ->   3 : #808080   2 : #B6B6B6   1 : #B6B6B6   0 : #969696
+* // #FF0000 ->   3 : #808080   2 : #363636   1 : #363636   0 : #4D4D4D
+* // #FFFFFF ->   3 : #FFFFFF   2 : #FFFFFF   1 : #FFFFFF   0 : #FFFFFF
+* // #000000 ->   3 : #000000   2 : #000000   1 : #000000   0 : #000000
 */
+
+/**
+* 将当前 Color 对象色值按指定比例与另一种色彩混合，将混色结果作为新 Color 对象返回。
+* @see {@link Color#blend}
+* @see {@link Color#shade}
+* @see {@link Color#tint}
+* @access public
+* @func Color.prototype.mix
+* @param {Color|string} color - 要与之混色的另一种颜色。
+* @param {number} [weight=50] - 当前颜色在混色结果中所占的比重。取值范围为 0 -100 。
+* @param {boolean} [alpha=false] - 是否将 {@link Color#alpha|alpha} 通道的不透明度值也纳入混色计算。
+* @returns {Color} 
+* @example
+* console.log(Color('#F00').mix('#00F').css(0));   // #800080
+* @example
+* var c1 = Color('rgb(100,0,0)');
+* var c2 = Color('rgba(0,100,0,0.5)');
+* console.log(c1.mix(c2).css(1));             // rgb(50,50,0)
+* console.log(c1.mix(c2, 50).css(1));         // rgb(50,50,0)
+* console.log(c1.mix(c2, 50, true).css(1));   // rgba(75,25,0,0.75)
+*/
+
+/**
+* 将当前 Color 对象色值按指定算法与另一种色彩混合，将混合结果作为新 Color 对象返回。
+* @see {@link Color#blendings}
+* @see {@link Color#mix}
+* @see {@link http://en.wikipedia.org/wiki/Blend_modes}
+* @access public
+* @func Color.prototype.blend
+* @param {Color|string} color - 要与之混合的另一种颜色。
+* @param {string|function} mode - 提供混合算法的自定义回调函数，或字符串指定的预定义混合方法名称，详见 {@link Color#blendings|blendings} 。
+* @returns {Color} 
+* @example
+* console.log(Color('#F00').mix('#00F').css(0));   // #800080
+* @example
+* var c1 = Color('rgb(100,0,0)');
+* var c2 = Color('rgba(0,100,0,0.5)');
+* console.log(c1.mix(c2).css(1));             // rgb(50,50,0)
+* console.log(c1.mix(c2, 50).css(1));         // rgb(50,50,0)
+* console.log(c1.mix(c2, 50, true).css(1));   // rgba(75,25,0,0.75)
+*/
+
+
+
+/*--------------------------------------------*/
+/*--------------------------------------------*/
+
+
+
+/**
+* 供 {@link Color#blend|blend} 方法使用的预定义算法集合 。
+* @see {@link Color#blend}
+* @access public
+* @namespace Color.blendings
+*/
+
