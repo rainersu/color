@@ -1,24 +1,41 @@
 
 define(function () {'use strict';
 
-return {
+var bl = {
 	multiply   : function (b, f) {
         return f * b / 255;
     },
     screen     : function (b, f) {
-        return 255 - (((255 - f ) * (255 - b)) >> 8);
+		return b + f - b * f / 255;
     },
     overlay    : function (b, f) {
         return b < 128 ? 2 * f * b / 255 : 255 - 2 * (255 - b) * (255 - f) / 255;
     },
-    dodge      : function (b, f) {
-        return b === 255 ? b : Math.min(255, (f << 8) / (255 - b));
-    },
-    burn       : function (b, f) {
-        return b ===   0 ? b : Math.max(0, (255 - ((255 - f) << 8) / b));
-    },
     negate     : function (b, f) {
         return 255 - Math.abs(255 - b - f);
+    },
+	difference : function (b, f) {
+		return Math.abs(b - f);
+	},
+    average    : function (b, f) {
+        return (b + f) / 2;
+    },
+    exclusion  : function (b, f) {
+        return b + f - 2 * b * f / 255;
+    },
+    hardlight  : function (b, f) {
+        return bl.overlay(f, b);
+    },
+    softlight  : function (b, f) {
+		b/= 255;
+		f/= 255;
+        var d = 1, 
+			e = b;
+        if (f > 0.5) {
+            e = 1;
+            d = b > 0.25 ? Math.sqrt(b) : ((16 * b - 12) * b + 4) * b;
+        }
+        return 255 * (b - (1 - 2 * f) * e * (d - b));
     },
 	darken     : function (b, f) {
 		return Math.min(b, f);
@@ -32,15 +49,20 @@ return {
 	subtract   : function (b, f) {
 		return b - f;
 	},
-	difference : function (b, f) {
-		return Math.max(b - f, f - b);
+	subtractive: function (b, f) {
+		return b + f - 255;
 	},
 	combine    : function (b, f) {
 		return b ^ f;
 	},
-	subtractive: function (b, f) {
-		return b + f - 255;
-	}
+    dodge      : function (b, f) {
+        return b === 255 ? b : Math.min(255, (f << 8) / (255 - b));
+    },
+    burn       : function (b, f) {
+        return b ===   0 ? b : Math.max(0, (255 - ((255 - f) << 8) / b));
+    }
 };
+
+return bl;
 
 });

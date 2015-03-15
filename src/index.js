@@ -287,17 +287,24 @@ mix         : function (y, p, r) {
 },
 blend      : function (y, f) {
 	var x = this.color('rgba'),
-		r = [],
+		r = [,,, x[3] ],
 		l = 4;
 	y = new Color(y).color('rgba');
 	if (f in bl) f = bl[f];
-	for(l = 3; l--;) r[l] = f(b[l], c[l]);
+	for(l = 3; l--;) r[l] = f(x[l], y[l]);
 	return new Color(r);
 },
 opaque : function () {},shade : function () {},tint : function () {},tone : function () {}
 });
 
-console.log(Color('hsla(300, 50%, 30%, 0.6)').space);   // hsl
+var c = '#F60';
+var f = 'burn';
+var a = Color(c);
+[ '#000', '#F00', '#0F0', '#00F', '#FFF' ].map(function (i) {
+	var b = Color(i);
+	console.log(c + ' + ' + i + ' = ' + a.blend(b, f).css(0));
+});
+
 
 
 
