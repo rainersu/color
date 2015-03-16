@@ -159,6 +159,9 @@ define({
 	
 	// CSS Color Module Level 4 	  	
 	
-	rebeccapurple        : '#663399'
-
+	rebeccapurple        : '#663399',
+	
+	// My favorite ;-) - sUyU(rainersu@foxmail.com)
+	
+	tiffanyblue          : '#60DFE5'
 });
