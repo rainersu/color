@@ -1,8 +1,9 @@
 /**
 * 将当前 Color 对象色值按指定比例与另一种色彩混合，将混色结果作为新 Color 对象返回。
-* @see {@link Color#blend}
-* @see {@link Color#shade}
+* @see {@link Color#tone}
 * @see {@link Color#tint}
+* @see {@link Color#shade}
+* @see {@link Color#blend}
 * @access public
 * @func Color.prototype.mix
 * @param {Color|string} color - 要与之混色的另一种颜色。

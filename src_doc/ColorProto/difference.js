@@ -1,5 +1,5 @@
 /**
-* 计算出当前 Color 对象色值与指定颜色的对比度。结果作为数组返回，所包含数值依次为亮度反差、色值反差、可分辨度。可分辨度由低到高值范围为 0 - 2 。
+* 计算出当前 Color 对象色值与指定颜色的对比度。结果作为数组返回，所包含数值依次为亮度反差 (大于 125 为佳)、色值反差 (大于 500 为佳)、可分辨度 (由低到高值范围为 0 - 2)。
 * @see {@link Color#contrast}
 * @see {@link http://www.w3.org/WAI/ER/WD-AERT/#color-contrast}
 * @access public

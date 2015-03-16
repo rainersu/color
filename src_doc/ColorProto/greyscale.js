@@ -1,6 +1,7 @@
 /**
 * 将当前 Color 对象色值转换为 {@link http://en.wikipedia.org/wiki/Grayscale|灰度} 值，作为新 Color 对象返回。
 * @see {@link Color.grayscale}
+* @see {@link Color#tone}
 * @see {@link Color#luminance}
 * @see {@link Color#saturation}
 * @see {@link Color#sepia}

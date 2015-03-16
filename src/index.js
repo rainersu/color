@@ -49,8 +49,8 @@ function cp (d, o) {
 		h = {}.hasOwnProperty;
 	for(m in o) if (h.call(o, m)) d[m] = o[m];
 }
-function tj ( ) {
-	return this.css();
+function tj (v) {
+	return this.css(v);
 }
 function fb (f, n) {
 	return function () {
@@ -285,7 +285,7 @@ mix         : function (y, p, r) {
 		r ? x[3] * p + y[3] * (1 - p) : x[3]
 	]);
 },
-blend      : function (y, f) {
+blend       : function (y, f) {
 	var x = this.color('rgba'),
 		r = [,,, x[3] ],
 		l = 4;
@@ -294,15 +294,38 @@ blend      : function (y, f) {
 	for(l = 3; l--;) r[l] = f(x[l], y[l]);
 	return new Color(r);
 },
-opaque : function () {},shade : function () {},tint : function () {},tone : function () {}
-});
-
-var c = '#F60';
-var f = 'burn';
-var a = Color(c);
-[ '#000', '#F00', '#0F0', '#00F', '#FFF' ].map(function (i) {
-	var b = Color(i);
-	console.log(c + ' + ' + i + ' = ' + a.blend(b, f).css(0));
+tint        : function (p) {
+	return new Color([ 255, 255, 255, this.alpha ]).mix(this, p);
+},
+shade       : function (p) {
+	return new Color([   0,   0,   0, this.alpha ]).mix(this, p);
+},
+tone        : function (p, m) {
+	return this.greyscale(m).mix(this, p);
+},
+mate        : function (o) {
+	var c = am(o) === 'array' ? o : o ? slice.call(arguments) : [ '#000', '#FFF' ],
+		l = c.length,
+		x = this.luminance(),
+		y,
+		z = 0,
+		i,
+	r = c[0];
+	while(l--) {
+		i = new Color(c[l]);
+		y = Math.abs(i.luminance() - x);
+		if (y > z) {
+			z = y;
+			r = i;
+		}
+	}
+	return  r;
+},
+opaque      : function (y, b) {
+	y = this.mix(y, this.alpha);
+	y.alpha = 100;
+	return b ? y.css(0) : y;
+}
 });
 
 
