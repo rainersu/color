@@ -1,6 +1,8 @@
 /**
 * 计算出当前 Color 对象色值与指定颜色的 {@link http://www.w3.org/TR/WCAG20/#contrast-ratiodef|对比度} 值。由低到高值范围为 0 - 21 。
 * @see {@link Color#difference}
+* @see {@link Color#luminance}
+* @see {@link Color#luma}
 * @see {@link http://www.w3.org/TR/WCAG20/#contrast-ratiodef}
 * @access public
 * @func Color.prototype.contrast

@@ -1,5 +1,6 @@
 /**
 * 计算出当前 Color 对象色值的 {@link http://www.w3.org/TR/WCAG20/#relativeluminancedef|亮度} 值。范围为 0 - 1 。亮度最高为 1 (白色)，亮度最低为 0 (黑色)。
+* @see {@link Color#luma}
 * @see {@link Color#contrast}
 * @see {@link Color#difference}
 * @see {@link http://www.w3.org/TR/WCAG20/#relativeluminancedef}

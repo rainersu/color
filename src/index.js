@@ -9,13 +9,15 @@ requirejs([
 	'./utils/spaces',
 	'./utils/keywords',
 	'./utils/conversions',
-	'./utils/blendings'
+	'./utils/blendings',
+	'./utils/schemes'
 ], 
 function(
 	cs,
 	kw,
 	cv,
-	bl
+	bl,
+	sc
 ) {'use strict';
 
 var re = 
@@ -224,6 +226,9 @@ luminance   : function (b) {
 	}
 	return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
 },
+luma        : function ( ) {
+	return (this.color('yiq')[0] * 255).toFixed();
+},
 contrast    : function (c) {
 	c = Color(c).luminance() + 0.05;
 	var b = this.luminance() + 0.05;
@@ -303,6 +308,9 @@ shade       : function (p) {
 tone        : function (p, m) {
 	return this.greyscale(m).mix(this, p);
 },
+match       : function (y, d) {
+	return Math.abs(this.luminance() - new Color(y).luminance()) * 100 > (1 + d ? d : 50);
+},
 mate        : function (o) {
 	var c = am(o) === 'array' ? o : o ? slice.call(arguments) : [ '#000', '#FFF' ],
 		l = c.length,
@@ -325,10 +333,36 @@ opaque      : function (y, b) {
 	y = this.mix(y, this.alpha);
 	y.alpha = 100;
 	return b ? y.css(0) : y;
+},
+scheme      : function (f) {
+	
+	if (am(f) === 'string') f = sc[f];
+	if (am(f) === 'array' ) {
+		var l = f.length;
+		var r = this.color('hsla');
+		var x=[];
+		for(; l--;) x.push(new Color([ r[0] + f[l], r[1], r[2], r[3] ], 'hsl'));
+		return x; 
+	}
+
+	f = f(this);
+	var n = f.pop(),
+		l = f.unshift(this.color(n)),
+		a = this.alpha;
+	for(; l--;) {
+		f[l].push(a);
+		f[l] = new Color(f[l], n);
+	}
+	return f;
 }
 });
-
-
+/*
+var tiffanyblue = Color('#60DFE5');
+Object.keys(sc).forEach(function (i) {
+	//console.log(tiffanyblue.scheme(i));
+	console.log(tiffanyblue.scheme(i).map(function (i) { return i.css(0); }));
+});
+*/
 
 
 });
