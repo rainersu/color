@@ -1,5 +1,6 @@
 /**
 * 从一个 Color 对象转换出符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义的 CSS 语法描述格式。
+* @see {@link Color#ieFilter}
 * @see {@link Color#toJSON}
 * @see {@link Color#toString}
 * @access public

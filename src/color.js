@@ -1,11 +1,10 @@
-
 define([
-	'./spaces',
-	'./keywords',
-	'./conversions',
-	'./blendings',
-	'./schemes'
-], 
+	'./com/spaces',
+	'./com/keywords',
+	'./com/conversions',
+	'./com/blendings',
+	'./com/schemes'
+],
 function(
 	cs,
 	kw,
@@ -13,8 +12,7 @@ function(
 	bl,
 	sc
 ) {'use strict';
-
-var re = 
+var re =
 	[
 		/./,
 		/^hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i,
@@ -27,7 +25,6 @@ var re =
 		return [ x, x, x, a ];
 	}),
 	slice = re.slice;
-
 function am (v) {
 	return {}.toString.call(v).split(/\W+/)[2].toLowerCase();
 }
@@ -113,7 +110,7 @@ value       : function (n, i, v, b) {
 	if (v === v) {
 		v = c[i] = kv( b ? o + v : v, a ? [ 0, 100 ] : k[i] );
 		if (o !== v) this.color(n, c);
-		o = this; 
+		o = this;
 	}
 	return  o;
 },
@@ -123,7 +120,7 @@ opacity     : function (v, b) {
 	if (v === v) {
 		this.alpha = kv( b ? a + v : v, [ 0, 100 ] );
 		a = this;
-	} 
+	}
 	return a;
 },
 color       : function (s, v) {
@@ -160,13 +157,13 @@ color       : function (s, v) {
 					k = cs[s];
 					if(isNaN(v[3]*= 100)) v.pop();
 					break;
-				}	
+				}
 				else {
 					v = kw[v];
 					if (v) x = w;
 				}
 			}
-		} 
+		}
 		else v = re.slice.call(v);
 		if (ka(v, k).length > k.length) this.opacity(v.pop());
 		if (!(o = c[s]) || '' + o !== '' + v) (this.cache = {})[s] = v;
@@ -185,8 +182,8 @@ color       : function (s, v) {
 },
 css         : function (v, b) {
 	if (am(v) === 'string') return this.color(0, v);
-	v = v === undefined ? 1 : ~~v;
-	b = b === undefined ? this.alpha < 100 : b;
+	v = 1 + v ? ~~v : 1;
+	b = 1 + b ? b : this.alpha < 100;
 	var s = (v > 1 ? 'hsl' : 'rgb') + (b && v ? 'a' : ''),
 		c = this.color(s),
 		l = c.length,
@@ -199,6 +196,9 @@ css         : function (v, b) {
 	}
 	return v ? s + '(' + c + ')' : '#' + c.join('').toUpperCase();
 },
+ieFilter    : function () {
+	return this.css(0).replace('#', '#' + kv(Math.round(this.alpha * 2.55), [ 0, 255 ]).toString(16).replace(/^.$/, '0$&').toUpperCase());
+}, 
 web         : function (b, s) {
 	b = b ? 17 : 51;
 	var c = this.color('rgba'),
@@ -210,7 +210,6 @@ web         : function (b, s) {
 luminance   : function (b) {
 	b = +b;
 	if (b !== b) b = 1;
-
 	var c = this.color('rgb'),
 		l = c.length,
 		x;
@@ -235,7 +234,7 @@ difference  : function (c) {
 		l = 3,
 		b = 0,
 		r = 0,
-		x, 
+		x,
 		y;
 	for(; l--;) {
 		x = c[l] - a[l];
