@@ -1,11 +1,27 @@
 define([
-	'./com/spaces',
-	'./com/keywords',
-	'./com/conversions',
-	'./com/blendings',
-	'./com/schemes'
+	'./mod/pow',
+	'./mod/abs',
+	'./mod/round',
+	'./mod/am',
+	'./mod/rn',
+	'./mod/cp',
+	'./mod/kv',
+	'./mod/ka',
+	'./mod/spaces',
+	'./mod/keywords',
+	'./mod/conversions',
+	'./mod/blendings',
+	'./mod/schemes'
 ],
 function(
+	pow,
+	abs,
+	round,
+	am,
+	rn,
+	cp,
+	kv,
+	ka,
 	cs,
 	kw,
 	cv,
@@ -25,23 +41,7 @@ var re =
 		return [ x, x, x, a ];
 	}),
 	slice = re.slice;
-function am (v) {
-	return {}.toString.call(v).split(/\W+/)[2].toLowerCase();
-}
-function kv (n, k) {
-	n = +n;
-	var t = am(k);
-	return t === 'array' ? Math.min(k[1], Math.max(k[0], n)) : k && t === 'number' && ((n %= k) < 0) ? n + k : n;
-}
-function ka (v, k) {
-	for (var l = k.length; l--;) v[l] = kv(v[l], k[l]);
-	return v;
-}
-function cp (d, o) {
-	var m,
-		h = {}.hasOwnProperty;
-	for(m in o) if (h.call(o, m)) d[m] = o[m];
-}
+
 function tj (v) {
 	return this.css(v);
 }
@@ -55,9 +55,6 @@ function fv (i, n) {
 	return function (v, b) {
 		return this.value(co[ n || 0 ], i || 0, v, b);
 	};
-}
-function rn (n) {
-	return n.toLowerCase().replace(/a$/, '');
 }
 
 function Color (v, s) {
@@ -79,8 +76,8 @@ isColor     : function (v) {
 temperature : function (k) {
 	k/= 100;
 	return new Color([
-		k <= 66 ? 255 : 329.698727446 * Math.pow(k - 60, -0.1332047592),
-		k <= 66 ? 99.4708025861 * Math.log(k) - 161.1195681661 : 288.1221695283 * Math.pow(k - 60, -0.0755148492),
+		k <= 66 ? 255 : 329.698727446 * pow(k - 60, -0.1332047592),
+		k <= 66 ? 99.4708025861 * Math.log(k) - 161.1195681661 : 288.1221695283 * pow(k - 60, -0.0755148492),
 		k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * Math.log(k - 10) - 305.0447927307
 	]);
 },
@@ -189,7 +186,7 @@ css         : function (v, b) {
 		l = c.length,
 		i;
 	for (; l--;) {
-		i = Math.round(c[l]);
+		i = round(c[l]);
 		c[l] = l > 2 ? i / 100 :
 		       !v ? i.toString(16).replace(/^.$/, '0$&') :
 		       v > 1 && l ? i + '%' : i;
@@ -197,7 +194,7 @@ css         : function (v, b) {
 	return v ? s + '(' + c + ')' : '#' + c.join('').toUpperCase();
 },
 ieFilter    : function () {
-	return this.css(0).replace('#', '#' + kv(Math.round(this.alpha * 2.55), [ 0, 255 ]).toString(16).replace(/^.$/, '0$&').toUpperCase());
+	return this.css(0).replace('#', '#' + kv(round(this.alpha * 2.55), [ 0, 255 ]).toString(16).replace(/^.$/, '0$&').toUpperCase());
 }, 
 web         : function (b, s) {
 	b = b ? 17 : 51;
@@ -215,7 +212,7 @@ luminance   : function (b) {
 		x;
 	for(; l--;) {
 		 x= c[l] / 255;
-		 c[l] = b ? x : (x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4));
+		 c[l] = b ? x : (x <= 0.03928 ? x / 12.92 : pow((x + 0.055) / 1.055, 2.4));
 	}
 	return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
 },
@@ -239,9 +236,9 @@ difference  : function (c) {
 	for(; l--;) {
 		x = c[l] - a[l];
 		b+= o[l] * x;
-		r+= Math.abs(x);
+		r+= abs(x);
 	}
-	b = Math.abs(b) / 1000;
+	b = abs(b) / 1000;
 	return [ b, r, (b > 125) + (r > 500) ];
 },
 hue         : fv(0),
@@ -302,7 +299,7 @@ tone        : function (p, m) {
 	return this.greyscale(m).mix(this, p);
 },
 match       : function (y, d) {
-	return Math.abs(this.luminance() - new Color(y).luminance()) * 100 > (1 + d ? d : 50);
+	return abs(this.luminance() - new Color(y).luminance()) * 100 > (1 + d ? d : 50);
 },
 mate        : function (o) {
 	var c = am(o) === 'array' ? o : o ? slice.call(arguments) : [ '#000', '#FFF' ],
@@ -314,7 +311,7 @@ mate        : function (o) {
 	r = c[0];
 	while(l--) {
 		i = new Color(c[l]);
-		y = Math.abs(i.luminance() - x);
+		y = abs(i.luminance() - x);
 		if (y > z) {
 			z = y;
 			r = i;

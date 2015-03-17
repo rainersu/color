@@ -5,7 +5,9 @@
 	"plugins"   : ["plugins/markdown"],
 	"templates" : {
 		"default"   : {
-			"outputSourceFiles" : true
+			"recurse": true,
+			"encoding": "utf8", 
+			"outputSourceFiles" : false
 		},
 		"openGraph" : {
 			"title"             : "",

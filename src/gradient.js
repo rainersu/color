@@ -1,18 +1,12 @@
 define([
-	'./com/spaces',
-	'./com/keywords',
-	'./com/conversions',
-	'./com/blendings',
-	'./com/schemes'
+	'./color'
 ],
 function(
-	cs,
-	kw,
-	cv,
-	bl,
-	sc
+	Color
 ) {'use strict';
 
-
+function Gradient (c, n) {
+	
+}
 
 });
