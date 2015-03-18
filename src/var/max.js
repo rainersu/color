@@ -1,5 +1,7 @@
 define(function () {'use strict';
 
-return Math.abs;
+var max = Math.max;
+
+return max;
 
 });

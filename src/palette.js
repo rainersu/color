@@ -1,9 +1,9 @@
 define([
-	'./com/spaces',
-	'./com/keywords',
-	'./com/conversions',
-	'./com/blendings',
-	'./com/schemes'
+	'./var/spaces',
+	'./var/keywords',
+	'./var/conversions',
+	'./var/blendings',
+	'./var/schemes'
 ],
 function(
 	cs,

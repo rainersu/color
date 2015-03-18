@@ -1,7 +1,9 @@
 define(function () {'use strict';
 
-return function (n) {
+function rn (n) {
 	return n.toLowerCase().replace(/a$/, '');
-};
+}
+
+return rn;
 
 });

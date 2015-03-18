@@ -1,5 +1,7 @@
 define(function () {'use strict';
 
-return Math.round;
+var pow = Math.pow;
+
+return pow;
 
 });

@@ -6,7 +6,9 @@ function(
 ) {'use strict';
 
 function Gradient (c, n) {
-	
+
 }
+
+return Gradient;
 
 });

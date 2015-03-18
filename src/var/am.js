@@ -1,7 +1,9 @@
 define(function () {'use strict';
 
-return function (v) {
+function am (v) {
 	return {}.toString.call(v).split(/\W+/)[2].toLowerCase();
-};
+}
+
+return am;
 
 });

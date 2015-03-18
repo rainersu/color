@@ -1,5 +1,7 @@
 define(function () {'use strict';
 
-return Math.max;
+var round = Math.round;
+
+return round;
 
 });

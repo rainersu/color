@@ -1,5 +1,7 @@
 define(function () {'use strict';
 
-return Math.min;
+var abs = Math.abs;
+
+return abs;
 
 });

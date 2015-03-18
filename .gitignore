@@ -28,6 +28,7 @@ node_modules
 .lock-wscript
 
 # JSDoc output directory
-doc
+dist/doc
 
+# Temporary directories
 _

@@ -1,5 +1,7 @@
 define(function () {'use strict';
 
-return Math.pow;
+var min = Math.min;
+
+return min;
 
 });
