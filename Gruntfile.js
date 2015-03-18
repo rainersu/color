@@ -1,16 +1,47 @@
 module.exports = function(grunt) {"use strict";
 
-var src = 'src',
+var pkg = grunt.file.readJSON("package.json"),
+	src = 'src',
 	dst = 'dist', 
 	doc = 'doc',
+	MOD_SRC_PATH = src,
+	MOD_DST_PATH = dst,
 	DOC_SRC_PATH = doc,
-	DOC_DST_PATH = dst + '/' + doc;
+	DOC_DST_PATH = dst + '/' + doc,
+	MOD_NAME = pkg.name + '-' + pkg.version,
+	MOD_SRC_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.js',
+	MOD_MIN_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.min.js'; 
+	
 
 grunt.initConfig({
-	pkg     : grunt.file.readJSON("package.json"),
+	pkg     : pkg,
+	uglify  : {
+		mod : {
+			options : {
+				beautify : true,
+				preserveComments : false
+			},
+			files   : [{
+				src : MOD_SRC_FILE,
+			    dest: MOD_SRC_FILE
+			}]
+		},
+		min : {
+			options : {
+				report : 'gzip'
+			},
+			files   : [{
+				src : MOD_SRC_FILE,
+			    dest: MOD_MIN_FILE
+			}]
+		}
+	},
     clean   : {
         doc : {
             src: DOC_DST_PATH
+		},
+		mod : {
+			src: MOD_DST_PATH + '/*.js'
 		}
 	},
 	jsdoc   : {
@@ -20,8 +51,7 @@ grunt.initConfig({
 				verbose     : true,
 				destination : DOC_DST_PATH,
 				template    : "node_modules/jaguarjs-jsdoc",
-				configure   : "doc.json",
-				'private'   : false
+				configure   : "doc.json"
 			}
 		}
 	},
@@ -43,8 +73,6 @@ grunt.initConfig({
 		}
 	},
 	compile : {
-		src : src,
-		dst : dst
 	}
 
 });
@@ -52,23 +80,20 @@ grunt.initConfig({
 require("load-grunt-tasks")(grunt);
 
 grunt.registerTask('compile', function() {
-	var dir = grunt.config.get(this.name).src,
-		col = grunt.file.read(dir + '/var/index.js').split(/[\[\]]/)[1].replace(/[^-a-z0-9_,]+/ig, '').split(','),
-		out = '',
-		re1 = /^[^;]+\{\'use strict\'\;/,
-		re2 = /return\s+\w+\s*;\s*\}\);\s*$/;
-	col.forEach(function (n) {
-		out+= grunt.file.read(dir + '/var/' + n + '.js').replace(re1, '').replace(re2, '');
+	var out = '';
+	grunt.file.read(MOD_SRC_PATH + '/var/index.js').split(/[\[\]]/)[1].replace(/[^-a-z0-9_,]+/ig, '').split(',').map(function (n) {
+		return MOD_SRC_PATH + '/var/' + n + '.js'; 
+	}).concat(grunt.file.read(MOD_SRC_PATH + '/index.js').match(/requirejs\(\[([^\]]+)\]/)[1].match(/\w+/g).map(function (n) {
+		return MOD_SRC_PATH + '/' + n + '.js'; 
+	})).forEach(function (n) {
+		out+= grunt.file.read(n).replace(/^[^;]+\{\'use strict\'\;/, '').replace(/return\s+\w+\s*;\s*\}\);\s*$/, '');
 	});
-	col = grunt.file.read(dir + '/index.js').match(/requirejs\(\[([^\]]+)\]/)[1].match(/\w+/g);
-	col.forEach(function (n) {
-		out+= grunt.file.read(dir + '/' + n + '.js').replace(re1, '').replace(re2, '');
-	});
-	grunt.file.write(grunt.config.get(this.name).dst + '/color.js', out);
+	grunt.file.write(MOD_SRC_FILE, out);
 });
 
-grunt.registerTask('default', [ 'compile' ]);
-
-grunt.registerTask('demo',    [ 'clean:doc', 'jsdoc', 'connect:doc' ]);
+grunt.registerTask('doc', [ 'clean:doc', 'jsdoc' ]);
+grunt.registerTask('mod', [ 'clean:mod', 'compile', 'uglify' ]);
+grunt.registerTask('run', [ 'connect:doc' ]);	
+grunt.registerTask('default', [ 'doc', 'mod' ]);
 
 };
