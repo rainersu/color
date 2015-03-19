@@ -1,44 +1,52 @@
 module.exports = function(grunt) {"use strict";
 
 var pkg = grunt.file.readJSON("package.json"),
+	COPYRIGHT = '/*!\r\n' + pkg.name + ' v' + pkg.version + '\r\n' + pkg.homepage + '\r\n' + pkg.description + 
+	            '\r\n(c) ' + pkg.author.name + '( ' + pkg.author.email + ' | ' + pkg.author.url + ' | QQ: ' + pkg.author.qq + ' )\r\n*/\r\n',
 	MOD_SRC_PATH = 'src',
 	MOD_DST_PATH = 'dist',
 	DOC_SRC_PATH = 'doc',
-	MOD_NAME = pkg.name + '-' + pkg.version,
+	MOD_NAME = pkg.name.toLowerCase(),
 	DOC_DST_PATH = MOD_DST_PATH + '/' + DOC_SRC_PATH,
-	MOD_SRC_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.js',
-	MOD_MIN_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.min.js'; 
-	
+	MOD_DST_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.js',
+	MOD_MIN_FILE = MOD_DST_PATH + '/' + MOD_NAME + '-' + pkg.version + '.min.js'; 
 
 grunt.initConfig({
 	pkg     : pkg,
+	bytesize: {
+		mod : {
+			src : [ MOD_DST_FILE, MOD_MIN_FILE ]
+		}
+	},
 	umd     : {
-		mod: {
+		mod : {
 			options: {
-				src : MOD_SRC_FILE,
-			    dest: MOD_SRC_FILE
+				verbose      : true,
+				src          : MOD_DST_FILE,
+			    dest         : MOD_DST_FILE
 			}
 		}
 	},
 	uglify  : {
+		options : {
+			preserveComments : false,
+			banner           : COPYRIGHT
+		},
 		mod : {
 			options : {
-				beautify : true,
-				preserveComments : false
-			},
-			files   : [{
-				src : MOD_SRC_FILE,
-			    dest: MOD_SRC_FILE
-			}]
+				beautify     : true,
+				compress     : false,
+				mangle       : false
+			}, 
+			files   : [{ src : MOD_DST_FILE, dest: MOD_DST_FILE }]
 		},
 		min : {
 			options : {
-				report : 'gzip'
+				verbose      : true,
+				compress     : true,
+				report       : 'min'
 			},
-			files   : [{
-				src : MOD_SRC_FILE,
-			    dest: MOD_MIN_FILE
-			}]
+			files   : [{ src : MOD_DST_FILE, dest: MOD_MIN_FILE }]
 		}
 	},
     clean   : {
@@ -63,12 +71,13 @@ grunt.initConfig({
 	connect : {
 		doc : {
 			options : {
-				hostname    : '*',
-				port        : 8001,
-				base        : DOC_DST_PATH,
-				keepalive   : true,
-				open        : true
-                /*,middleware  : function (connect, options) {
+				verbose      : true,
+				hostname     : '*',
+				port         : 8001,
+				base         : DOC_DST_PATH,
+				keepalive    : true,
+				open         : true
+                /*,middleware   : function (connect, options) {
                     return [
 						require('connect-livereload')(),
 						connect.static(path.resolve('' + options.base))
@@ -76,8 +85,6 @@ grunt.initConfig({
                 }*/
 			}
 		}
-	},
-	compile : {
 	}
 });
 
@@ -92,13 +99,20 @@ grunt.registerTask('compile', function() {
 	})).forEach(function (n) {
 		out+= grunt.file.read(n).replace(/^[^;]+\{\'use strict\'\;/, '').replace(/return\s+\w+\s*;\s*\}\);\s*$/, '');
 	});
-	grunt.file.write(MOD_SRC_FILE, out + 'return module;');
+	grunt.file.write(MOD_DST_FILE, out + 'return module;');
+	grunt.log.ok('1 file created.');
 });
 
-grunt.registerTask('doc', [ 'clean:doc', 'jsdoc' ]);
-grunt.registerTask('mod', [ 'clean:mod', 'compile', 'umd', 'uglify' ]);
-grunt.registerTask('run', [ 'connect:doc' ]);
+grunt.registerTask('showtime', function () {
+	grunt.log.ok('demo for node.js(CommonJS)...');
+	require('./' + MOD_DST_PATH + '/demo/node/index.js');
+});
+
+grunt.registerTask('distdoc', [ 'clean:doc', 'jsdoc' ]);
+grunt.registerTask('distmod', [ 'clean:mod', 'compile', 'umd', 'uglify', 'bytesize' ]);
+grunt.registerTask('help', [ 'distdoc', 'connect:doc' ]);
+grunt.registerTask('test', [ 'distmod', 'showtime'    ]);
 	
-grunt.registerTask('default', [ 'doc', 'mod' ]);
+grunt.registerTask('default', [ 'distdoc', 'distmod'  ]);
 
 };
