@@ -6,7 +6,7 @@ Target Environments
 
 - IE 6+
 - Latest Stable: Firefox, Chrome, Safari, Opera
-- Node
+- Node.js
 - Rhino & SpiderMonkey
 
 Build From Source
@@ -34,5 +34,7 @@ $ grunt test
 
 Copyright and license
 ---------------------
+
 Code and documentation copyright 2015 Rainer Su (Suyu).
+
 This software is free to use under the [BSD license](https://github.com/rainersu/color/blob/master/LICENSE.md).
