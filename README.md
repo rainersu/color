@@ -4,10 +4,10 @@ Just a JavaScript library for all kinds of color manipulations.
 Target Environments
 -------------------
 
-- **IE 6+**
-- **Latest Stable: Firefox, Chrome, Safari, Opera**
-- **Node**
-- **Rhino & SpiderMonkey**
+- IE 6+
+- Latest Stable: Firefox, Chrome, Safari, Opera
+- Node
+- Rhino & SpiderMonkey
 
 Build From Source
 -----------------
