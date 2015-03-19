@@ -11,6 +11,8 @@ Target Environments
 Build From Source
 -----------------
 
+First, you need to have [Node.js](https://nodejs.org/) and [Grunt](http://gruntjs.com/) installed.
+
 ```bash
 $ git clone git@github.com:rainersu/color.git
 $ npm install -g grunt-cli
