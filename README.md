@@ -37,4 +37,4 @@ Copyright and license
 
 Copyright 2015 [Rainer Su](mailto:rainersu@foxmail.com) ([Suyu](http://cn.linkedin.com/in/rainersu)).
 
-This software is free to use under the [BSD license](https://github.com/rainersu/color/blob/master/LICENSE.md).
+Code and documentation is free to use under the [BSD license](https://github.com/rainersu/color/blob/master/LICENSE.md).
