@@ -35,6 +35,6 @@ $ grunt test
 Copyright and license
 ---------------------
 
-Code and documentation copyright 2015 Rainer Su (Suyu).
+Copyright 2015 [Rainer Su](rainersu@foxmail.com) ([Suyu](http://cn.linkedin.com/in/rainersu)).
 
 This software is free to use under the [BSD license](https://github.com/rainersu/color/blob/master/LICENSE.md).
