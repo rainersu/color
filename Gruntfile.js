@@ -42,6 +42,8 @@ grunt.initConfig({
 		},
 		min : {
 			options : {
+				sourceMap    : true,
+				sourceMapName: MOD_MIN_FILE + '.map',
 				verbose      : true,
 				compress     : true,
 				report       : 'min'
@@ -90,7 +92,7 @@ grunt.initConfig({
 
 require("load-grunt-tasks")(grunt);
 
-grunt.registerTask('compile', function() {
+grunt.registerTask('compile',  function () {
 	var out = '';
 	grunt.file.read(MOD_SRC_PATH + '/var/index.js').split(/[\[\]]/)[1].replace(/[^-a-z0-9_,]+/ig, '').split(',').map(function (n) {
 		return MOD_SRC_PATH + '/var/' + n + '.js'; 
