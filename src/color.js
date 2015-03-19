@@ -1,4 +1,5 @@
 define([
+	'./var/module',
 	'./var/pow',
 	'./var/abs',
 	'./var/round',
@@ -14,6 +15,7 @@ define([
 	'./var/schemes'
 ],
 function(
+	module,
 	pow,
 	abs,
 	round,
@@ -325,6 +327,8 @@ opaque      : function (y, b) {
 	return b ? y.css(0) : y;
 }
 });
+
+module.Color = Color;
 
 return Color;
 

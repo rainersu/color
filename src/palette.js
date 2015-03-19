@@ -1,4 +1,5 @@
 define([
+	'./var/module',
 	'./var/spaces',
 	'./var/keywords',
 	'./var/conversions',
@@ -6,6 +7,7 @@ define([
 	'./var/schemes'
 ],
 function(
+	module,
 	cs,
 	kw,
 	cv,

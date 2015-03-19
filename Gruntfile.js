@@ -1,20 +1,25 @@
 module.exports = function(grunt) {"use strict";
 
 var pkg = grunt.file.readJSON("package.json"),
-	src = 'src',
-	dst = 'dist', 
-	doc = 'doc',
-	MOD_SRC_PATH = src,
-	MOD_DST_PATH = dst,
-	DOC_SRC_PATH = doc,
-	DOC_DST_PATH = dst + '/' + doc,
+	MOD_SRC_PATH = 'src',
+	MOD_DST_PATH = 'dist',
+	DOC_SRC_PATH = 'doc',
 	MOD_NAME = pkg.name + '-' + pkg.version,
+	DOC_DST_PATH = MOD_DST_PATH + '/' + DOC_SRC_PATH,
 	MOD_SRC_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.js',
 	MOD_MIN_FILE = MOD_DST_PATH + '/' + MOD_NAME + '.min.js'; 
 	
 
 grunt.initConfig({
 	pkg     : pkg,
+	umd     : {
+		mod: {
+			options: {
+				src : MOD_SRC_FILE,
+			    dest: MOD_SRC_FILE
+			}
+		}
+	},
 	uglify  : {
 		mod : {
 			options : {
@@ -74,7 +79,6 @@ grunt.initConfig({
 	},
 	compile : {
 	}
-
 });
 
 require("load-grunt-tasks")(grunt);
@@ -88,12 +92,13 @@ grunt.registerTask('compile', function() {
 	})).forEach(function (n) {
 		out+= grunt.file.read(n).replace(/^[^;]+\{\'use strict\'\;/, '').replace(/return\s+\w+\s*;\s*\}\);\s*$/, '');
 	});
-	grunt.file.write(MOD_SRC_FILE, out);
+	grunt.file.write(MOD_SRC_FILE, out + 'return module;');
 });
 
 grunt.registerTask('doc', [ 'clean:doc', 'jsdoc' ]);
-grunt.registerTask('mod', [ 'clean:mod', 'compile', 'uglify' ]);
-grunt.registerTask('run', [ 'connect:doc' ]);	
+grunt.registerTask('mod', [ 'clean:mod', 'compile', 'umd', 'uglify' ]);
+grunt.registerTask('run', [ 'connect:doc' ]);
+	
 grunt.registerTask('default', [ 'doc', 'mod' ]);
 
 };
