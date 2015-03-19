@@ -30,7 +30,7 @@ Build & running documentation locally
 $ grunt help
 ```
 
-Sorry, the documentation is currently offered only in the Chinese language. Can you help me with some translations?
+Sorry, the documentation is currently offered only in the Chinese language. Do you have time to help me with some Chinese - English translations?
 
 Running demos for testing
 -------------------------
