@@ -13,7 +13,9 @@ Build From Source
 
 ```bash
 $ git clone git@github.com:rainersu/color.git
-$ sudo npm install
+$ npm install -g grunt-cli
+$ cd color
+$ npm install
 $ grunt
 ```
 
