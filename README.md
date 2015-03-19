@@ -7,7 +7,6 @@ Target Environments
 - IE 6+
 - Latest Stable: Firefox, Chrome, Safari, Opera
 - Node.js
-- Rhino & SpiderMonkey
 
 Build From Source
 -----------------
