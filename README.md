@@ -8,10 +8,12 @@ Target Environments
 - Latest Stable: Firefox, Chrome, Safari, Opera
 - Node.js
 
+Of course, you can use it in browser extensions, and other non-browser environments, such as [Rhino](https://github.com/mozilla/rhino) or [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&redirectslug=SpiderMonkey).
+
 Build From Source
 -----------------
 
-First, you need to have [Node.js](https://nodejs.org/)(with [NPM](https://www.npmjs.com/)) and [Grunt](http://gruntjs.com/) installed.
+First, you need to have [Node.js](https://nodejs.org/) and [Grunt](http://gruntjs.com/) installed.
 
 ```bash
 $ git clone git@github.com:rainersu/color.git
