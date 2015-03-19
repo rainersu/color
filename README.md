@@ -8,7 +8,7 @@ Target Environments
 - Latest Stable: Firefox, Chrome, Safari, Opera
 - Node.js
 
-Of course you can use it in browser extensions, and other non-browser environments, such as [Rhino](https://github.com/mozilla/rhino) or [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&redirectslug=SpiderMonkey).
+Yes, of course you can use it in browser extensions, and other non-browser environments, such as [Rhino](https://github.com/mozilla/rhino) or [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&redirectslug=SpiderMonkey).
 
 Build From Source
 -----------------
