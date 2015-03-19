@@ -2,7 +2,7 @@
 Color v1.0.0
 https://github.com/rainersu/color
 Just a JavaScript library for all kinds of color manipulations.
-(c) Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )
+(c) 2015 Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )
 */
 (function(root, factory) {
     if (typeof define === "function" && define.amd) {

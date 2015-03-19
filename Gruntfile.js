@@ -2,7 +2,8 @@ module.exports = function(grunt) {"use strict";
 
 var pkg = grunt.file.readJSON("package.json"),
 	COPYRIGHT = '/*!\r\n' + pkg.name + ' v' + pkg.version + '\r\n' + pkg.homepage + '\r\n' + pkg.description + 
-	            '\r\n(c) ' + pkg.author.name + '( ' + pkg.author.email + ' | ' + pkg.author.url + ' | QQ: ' + pkg.author.qq + ' )\r\n*/\r\n',
+	            '\r\n(c) 2015 ' + pkg.author.name + '( ' + pkg.author.email + ' | ' + pkg.author.url + ' | QQ: ' + pkg.author.qq + 
+	            ' )\r\n*/\r\n',
 	MOD_SRC_PATH = 'src',
 	MOD_DST_PATH = 'dist',
 	DOC_SRC_PATH = 'doc',

@@ -6,8 +6,6 @@ Target Environments
 
 - **IE 6+**
 - **Latest Stable: Firefox, Chrome, Safari, Opera**
-- **iOS 4+**
-- **Android 2.x+**
 - **Node**
 - **Rhino & SpiderMonkey**
 
@@ -34,3 +32,7 @@ Running demos for testing
 $ grunt test
 ```
 
+Copyright and license
+---------------------
+Code and documentation copyright 2015 Rainer Su (Suyu).
+This software is free to use under the [BSD license](https://github.com/rainersu/color/blob/master/LICENSE.md).
