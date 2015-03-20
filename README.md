@@ -2,7 +2,7 @@
 Just a standalone JavaScript library for all kinds of color manipulations. Tiny but powerful. 
 
 
-Target Environments
+Target environments
 -------------------
 
 - IE 6+
@@ -11,7 +11,7 @@ Target Environments
 
 There is no doubt that you can also use this library in browser extensions and other non-browser environments, such as [Rhino](https://github.com/mozilla/rhino) or [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&redirectslug=SpiderMonkey).
 
-Build From Source
+Build from source
 -----------------
 
 First, you need to have [Node.js](https://nodejs.org/) and [Grunt](http://gruntjs.com/) installed.

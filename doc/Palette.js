@@ -3,33 +3,34 @@
 * @class Palette
 * @see {@link Color}
 * @see {@link Gradient}
-* @param {string|array} data - 任何符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串，或符合由 space 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 的命名分量顺序的色值数组。
-* @param {string} [space=rgb] - 当 data 参数格式为数组时，指定所对应的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 名称。当前已支持的所有色彩空间名称可通过 {@link Color.spaces} 查看。
+* @param {Color[]} colors - 为调色板定义基色的数组。可以使用 {@link Color} 对象也可以是符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串。
+* @param {number[]} [ratios] - 依次序为 colors 里每种基色定义份量的数组。注意是份量而非比例，各基色的实际比例等于份量 / 总份量。如果省略此参数则所有基色都默认为 1 份。
+* @param {number}  [alpha=100] - 不透明度。参见 {@link Palette#alpha|alpha}
 * @example
-* var color = Color('#FF0');
-* var color = Color('hsl(80, 5%, 3%)');
-* var color = new Color('rgb(255, 0, 0)');
-* var color = Color([255, 0, 0, 50], 'rgba');
-* var color = new Color([100, 0, 0, 0], 'cmyk');
+* var tiffanyblue = '#60DFE5';
+* var pat = new Palette([ '#FFF', '#000', tiffanyblue ], [ 1, 2, 3 ], 22);
+* 
+* console.log(pat.css(1));      // rgba( 91,154,157,0.22)
+* 
+* pat.stuff('white', 1, true);
+* console.log(pat.css(1));      // rgba(114,168,171,0.22)
+* 
+* pat.stuff('white', -2, true);
+* pat.stuff('black', -2, true);
+* console.log(pat.css(0) === tiffanyblue);       // true   
 * @example
-* var c = [ 255, 0, 0 ];
-* var a = 'xyz,yxy,yiq,yuv,lab,cmy,hwb,hsv,hsl,rgb'.split(',');
-* var l = a.length, i, n, m, r;
-* for(; l--;) {
-*     n = a[l];
-*     m = a[l - 1] || 'rgb';
-*     r = n + '[ ' + c.map(Math.round) + '] -> ' + m + '[ ';
-*     c = new Color(c, n).color(m);
-*     console.log(r + c.map(Math.round) + ' ]'); 
-* }
-* // rgb[ 255,   0,   0 ] -> hsl[   0, 100,  50 ]
-* // hsl[   0, 100,  50 ] -> hsv[   0, 100, 100 ]
-* // hsv[   0, 100, 100 ] -> hwb[   0,   0,   0 ]
-* // hwb[   0,   0,   0 ] -> cmy[   0, 100, 100 ]
-* // cmy[   0, 100, 100 ] -> lab[  53,  80,  67 ]
-* // lab[  53,  80,  67 ] -> yuv[  76,  84, 255 ]
-* // yuv[  76,  84, 255 ] -> yiq[   0,   1,   0 ]
-* // yiq[   0,   1,   0 ] -> yxy[   1,   0,  21 ]
-* // yxy[   1,   0,  21 ] -> xyz[  41,  21,   2 ]
-* // xyz[  41,  21,   2 ] -> rgb[ 255,   0,   0 ]
+* var pat = new Palette();
+* 
+* console.log(pat.css(0));                         // #000000
+* 
+* console.log(pat.stuff('#000').css(0));           // #000000
+* console.log(pat.stuff('#000', 1, true).css(0));  // #000000
+* 
+* console.log(pat.stuff('#FFF', 1).css(0));        // #555555
+* console.log(pat.stuff('#FFF', 1, true).css(0));  // #808080
+* 
+* console.log(pat.stuff('#000', 0).css(0));        // #FFFFFF
+* console.log(pat.stuff('#FFF', 0).css(0));        // #000000
+* 
+* console.log(pat.stuff('#60DFE5', 1).css(0));     // #60DFE5
 */

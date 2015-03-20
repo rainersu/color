@@ -4,6 +4,7 @@
 * @see {@link Color#tint}
 * @see {@link Color#shade}
 * @see {@link Color#blend}
+* @see {@link Palette#mix}
 * @access public
 * @func Color.prototype.mix
 * @param {Color|string} color - 要与之混色的另一种颜色。
