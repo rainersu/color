@@ -52,6 +52,6 @@ How to contact me
 Copyright and license
 ---------------------
 
-Copyright 2015 [Rainer Su](mailto:rainersu@foxmail.com) ([Suyu](http://cn.linkedin.com/in/rainersu)).
+Copyright 2015 [Rainer Su](mailto:rainersu@foxmail.com) ([苏昱](http://cn.linkedin.com/in/rainersu)).
 
 Code and documentation is free to use under the [BSD license](https://github.com/rainersu/color/blob/master/LICENSE.md).
