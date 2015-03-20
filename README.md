@@ -1,5 +1,5 @@
 # color
-Just a tiny JavaScript library for all kinds of color manipulations.
+Just a tiny JavaScript library for all kinds of color manipulations. [http://rainersu.github.io/color]
 
 
 Target Environments
@@ -45,6 +45,7 @@ How to contact me
 
 - rainersu@foxmail.com
 - http://cn.linkedin.com/in/rainersu
+- http://rainersu.github.io
 - http://weibo.com/rainersu
 - ``QQ: 2627001536``
 
