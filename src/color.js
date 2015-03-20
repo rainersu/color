@@ -3,6 +3,7 @@ define([
 	'./var/pow',
 	'./var/abs',
 	'./var/round',
+	'./var/slice',
 	'./var/am',
 	'./var/rn',
 	'./var/cp',
@@ -19,6 +20,7 @@ function(
 	pow,
 	abs,
 	round,
+	slice,
 	am,
 	rn,
 	cp,
@@ -41,8 +43,7 @@ var re =
 	gs = fb(function (r, g, b, a, m) {
 		var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
 		return [ x, x, x, a ];
-	}),
-	slice = re.slice;
+	});
 
 function tj (v) {
 	return this.css(v);

@@ -15,9 +15,9 @@ function(
 
 var tiffanyblue = Color('#60DFE5');
 
-var pat = new Palette();
-pat.add('#000', 3);
-pat.add('#fff');
-console.log(pat);
+var pat = new Palette(tiffanyblue, tiffanyblue);
+console.log(pat.color(tiffanyblue));
+console.log(pat.color(tiffanyblue, 0));
+
 
 });

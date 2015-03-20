@@ -1,34 +1,70 @@
 define([
 	'./var/module',
+	'./var/slice',
 	'./var/am',
 	'./var/cp',
 	'./color'
 ],
 function(
 	module,
+	slice,
 	am,
 	cp,
 	Color
 ) {'use strict';
 
 function Palette (m, n) {
-	this.colors = {};
+	this.cache = {};
+	if (am(m) !== 'array') {
+		m = slice.call(arguments);
+		n = 0;
+	}
+	var l = m.length;
+	for(; l--;) this.color(m[l], n && n[l] || 1);
 }
 
 cp(Palette.prototype, {
-add    : function (c, p) {
-	c = new Color(c);
-	p = Math.abs(~~p);
+color  : function (c, p, b) {
+	c =  new Color(c, 1);
+	p = +p;
 	var n = c.css(0),
-		o = this.colors[n];
-	if (!o) this.colors[n] = o = c;
-	n = o.ratio;
-	o.ratio = p + 1 ? p : n + 1 ? n : 1;
-	return this;
-}/*,
-ratio  : function (n, p, b) {
-	if (am(n) === 'string') n = n.split(':');
-}*/
+		o = this.cache[n];
+	if (!o) this.cache[n] = o = c;
+	n = p + 1;
+	p = ~~p;
+	c = ~~o.ratio;
+	b = b ? c + p : p;
+	o.ratio = p = n ? b : c; 
+	return n ? this : p; 
+},
+blend  : function (b) {
+	var o = this.cache,
+		c = [],
+		p = [],
+		x = 0,
+		n,
+		m,
+		i,
+		r = [ 0, 0, 0 ];
+	for(i in o) if (o.hasOwnProperty(i)) {
+		i = o[i];
+		n = i.ratio;
+		if (n) {
+			x+= n;
+			p.push(n);
+			c.push(i.color());
+		}
+	}
+	for(i = p.length; i--;) {
+		n = p[i] / x;
+		o = c[i];
+		for(m = 3; m--;) {
+			r[m]+= n * o[m];
+		}
+	}
+	r = new Color(r);
+	return b ? r : r.css(0);
+}
 });
 
 module.Palette = Palette;
@@ -36,14 +72,3 @@ module.Palette = Palette;
 return Palette;
 
 });
-
-/*
-goog.color.blend = function(rgb1, rgb2, factor) {
-  factor = goog.math.clamp(factor, 0, 1);
-  return [
-    Math.round(factor * rgb1[0] + (1.0 - factor) * rgb2[0]),
-    Math.round(factor * rgb1[1] + (1.0 - factor) * rgb2[1]),
-    Math.round(factor * rgb1[2] + (1.0 - factor) * rgb2[2])
-  ];
-}
-*/
