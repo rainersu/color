@@ -1,5 +1,6 @@
 # color
-Just a JavaScript library for all kinds of color manipulations, for use both in browsers and in node-based servers.
+Just a tiny JavaScript library for all kinds of color manipulations.
+
 
 Target Environments
 -------------------
