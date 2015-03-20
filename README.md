@@ -39,6 +39,13 @@ Running demos for testing
 $ grunt test
 ```
 
+How to contact me
+-----------------
+
+- rainersu@foxmail.com
+- http://cn.linkedin.com/in/rainersu
+- QQ: 2627001536
+
 Copyright and license
 ---------------------
 
