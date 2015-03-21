@@ -1,6 +1,7 @@
 /**
 * 获取 Palette 对象当前可以混合调配出的最终颜色，返回为符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义的 CSS 语法描述格式。
 * @see {@link Color#css}
+* @see {@link Gradient#css}
 * @access public
 * @func Palette.prototype.css
 * @param {number}  [type] - 指定 CSS 语法描述的格式类型

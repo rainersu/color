@@ -5,6 +5,8 @@ define([
 	'./pow',
 	'./abs',
 	'./round',
+	'./hasOP',
+	'./keys',
 	'./am',
 	'./rn',
 	'./cp',

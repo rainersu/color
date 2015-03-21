@@ -1,5 +1,5 @@
 /**
-* 色彩类。提供全能高效的色彩管理功能。
+* 色彩类。提供全能高效的色彩管理功能。包括但不限于在各种色彩格式间的自由转换，基于各种算法的色彩混合，色度、明度、亮度、灰度、透明度的自由调节，滤镜和配色功能，等等。
 * @class Color
 * @see {@link http://www.w3.org/TR/css3-color/}
 * @see {@link http://dev.w3.org/csswg/css-color/}

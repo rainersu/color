@@ -1,9 +1,12 @@
-define(function () {'use strict';
+define([
+	'./hasOP'
+],
+function(
+	hasOP
+) {'use strict';
 
 function cp (d, o) {
-	var m,
-		h = {}.hasOwnProperty;
-	for(m in o) if (h.call(o, m)) d[m] = o[m];
+	for(var m in o) if (hasOP.call(o, m)) d[m] = o[m];
 }
 
 return cp;

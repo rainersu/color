@@ -1,5 +1,5 @@
 # color
-Just a standalone JavaScript library for all kinds of color manipulations. Tiny but powerful. 
+A standalone JavaScript library for all kinds of color manipulations. Tiny but powerful. 
 
 
 Target environments

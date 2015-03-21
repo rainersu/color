@@ -14,10 +14,14 @@ function(
 ) {'use strict';
 
 
-var pat = new Palette([ 'rgba(0, 0, 0, 0.2)', 'hsla(300, 66%, 88%, 0.7)' ], [ 1, 2 ], 100);
+var rad = new Gradient([ 'black', '#60DFE5', 'white' ], [ 3, 6, 9 ]);
 
-console.log(pat.alpha);             // 100
-console.log(pat);
+console.log(rad.scale( 6).css());   // rgb(96,223,229)
 
+rad.map(10, 50);
+console.log(rad.scale(30).css());   // rgb(96,223,229)
+
+rad.map(100);
+console.log(rad.scale(50).css());   // rgb(96,223,229)
 
 });

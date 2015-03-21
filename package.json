@@ -1,57 +1,47 @@
 {
-  "name": "Color",
-  "version": "1.0.0",
-  "description": "Just a JavaScript library for all kinds of color manipulations.",
-  "main": "index.js",
-  "scripts": {
-    "build": "npm install && grunt",
-    "start": "grunt help",
-	"test": "grunt test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rainersu/color.git"
-  },
-  "author": {
-    "name": "Rainer Su",
-    "email": "rainersu@foxmail.com",
-    "url": "http://cn.linkedin.com/in/rainersu",
-    "qq": "2627001536"
-  },
-  "license": "BSD",
-  "bugs": {
-    "url": "https://github.com/rainersu/color/issues",
-    "email": "rainersu@foxmail.com"
-  },
-  "homepage": "https://github.com/rainersu/color",
-  "keywords": [
-    "color",
-    "scheme",
-    "chroma",
-    "tone",
-    "palette",
-    "gradient",
-    "spectrum",
-    "blend",
-    "convert",
-    "conversion",
-    "scale",
-    "space",
-    "browser",
-    "library",
-    "javascript"
-  ],
-  "devDependencies": {
-    "grunt": ">=0.4.5",
-    "grunt-bytesize": "^0.1.1",
-    "grunt-contrib-clean": ">=0.6.0",
-    "grunt-contrib-connect": ">=0.9.0",
-    "grunt-contrib-uglify": ">=0.8.0",
-    "grunt-jsdoc": ">=0.6.3",
-    "grunt-umd": ">=2.3.3",
-    "jaguarjs-jsdoc": ">=0.0.1",
-    "load-grunt-tasks": ">=3.1.0",
-    "connect-livereload": ">=0.5.3",
-    "requirejs": ">=2.1.16"
-  }
+	"name"       : "Color",
+	"title"      : "Color",
+	"version"    : "1.0.0",
+	"description": "Just a JavaScript library for all kinds of color manipulations.",
+	"main"       : "dist/color.js",
+	"homepage"   : "http://rainersu.github.io/color",
+		"author" : {
+		"name"   : "Rainer Su",
+		"email"  : "rainersu@foxmail.com",
+		"url"    : "http://cn.linkedin.com/in/rainersu",
+		"qq"     : "2627001536"
+	},
+	"repository" : {
+		"type"   : "git",
+		"url"    : "https://github.com/rainersu/color.git"
+	},
+    "keywords"   : [
+		"color", "scheme", "palette", "gradient", "chroma", "tone", "spectrum", "browser", "library", "css", "javascript"
+    ],
+    "bugs"       : {
+		"url"    : "https://github.com/rainersu/color/issues",
+		"email"  : "rainersu@foxmail.com"
+    },
+    "licenses"   : [{
+		"type"   : "BSD",
+		"url"    : "https://github.com/rainersu/color/blob/master/LICENSE.md"
+	}],
+	"scripts"    : {
+		"build"      : "npm install && grunt",
+		"start"      : "grunt help",
+		"test"       : "grunt test"
+	},
+	"devDependencies"       : {
+		"grunt"                 : ">=0.4.5",
+		"grunt-bytesize"        : ">=0.1.1",
+		"grunt-contrib-clean"   : ">=0.6.0",
+		"grunt-contrib-connect" : ">=0.9.0",
+		"grunt-contrib-uglify"  : ">=0.8.0",
+		"grunt-jsdoc"           : ">=0.6.3",
+		"jaguarjs-jsdoc"        : ">=0.0.1",
+		"grunt-umd"             : ">=2.3.3",
+		"load-grunt-tasks"      : ">=3.1.0",
+		"connect-livereload"    : ">=0.5.3",
+		"requirejs"             : ">=2.1.16"
+	}
 }

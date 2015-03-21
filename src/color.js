@@ -4,6 +4,7 @@ define([
 	'./var/abs',
 	'./var/round',
 	'./var/slice',
+	'./var/hasOP',
 	'./var/am',
 	'./var/rn',
 	'./var/cp',
@@ -21,6 +22,7 @@ function(
 	abs,
 	round,
 	slice,
+	hasOP,
 	am,
 	rn,
 	cp,
@@ -32,6 +34,7 @@ function(
 	bl,
 	sc
 ) {'use strict';
+
 var re =
 	[
 		/./,
@@ -45,8 +48,8 @@ var re =
 		return [ x, x, x, a ];
 	});
 
-function tj (v) {
-	return this.css(v);
+function tj () {
+	return this.css();
 }
 function fb (f, n) {
 	return function () {
@@ -68,7 +71,7 @@ cp(Color, {
 keywords    : kw,
 spaces      : cs,
 support     : function (n) {
-	return cs.hasOwnProperty(rn(n));
+	return hasOP.call(cs, rn(n));
 },
 isColor     : function (v) {
 	if (am(v) === 'string') for (var l = re.length; l--;) {
@@ -198,7 +201,7 @@ css         : function (v, b) {
 },
 ieFilter    : function () {
 	return this.css(0).replace('#', '#' + kv(round(this.alpha * 2.55), [ 0, 255 ]).toString(16).replace(/^.$/, '0$&').toUpperCase());
-}, 
+},
 web         : function (b, s) {
 	b = b ? 17 : 51;
 	var c = this.color('rgba'),
@@ -328,9 +331,7 @@ opaque      : function (y, b) {
 	return b ? y.css(0) : y;
 }
 });
-
 module.Color = Color;
-
 return Color;
 
 });

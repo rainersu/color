@@ -6,12 +6,13 @@
 * @func Color.prototype.toJSON
 * @returns {string}
 * @example
-* console.log(Color('rgb(255, 0, 0)').toJSON());           // rgb(255,0,0)
-* console.log(Color('rgba(255, 0, 0, 0.3)').toJSON());     // rgba(255,0,0,0.3)
-* 
-* console.log(Color('hsl(0, 100%, 50%)').toJSON());        // rgb(255,0,0)
-* console.log(Color('hsla(0, 100%, 50%, 0.3)').toJSON());  // rgba(255,0,0,0.3)
-* 
-* console.log(Color([ 0, 0, 0 ], 'hwb').toJSON());         // rgb(255,0,0)
-* console.log(Color([ 0, 0, 0, 30 ], 'hwb').toJSON());     // rgba(255,0,0,0.3)
+* console.log(JSON.stringify(Color([ 0, 0, 0 ], 'hwb')));       // rgb(255,0,0)
+* console.log(JSON.stringify(Color([ 0, 0, 0, 30 ], 'hwb')));   // rgba(255,0,0,0.3)
+* console.log(Color([ 0, 0, 0 ], 'hwb').toJSON());              // rgb(255,0,0)
+* console.log(Color([ 0, 0, 0, 30 ], 'hwb').toJSON());          // rgba(255,0,0,0.3)
+* @example
+* console.log(Color('rgb(255, 0, 0)').toJSON());                // rgb(255,0,0)
+* console.log(Color('rgba(255, 0, 0, 0.3)').toJSON());          // rgba(255,0,0,0.3)
+* console.log(Color('hsl(0, 100%, 50%)').toJSON());             // rgb(255,0,0)
+* console.log(Color('hsla(0, 100%, 50%, 0.3)').toJSON());       // rgba(255,0,0,0.3)
 */

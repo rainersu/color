@@ -6,12 +6,13 @@
 * @func Color.prototype.toString
 * @returns {string}
 * @example
-console.log(Color('rgb(255, 0, 0)').toString());           // rgb(255,0,0)
-console.log(Color('rgba(255, 0, 0, 0.3)').toString());     // rgba(255,0,0,0.3)
-
-console.log(Color('hsl(0, 100%, 50%)').toString());        // rgb(255,0,0)
-console.log(Color('hsla(0, 100%, 50%, 0.3)').toString());  // rgba(255,0,0,0.3)
-
-console.log(Color([ 0, 0, 0 ], 'hwb').toString());         // rgb(255,0,0)
-console.log(Color([ 0, 0, 0, 30 ], 'hwb').toString());     // rgba(255,0,0,0.3)
+* console.log('' + Color([ 0, 0, 0 ], 'hwb'));               // rgb(255,0,0)
+* console.log('' + Color([ 0, 0, 0, 30 ], 'hwb'));           // rgba(255,0,0,0.3)
+* console.log(Color([ 0, 0, 0 ], 'hwb').toString());         // rgb(255,0,0)
+* console.log(Color([ 0, 0, 0, 30 ], 'hwb').toString());     // rgba(255,0,0,0.3)
+* @example
+* console.log(Color('rgb(255, 0, 0)').toString());           // rgb(255,0,0)
+* console.log(Color('rgba(255, 0, 0, 0.3)').toString());     // rgba(255,0,0,0.3)
+* console.log(Color('hsl(0, 100%, 50%)').toString());        // rgb(255,0,0)
+* console.log(Color('hsla(0, 100%, 50%, 0.3)').toString());  // rgba(255,0,0,0.3)
 */

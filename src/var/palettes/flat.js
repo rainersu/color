@@ -1,7 +1,7 @@
 define(function () {'use strict';
 
 var flatUI = {
-	
+
 black:         '#000000',
 white:         '#ffffff',
 

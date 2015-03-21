@@ -1,5 +1,5 @@
 /**
-* 调色板类。提供使用任意种基色按任意指定比例混合调色的功能。
+* 调色板类。使用本类，你可以基于由你指定的不限数量的几种基色，按任意指定比例自由混合调配出供你使用的各种最终色彩。
 * @class Palette
 * @see {@link Color}
 * @see {@link Gradient}
@@ -17,7 +17,10 @@
 * 
 * pat.stuff('white', -2, true);
 * pat.stuff('black', -2, true);
-* console.log(pat.css(0) === tiffanyblue);       // true   
+* console.log(pat.css(0) === tiffanyblue);       // true
+* @example
+* var pat = new Palette('black', 'red', 'green', 'blue', 'white');
+* console.log(pat.css());   // rgb(102,77,102)
 * @example
 * var pat = new Palette();
 * 

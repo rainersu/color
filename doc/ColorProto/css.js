@@ -3,6 +3,8 @@
 * @see {@link Color#ieFilter}
 * @see {@link Color#toJSON}
 * @see {@link Color#toString}
+* @see {@link Palette#css}
+* @see {@link Gradient#css}
 * @access public
 * @func Color.prototype.css
 * @param {number}  [type] - 指定 CSS 语法描述的格式类型

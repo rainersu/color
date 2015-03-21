@@ -1,19 +1,31 @@
 define([
 	'./var/module',
+	'./var/round',
+	'./var/min',
+	'./var/max',
 	'./var/slice',
+	'./var/hasOP',
 	'./var/am',
 	'./var/cp',
 	'./color'
 ],
 function(
 	module,
+	round,
+	min,
+	max,
 	slice,
+	hasOP,
 	am,
 	cp,
 	Color
 ) {'use strict';
 
+function tj () {
+	return this.css();
+}
 function Palette (m, n, a) {
+	if (!(this instanceof Palette)) return new Palette(m, n, a);
 	this.cache = {};
 	if (am(m) !== 'array') {
 		m = slice.call(arguments);
@@ -24,8 +36,9 @@ function Palette (m, n, a) {
 	a = +a;
 	this.alpha = a === a ? a : 100;
 }
-
 cp(Palette.prototype, {
+toJSON   : tj,
+toString : tj,
 stuff : function (c, r, b) {
 	c = new Color(c, 1);
 	var n = c.css(0),
@@ -33,14 +46,14 @@ stuff : function (c, r, b) {
 		v = o ? o.ratio : 0;
 	r = +r;
 	r = r !== r ? 1 : ~~r;
-	r = Math.max(b ? r + v : r, 0);
+	r = max(b ? r + v : r, 0);
 	if (r !== v) {
 		o = c;
 		o.ratio = r;
 		this.cache[n] = o;
 		this.total = this.value = null;
 	}
-	return this; 
+	return this;
 },
 ratio : function (c, b) {
 	var r = 0;
@@ -48,7 +61,7 @@ ratio : function (c, b) {
 	if (c && (r = c.ratio)) {
 		if (b) {
 			if (!this.total) this.mix();
-			r = Math.round(r * 100 / this.total);
+			r = round(r * 100 / this.total);
 		}
 	}
 	return r;
@@ -64,7 +77,7 @@ mix : function () {
 		r = this.value;
 	if (!r) {
 		r = [ 0, 0, 0 ];
-		for(i in o) if (o.hasOwnProperty(i) && o[i]) {
+		for(i in o) if (hasOP.call(o, i) && o[i]) {
 			i = o[i];
 			n = i.ratio;
 			if (n) {
@@ -88,9 +101,7 @@ css : function (v, b) {
 	return this.mix().css(v, b);
 }
 });
-
 module.Palette = Palette;
-
 return Palette;
 
 });
