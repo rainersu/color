@@ -815,6 +815,10 @@ Just a JavaScript library for all kinds of color manipulations.
             }
             return new Color(c);
         },
+        ieFilter: function(b) {
+            var a = this.cache, k = this.stops;
+            return 'progid:DXImageTransform.Microsoft.gradient(enabled="true", startColorstr="' + new Color(a[k[0]]).ieFilter() + '", endColorstr="' + new Color(a[k[k.length - 1]]).ieFilter() + '", gradientType="' + +!!b + '")';
+        },
         css: function(b, t, p) {
             var s = ")", a = this.cache, k = this.stops, l = k.length, z = l - 1, x = k[0], y = k[z], m = y - x, i;
             for (;l--; ) {

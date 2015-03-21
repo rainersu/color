@@ -3,6 +3,7 @@
 * @class Gradient
 * @see {@link Color}
 * @see {@link Palette}
+* @see {@link http://www.webcore-it.com/colorful-background/}
 * @param {Color[]} colors - 为色彩渐变路径定义起点、终点和里程碑 (Color-Stop Point) 的数组。可以使用 {@link Color} 对象也可以是符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串。
 * @param {number[]} [points] - 依次序为 colors 声明的每种色彩定义其在渐变路径上的坐标取值。如果省略此参数，则所有里程碑会在映射为 0 -100 取值范围的路径上等量均衡分配。
 * @example
