@@ -5,8 +5,8 @@ function(
 	M
 ) {'use strict';
 
-var max = M.max;
+var sqrt = M.sqrt;
 
-return max;
+return sqrt;
 
 });

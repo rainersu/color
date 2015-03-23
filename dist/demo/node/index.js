@@ -5,7 +5,7 @@ var tiffanyblue = new Color('#60DFE5');
 
 var n = 'rgb',
     f = function (i) {
-		return i.toFixed(1); 
+		return i.toFixed(2); 
 	},
 	x = '      ';
 

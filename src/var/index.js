@@ -1,9 +1,16 @@
 define([
 	'./module',
+	'./math',
 	'./max',
 	'./min',
 	'./pow',
+	'./PI',
+	'./atan2',
+	'./sqrt',
+	'./cos',
+	'./sin',
 	'./abs',
+	'./log',
 	'./round',
 	'./hasOP',
 	'./keys',
@@ -12,9 +19,9 @@ define([
 	'./cp',
 	'./kv',
 	'./ka',
+	'./tj',
 	'./spaces',
 	'./keywords',
 	'./conversions',
-	'./blendings',
-	'./schemes'
+	'./blendings'
 ]);

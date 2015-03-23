@@ -5,8 +5,8 @@ function(
 	M
 ) {'use strict';
 
-var max = M.max;
+var atan2 = M.atan2;
 
-return max;
+return atan2;
 
 });

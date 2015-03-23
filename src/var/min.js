@@ -1,6 +1,11 @@
-define(function () {'use strict';
+define([
+	'./math'
+],
+function(
+	M
+) {'use strict';
 
-var min = Math.min;
+var min = M.min;
 
 return min;
 

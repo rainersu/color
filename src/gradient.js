@@ -9,6 +9,7 @@ define([
 	'./var/am',
 	'./var/cp',
 	'./var/kv',
+	'./var/tj',
 	'./color'
 ],
 function(
@@ -22,6 +23,7 @@ function(
 	am,
 	cp,
 	kv,
+	tj,
 	Color
 ) {'use strict';
 
@@ -30,9 +32,6 @@ function ap (a, p, c) {
 }
 function cn (a, b) {
 	return a - b;
-}
-function tj () {
-	return this.css();
 }
 function Gradient (c, p) {
 	if (!(this instanceof Gradient)) return new Gradient(c, p);

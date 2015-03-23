@@ -5,8 +5,8 @@ function(
 	M
 ) {'use strict';
 
-var max = M.max;
+var sin = M.sin;
 
-return max;
+return sin;
 
 });

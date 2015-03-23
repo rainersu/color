@@ -1,5 +1,7 @@
 define(function () {'use strict';
 
-// todo
+var M = Math;
+
+return M;
 
 });

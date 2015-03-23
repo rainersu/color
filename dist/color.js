@@ -16,11 +16,18 @@ Just a JavaScript library for all kinds of color manipulations.
     }
 })(this, function() {
     var module = {};
-    var max = Math.max;
-    var min = Math.min;
-    var pow = Math.pow;
-    var abs = Math.abs;
-    var round = Math.round;
+    var M = Math;
+    var max = M.max;
+    var min = M.min;
+    var pow = M.pow;
+    var PI = M.PI;
+    var atan2 = M.atan2;
+    var sqrt = M.sqrt;
+    var cos = M.cos;
+    var sin = M.sin;
+    var abs = M.abs;
+    var log = M.log;
+    var round = M.round;
     var hasOP = Object.prototype.hasOwnProperty;
     var keys = Object.keys || function(o) {
         var r = [], i;
@@ -47,26 +54,32 @@ Just a JavaScript library for all kinds of color manipulations.
         for (var l = k.length; l--; ) v[l] = kv(v[l], k[l]);
         return v;
     }
+    function tj() {
+        return this.css();
+    }
     var cs = {
         rgb: [ [ 0, 255 ], [ 0, 255 ], [ 0, 255 ] ],
-        hsl: [ 360, [ 0, 100 ], [ 0, 100 ] ],
-        hsi: "hsl",
-        hsv: [ 360, [ 0, 100 ], [ 0, 100 ] ],
-        hsb: "hsv",
-        hwb: [ 360, [ 0, 100 ], [ 0, 100 ] ],
-        cmy: [ [ 0, 100 ], [ 0, 100 ], [ 0, 100 ] ],
-        cmyk: [ [ 0, 100 ], [ 0, 100 ], [ 0, 100 ], [ 0, 100 ] ],
-        xyz: [ [ 0, 96 ], [ 0, 100 ], [ 0, 109 ] ],
-        ciexyz: "xyz",
-        lab: [ [ 0, 100 ], [ -128, 128 ], [ -128, 128 ] ],
-        cielab: "lab",
         yuv: [ [ 0, 255 ], [ 0, 255 ], [ 0, 255 ] ],
-        yiq: [ [ 0, 1 ], [ -.5957, .5957 ], [ -.5226, .5226 ] ],
+        cmy: [ [ 0, 100 ], [ 0, 100 ], [ 0, 100 ] ],
+        xyz: [ [ 0, 96 ], [ 0, 100 ], [ 0, 109 ] ],
+        xyy: [ [ 0, 1 ], [ 0, 1 ], [ 0, 100 ] ],
+        cmyk: [ [ 0, 100 ], [ 0, 100 ], [ 0, 100 ], [ 0, 100 ] ],
+        hsl: [ 360, [ 0, 100 ], [ 0, 100 ] ],
+        hsv: [ 360, [ 0, 100 ], [ 0, 100 ] ],
+        hwb: [ 360, [ 0, 100 ], [ 0, 100 ] ],
         lch: [ [ 0, 100 ], [ 0, 100 ], 360 ],
+        lab: [ [ 0, 100 ], [ -128, 128 ], [ -128, 128 ] ],
+        luv: [ [ 0, 100 ], [ -100, 100 ], [ -100, 100 ] ],
+        yiq: [ [ 0, 1 ], [ -.5957, .5957 ], [ -.5226, .5226 ] ],
+        hsi: "hsl",
+        hsb: "hsv",
+        cieluv: "luv",
+        cielab: "lab",
         lchab: "lch",
         cielch: "lch",
-        xyy: [ [ 0, 1 ], [ 0, 1 ], [ 0, 100 ] ],
-        yxy: "xyy"
+        cielchuv: "lch",
+        yxy: "xyy",
+        ciexyz: "xyz"
     };
     var kw = {
         black: "#000000",
@@ -271,6 +284,9 @@ Just a JavaScript library for all kinds of color manipulations.
         rgb2lch: function(v) {
             return cv.lab2lch(cv.rgb2lab(v));
         },
+        rgb2luv: function(v) {
+            return cv.lch2luv(cv.rgb2lch(v));
+        },
         hsl2rgb: function(v) {
             var h = v[0] / 60, s = v[1] / 100, l = v[2] / 100, b = l <= .5 ? l * s + l : l + s - l * s, a = l * 2 - b, r = [ h + 2, h, h - 2 ], i = 3;
             for (;i--; ) {
@@ -341,6 +357,10 @@ Just a JavaScript library for all kinds of color manipulations.
             a = a[2];
             return [ 116 * c - 16, 500 * (l - c), 200 * (c - a) ];
         },
+        xyz2luv: function(a) {
+            var x = a[0] / 100, y = a[1] / 100, d = x + 15 * y + 3 * a[2] / 100, l = y <= .0088564516 ? y * 903.2962962 : 116 * pow(y, 1 / 3) - 16;
+            return !l ? [ 0, 0, 0 ] : [ l, 13 * l * (4 * x / d - .19783000664283), 13 * l * (9 * y / d - .46831999493879) ];
+        },
         lab2rgb: function(v) {
             return cv.xyz2rgb(cv.lab2xyz(v));
         },
@@ -355,15 +375,19 @@ Just a JavaScript library for all kinds of color manipulations.
             return a;
         },
         lab2lch: function(c) {
-            var a = c[1], b = c[2], h = Math.atan2(b, a) * 360 / 2 / Math.PI % 360;
-            return [ c[0], Math.sqrt(a * a + b * b), h < 0 ? h + 360 : h ];
+            var a = c[1], b = c[2], h = atan2(b, a) * 360 / 2 / PI % 360;
+            return [ c[0], sqrt(a * a + b * b), h < 0 ? h + 360 : h ];
         },
         lch2rgb: function(v) {
             return cv.lab2rgb(cv.lch2lab(v));
         },
         lch2lab: function(v) {
-            var x = v[2] % 360 * 2 * Math.PI / 360;
-            return [ v[0], v[1] * Math.cos(x), v[1] * Math.sin(x) ];
+            var x = v[2] % 360 * 2 * PI / 360;
+            return [ v[0], v[1] * cos(x), v[1] * sin(x) ];
+        },
+        lch2luv: function(a) {
+            var c = a[1], d = a[2] / 360 * 2 * PI;
+            return [ a[0], cos(d) * c, sin(d) * c ];
         },
         xyy2rgb: function(v) {
             return cv.xyz2rgb(cv.xyy2xyz(v));
@@ -371,6 +395,18 @@ Just a JavaScript library for all kinds of color manipulations.
         xyy2xyz: function(v) {
             var x = v[0], y = v[1], z = v[2];
             return y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ];
+        },
+        luv2rgb: function(v) {
+            return cv.lch2rgb(cv.luv2lch(v));
+        },
+        luv2lch: function(a) {
+            var u = a[1], v = a[2];
+            return [ a[0], pow(pow(u, 2) + pow(v, 2), 1 / 2), atan2(v, u) * 180 / PI ];
+        },
+        luv2xyz: function(a) {
+            if (!a[0]) return [ 0, 0, 0 ];
+            var l = a[0], u = a[1], v = a[2], m = u / (13 * l) + .19783000664283, n = v / (13 * l) + .46831999493879, y = l <= 8 ? l / 903.2962962 : pow((l + 16) / 116, 3), x = 0 + 9 * y * m / 4 / n;
+            return [ 100 * x, 100 * y, 100 * (9 * y - 15 * n * y - n * x) / (3 * n) ];
         }
     };
     var bl = {
@@ -404,7 +440,7 @@ Just a JavaScript library for all kinds of color manipulations.
             var d = 1, e = b;
             if (f > .5) {
                 e = 1;
-                d = b > .25 ? Math.sqrt(b) : ((16 * b - 12) * b + 4) * b;
+                d = b > .25 ? sqrt(b) : ((16 * b - 12) * b + 4) * b;
             }
             return 255 * (b - (1 - 2 * f) * e * (d - b));
         },
@@ -433,47 +469,10 @@ Just a JavaScript library for all kinds of color manipulations.
             return b === 0 ? b : max(0, 255 - (255 - f << 8) / b);
         }
     };
-    var sc = {
-        analogous: function(c, r, x) {
-            r = r || 8;
-            x = 360 / (x || 30);
-            var n = "hsl", v = c.color(n), h = (v[0] - (x * r >> 1) + 720) % 360, s = v[1], l = v[2];
-            for (c = [ n ]; --r; ) {
-                c.unshift([ h += x, s, l ]);
-            }
-            return c;
-        },
-        triad: function(c) {
-            var n = "rgb", v = c.color(n), r = v[0], g = v[1], b = v[2];
-            return [ [ b, r, g ], [ g, b, r ], n ];
-        },
-        splitcomplement: function(c) {
-            var n = "hsl", v = c.color(n), h = v[0], s = v[1], l = v[2];
-            return [ [ h + 72, s, l ], [ h + 216, s, l ], n ];
-        },
-        tetrad: function(c) {
-            var n = "rgb", v = c.color(n), r = v[0], g = v[1], b = v[2];
-            return [ [ b, r, b ], [ b, g, r ], [ r, b, r ], n ];
-        },
-        monochromatic: function(c, r) {
-            r = r || 6;
-            var n = "hsv", v = c.color(n), h = v[0], s = v[1], x = v[2];
-            c = [ n ];
-            while (--r) {
-                x += 20;
-                x %= 100;
-                c.unshift([ h, s, x ]);
-            }
-            return c;
-        }
-    };
     var re = [ /./, /^hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i, /^rgba?\(\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i, /^#([a-f0-9])([a-f0-9])([a-f0-9])(?:([a-f0-9])([a-f0-9])([a-f0-9]))?$/i ], co = [ "hsl", "hsv", "hwb", "rgb" ], gs = fb(function(r, g, b, a, m) {
         var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
         return [ x, x, x, a ];
     });
-    function tj() {
-        return this.css();
-    }
     function fb(f, n) {
         return function() {
             n = n || "rgba";
@@ -503,7 +502,7 @@ Just a JavaScript library for all kinds of color manipulations.
         },
         temperature: function(k) {
             k /= 100;
-            return new Color([ k <= 66 ? 255 : 329.698727446 * pow(k - 60, -.1332047592), k <= 66 ? 99.4708025861 * Math.log(k) - 161.1195681661 : 288.1221695283 * pow(k - 60, -.0755148492), k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * Math.log(k - 10) - 305.0447927307 ]);
+            return new Color([ k <= 66 ? 255 : 329.698727446 * pow(k - 60, -.1332047592), k <= 66 ? 99.4708025861 * log(k) - 161.1195681661 : 288.1221695283 * pow(k - 60, -.0755148492), k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * log(k - 10) - 305.0447927307 ]);
         },
         grayscale: function(v, b) {
             v = b ? v * 255 : v;
@@ -689,9 +688,6 @@ Just a JavaScript library for all kinds of color manipulations.
         }
     });
     module.Color = Color;
-    function tj() {
-        return this.css();
-    }
     function Palette(m, n, a) {
         if (!(this instanceof Palette)) return new Palette(m, n, a);
         this.cache = {};
@@ -766,9 +762,6 @@ Just a JavaScript library for all kinds of color manipulations.
     }
     function cn(a, b) {
         return a - b;
-    }
-    function tj() {
-        return this.css();
     }
     function Gradient(c, p) {
         if (!(this instanceof Gradient)) return new Gradient(c, p);

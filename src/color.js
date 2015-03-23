@@ -2,6 +2,7 @@ define([
 	'./var/module',
 	'./var/pow',
 	'./var/abs',
+	'./var/log',
 	'./var/round',
 	'./var/slice',
 	'./var/hasOP',
@@ -10,16 +11,17 @@ define([
 	'./var/cp',
 	'./var/kv',
 	'./var/ka',
+	'./var/tj',
 	'./var/spaces',
 	'./var/keywords',
 	'./var/conversions',
-	'./var/blendings',
-	'./var/schemes'
+	'./var/blendings'
 ],
 function(
 	module,
 	pow,
 	abs,
+	log,
 	round,
 	slice,
 	hasOP,
@@ -28,11 +30,11 @@ function(
 	cp,
 	kv,
 	ka,
+	tj,
 	cs,
 	kw,
 	cv,
-	bl,
-	sc
+	bl
 ) {'use strict';
 
 var re =
@@ -47,10 +49,6 @@ var re =
 		var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
 		return [ x, x, x, a ];
 	});
-
-function tj () {
-	return this.css();
-}
 function fb (f, n) {
 	return function () {
 		n = n || 'rgba';
@@ -62,11 +60,9 @@ function fv (i, n) {
 		return this.value(co[ n || 0 ], i || 0, v, b);
 	};
 }
-
 function Color (v, s) {
 	return !(this instanceof Color) ? new Color(v, s) : v instanceof Color ? (s ? v.clone() : v) : (this.alpha = 100, this.color(s, v));
 }
-
 cp(Color, {
 keywords    : kw,
 spaces      : cs,
@@ -83,8 +79,8 @@ temperature : function (k) {
 	k/= 100;
 	return new Color([
 		k <= 66 ? 255 : 329.698727446 * pow(k - 60, -0.1332047592),
-		k <= 66 ? 99.4708025861 * Math.log(k) - 161.1195681661 : 288.1221695283 * pow(k - 60, -0.0755148492),
-		k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * Math.log(k - 10) - 305.0447927307
+		k <= 66 ? 99.4708025861 * log(k) - 161.1195681661 : 288.1221695283 * pow(k - 60, -0.0755148492),
+		k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * log(k - 10) - 305.0447927307
 	]);
 },
 grayscale   : function (v, b) {
@@ -92,7 +88,6 @@ grayscale   : function (v, b) {
 	return new Color([ v, v, v ]);
 }
 });
-
 cp(Color.prototype, {
 toJSON      : tj,
 toString    : tj,

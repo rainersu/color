@@ -7,6 +7,7 @@ define([
 	'./var/hasOP',
 	'./var/am',
 	'./var/cp',
+	'./var/tj',
 	'./color'
 ],
 function(
@@ -18,12 +19,10 @@ function(
 	hasOP,
 	am,
 	cp,
+	tj,
 	Color
 ) {'use strict';
 
-function tj () {
-	return this.css();
-}
 function Palette (m, n, a) {
 	if (!(this instanceof Palette)) return new Palette(m, n, a);
 	this.cache = {};

@@ -5,8 +5,8 @@ function(
 	M
 ) {'use strict';
 
-var max = M.max;
+var log = M.log;
 
-return max;
+return log;
 
 });

@@ -5,8 +5,8 @@ function(
 	M
 ) {'use strict';
 
-var max = M.max;
+var PI = M.PI;
 
-return max;
+return PI;
 
 });

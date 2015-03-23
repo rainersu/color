@@ -1,6 +1,11 @@
-define(function () {'use strict';
+define([
+	'./math'
+],
+function(
+	M
+) {'use strict';
 
-var pow = Math.pow;
+var pow = M.pow;
 
 return pow;
 

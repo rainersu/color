@@ -1,6 +1,11 @@
-define(function () {'use strict';
+define([
+	'./math'
+],
+function(
+	M
+) {'use strict';
 
-var abs = Math.abs;
+var abs = M.abs;
 
 return abs;
 

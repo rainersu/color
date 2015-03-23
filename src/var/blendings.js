@@ -1,12 +1,14 @@
 define([
 	'./min',
 	'./max',
-	'./abs'
+	'./abs',
+	'./sqrt'
 ],
 function(
 	min,
 	max,
-	abs
+	abs,
+	sqrt
 ) {'use strict';
 
 var bl = {
@@ -41,7 +43,7 @@ var bl = {
 			e = b;
         if (f > 0.5) {
             e = 1;
-            d = b > 0.25 ? Math.sqrt(b) : ((16 * b - 12) * b + 4) * b;
+            d = b > 0.25 ? sqrt(b) : ((16 * b - 12) * b + 4) * b;
         }
         return 255 * (b - (1 - 2 * f) * e * (d - b));
     },
