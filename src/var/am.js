@@ -1,7 +1,12 @@
-define(function () {'use strict';
+define([
+	'./object'
+],
+function(
+	O
+) {'use strict';
 
 function am (v) {
-	return {}.toString.call(v).split(/\W+/)[2].toLowerCase();
+	return O.prototype.toString.call(v).split(/\W+/)[2].toLowerCase();
 }
 
 return am;

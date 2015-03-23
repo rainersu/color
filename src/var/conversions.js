@@ -129,7 +129,7 @@ rgb2lch   : function (v) {
 	return cv.lab2lch(cv.rgb2lab(v));
 },
 rgb2luv   : function (v) {
-	return cv.lch2luv(cv.rgb2lch(v));
+	return cv.xyz2luv(cv.rgb2xyz(v));
 },
 hsl2rgb   : function (v) {
 	var h = v[0] /  60,
@@ -254,7 +254,7 @@ xyz2lab   : function (a) {
 		l = 3;
 	for(; l--;) {
 		v = a[l] / c[l];
-		a[l] = v > 0.008856 ? pow(v, 1 / 3) : 7.787 * v + 16 / 116;
+		a[l] = v > 0.0088564516 ? pow(v, 1 / 3) : 7.787 * v + 16 / 116;
 	}
 	l = a[0];
 	c = a[1];
@@ -334,7 +334,7 @@ xyy2xyz   : function (v) {
 	return y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ];
 },
 luv2rgb   : function (v) {
-	return cv.lch2rgb(cv.luv2lch(v));
+	return cv.xyz2rgb(cv.luv2xyz(v));
 },	
 luv2lch   : function (a) {
 	var u = a[1], 

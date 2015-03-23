@@ -16,6 +16,7 @@ Just a JavaScript library for all kinds of color manipulations.
     }
 })(this, function() {
     var module = {};
+    var O = Object;
     var M = Math;
     var max = M.max;
     var min = M.min;
@@ -28,8 +29,8 @@ Just a JavaScript library for all kinds of color manipulations.
     var abs = M.abs;
     var log = M.log;
     var round = M.round;
-    var hasOP = Object.prototype.hasOwnProperty;
-    var keys = Object.keys || function(o) {
+    var hasOP = O.prototype.hasOwnProperty;
+    var keys = O.keys || function(o) {
         var r = [], i;
         for (i in o) if (hasOP.call(o, i)) {
             r.push(i);
@@ -37,7 +38,7 @@ Just a JavaScript library for all kinds of color manipulations.
         return r;
     };
     function am(v) {
-        return {}.toString.call(v).split(/\W+/)[2].toLowerCase();
+        return O.prototype.toString.call(v).split(/\W+/)[2].toLowerCase();
     }
     function rn(n) {
         return n.toLowerCase().replace(/a$/, "");
@@ -57,20 +58,21 @@ Just a JavaScript library for all kinds of color manipulations.
     function tj() {
         return this.css();
     }
+    var S0 = [ 0, 255 ], S1 = [ 0, 100 ], S2 = [ 0, 1 ], S3 = [ -128, 128 ], S5 = 360, S6 = null;
     var cs = {
-        rgb: [ [ 0, 255 ], [ 0, 255 ], [ 0, 255 ] ],
-        yuv: [ [ 0, 255 ], [ 0, 255 ], [ 0, 255 ] ],
-        cmy: [ [ 0, 100 ], [ 0, 100 ], [ 0, 100 ] ],
-        xyz: [ [ 0, 96 ], [ 0, 100 ], [ 0, 109 ] ],
-        xyy: [ [ 0, 1 ], [ 0, 1 ], [ 0, 100 ] ],
-        cmyk: [ [ 0, 100 ], [ 0, 100 ], [ 0, 100 ], [ 0, 100 ] ],
-        hsl: [ 360, [ 0, 100 ], [ 0, 100 ] ],
-        hsv: [ 360, [ 0, 100 ], [ 0, 100 ] ],
-        hwb: [ 360, [ 0, 100 ], [ 0, 100 ] ],
-        lch: [ [ 0, 100 ], [ 0, 100 ], 360 ],
-        lab: [ [ 0, 100 ], [ -128, 128 ], [ -128, 128 ] ],
-        luv: [ [ 0, 100 ], [ -100, 100 ], [ -100, 100 ] ],
-        yiq: [ [ 0, 1 ], [ -.5957, .5957 ], [ -.5226, .5226 ] ],
+        rgb: [ S0, S0, S0 ],
+        yuv: [ S0, S0, S0 ],
+        cmy: [ S1, S1, S1 ],
+        xyz: [ S6, S1, S6 ],
+        xyy: [ S2, S2, S1 ],
+        cmyk: [ S1, S1, S1, S1 ],
+        hsl: [ S5, S1, S1 ],
+        hsv: [ S5, S1, S1 ],
+        hwb: [ S5, S1, S1 ],
+        lch: [ S1, S1, S5 ],
+        lab: [ S1, S3, S3 ],
+        luv: [ S1, S3, S3 ],
+        yiq: [ S2, S6, S6 ],
         hsi: "hsl",
         hsb: "hsv",
         cieluv: "luv",
@@ -285,7 +287,7 @@ Just a JavaScript library for all kinds of color manipulations.
             return cv.lab2lch(cv.rgb2lab(v));
         },
         rgb2luv: function(v) {
-            return cv.lch2luv(cv.rgb2lch(v));
+            return cv.xyz2luv(cv.rgb2xyz(v));
         },
         hsl2rgb: function(v) {
             var h = v[0] / 60, s = v[1] / 100, l = v[2] / 100, b = l <= .5 ? l * s + l : l + s - l * s, a = l * 2 - b, r = [ h + 2, h, h - 2 ], i = 3;
@@ -350,7 +352,7 @@ Just a JavaScript library for all kinds of color manipulations.
             var v, c = [ 95.047, 100, 108.883 ], l = 3;
             for (;l--; ) {
                 v = a[l] / c[l];
-                a[l] = v > .008856 ? pow(v, 1 / 3) : 7.787 * v + 16 / 116;
+                a[l] = v > .0088564516 ? pow(v, 1 / 3) : 7.787 * v + 16 / 116;
             }
             l = a[0];
             c = a[1];
@@ -397,7 +399,7 @@ Just a JavaScript library for all kinds of color manipulations.
             return y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ];
         },
         luv2rgb: function(v) {
-            return cv.lch2rgb(cv.luv2lch(v));
+            return cv.xyz2rgb(cv.luv2xyz(v));
         },
         luv2lch: function(a) {
             var u = a[1], v = a[2];

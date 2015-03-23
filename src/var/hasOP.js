@@ -1,6 +1,11 @@
-define(function () {'use strict';
+define([
+	'./object'
+],
+function(
+	O
+) {'use strict';
 
-var hasOP = Object.prototype.hasOwnProperty;
+var hasOP = O.prototype.hasOwnProperty;
 
 return hasOP;
 

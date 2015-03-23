@@ -7,7 +7,7 @@ var n = 'rgb',
     f = function (i) {
 		return i.toFixed(2); 
 	},
-	x = '      ';
+	x = '        ';
 
 console.log('\r\nTIFFANY BLUE :\r\n');
 
@@ -27,9 +27,11 @@ Object.keys(Color.spaces).forEach(function (i) {
 
 console.log('CSS :');
 
-console.log(tiffanyblue.css(0));
-console.log(tiffanyblue.ieFilter());
-console.log(tiffanyblue.css(1, 0));
-console.log(tiffanyblue.css(1, 1));
-console.log(tiffanyblue.css(2, 0));
-console.log(tiffanyblue.css(2, 1));
+[ 
+	tiffanyblue.css(0),
+	tiffanyblue.ieFilter(),
+	tiffanyblue.css(1, 0),
+	tiffanyblue.css(1, 1),
+	tiffanyblue.css(2, 0),
+	tiffanyblue.css(2, 1)
+].forEach(function (i) { console.log(i); });

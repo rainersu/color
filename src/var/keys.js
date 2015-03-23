@@ -1,11 +1,13 @@
 define([
-	'./hasOP'
+	'./hasOP',
+	'./object'
 ],
 function(
-	hasOP
+	hasOP,
+	O
 ) {'use strict';
 
-var keys = Object.keys || function (o) {
+var keys = O.keys || function (o) {
 	var r = [],
 		i;
 	for (i in o) if (hasOP.call(o, i)) {
