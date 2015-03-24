@@ -327,6 +327,7 @@ opaque      : function (y, b) {
 }
 });
 module.Color = Color;
+
 return Color;
 
 });

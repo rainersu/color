@@ -135,6 +135,7 @@ map      : function (x, y) {
 }
 });
 module.Gradient = Gradient;
+
 return Gradient;
 
 });

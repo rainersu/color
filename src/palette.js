@@ -101,6 +101,7 @@ css : function (v, b) {
 }
 });
 module.Palette = Palette;
+
 return Palette;
 
 });

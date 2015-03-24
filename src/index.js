@@ -13,10 +13,8 @@ function(
 	Gradient
 ) {'use strict';
 
+var tiffanyblue = new Color('#60DFE5');
 
-var rad = new Color('#60DFE5');
-
-console.log(rad.color('xyz'));
 
 
 });
