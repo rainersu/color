@@ -58,8 +58,17 @@ Just a JavaScript library for all kinds of color manipulations.
     function tj() {
         return this.css();
     }
-    var S0 = [ 0, 255 ], S1 = [ 0, 100 ], S2 = [ 0, 1 ], S3 = [ -128, 128 ], S5 = 360, S6 = null;
-    var cs = {
+    var S0 = [ 0, 255 ], S1 = [ 0, 100 ], S2 = [ 0, 1 ], S3 = [ -128, 128 ], S5 = 360, S6 = null, cs = {
+        hsi: "hsl",
+        hsb: "hsv",
+        yxy: "xyy",
+        ciexyz: "xyz",
+        cieluv: "luv",
+        cielab: "lab",
+        lchab: "lch",
+        cielch: "lch",
+        cielchuv: "lch",
+        cielchab: "lch",
         rgb: [ S0, S0, S0 ],
         yuv: [ S0, S0, S0 ],
         cmy: [ S1, S1, S1 ],
@@ -72,16 +81,7 @@ Just a JavaScript library for all kinds of color manipulations.
         lch: [ S1, S1, S5 ],
         lab: [ S1, S3, S3 ],
         luv: [ S1, S3, S3 ],
-        yiq: [ S2, S6, S6 ],
-        hsi: "hsl",
-        hsb: "hsv",
-        cieluv: "luv",
-        cielab: "lab",
-        lchab: "lch",
-        cielch: "lch",
-        cielchuv: "lch",
-        yxy: "xyy",
-        ciexyz: "xyz"
+        yiq: [ S2, S6, S6 ]
     };
     var kw = {
         black: "#000000",
