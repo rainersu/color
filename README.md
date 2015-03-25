@@ -14,10 +14,10 @@ There is no doubt that you can also use this library in browser extensions and o
 Supported color spaces
 ----------------------
 
-- RGB, RYB, CMY, CMYK
-- HSL(HSI), HSV(HSB), HWB, HUSL, HUSLp
-- YIQ, YUV, YCbCr, YPbPr, YDbDr, YCgCo(YCoCg), 
-- XYZ(CIEXYZ), XYY(YXY | CIEXYY), LUV(CIELUV), LAB(CIELAB), LCH(CIELCHab | CIELCHuv | CIELCH | LCHab)
+- `RGB` , `RYB` , `CMY` , `CMYK`
+- `HSL(HSI)` , `HSV(HSB)` , `HWB` , `HUSL` , `HUSLp`
+- `YIQ` , `YUV` , `YCbCr` , `YPbPr` , `YDbDr` , `YCgCo(YCoCg)` , 
+- `XYZ(CIEXYZ)` , `XYY(YXY | CIEXYY)` , `LUV(CIELUV)` , `LAB(CIELAB)` , `LCH(CIELCHab | CIELCHuv | CIELCH | LCHab)`
 
 Build from source
 -----------------
