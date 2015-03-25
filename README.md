@@ -11,6 +11,13 @@ Target environments
 
 There is no doubt that you can also use this library in browser extensions and other non-browser environments, such as [Rhino](https://github.com/mozilla/rhino) or [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&redirectslug=SpiderMonkey).
 
+#### Supported color spaces
+
+`RGB` , `HSL(HSI)` , `HSV(HSB)` , `HWB` , `RYB` , `CMY` , `CMYK` , `HUSL` , `HUSLp` , 
+`YIQ` , `YUV` , `YCbCr` , `YPbPr` , `YCgCo(YCoCg)` , `YDbDr` , 
+`XYZ(CIEXYZ)` , `XYY(YXY)` , `LUV(CIELUV)` , `LAB(CIELAB)` , `LCH(CIELCHab|CIELCHuv|CIELCH|LCHab)` 
+
+
 Build from source
 -----------------
 

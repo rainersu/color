@@ -15,4 +15,9 @@ function(
 
 // var tiffanyblue = new Color('#60DFE5');
 
+var x=Color.spaces;
+var s='';
+for (var i in x)  s+='`' + i + '` , ';
+console.log(s);
+
 });
