@@ -3,7 +3,7 @@
 * @see {@link http://dev.w3.org/csswg/css-color/#named-colors}
 * @see {@link http://www.w3.org/TR/SVG/types.html#ColorKeywords}
 * @access public
-* @var {object} Color.keywords
+* @namespace {object} Color.keywords
 * @example
 * console.log(Color.keywords.rebeccapurple);   // #663399
 * @example

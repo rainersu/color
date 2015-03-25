@@ -33,11 +33,7 @@ clouds:        '#ecf0f1',
 silver:        '#bdc3c7',
 
 concrete:      '#95a5a6',
-asbestos:      '#7f8c8d',
-
-black: '#000',
-white: '#fff',
-transparent: 'rgba(0, 0, 0, 0)'
+asbestos:      '#7f8c8d'
 
 };
 

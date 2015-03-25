@@ -275,11 +275,7 @@ bluegrey0500: '#607d8b',
 bluegrey0600: '#546e7a',
 bluegrey0700: '#455a64',
 bluegrey0800: '#37474f',
-bluegrey0900: '#263238',
-
-black: '#000',
-white: '#fff',
-transparent: 'rgba(0, 0, 0, 0)'
+bluegrey0900: '#263238'
 
 };
 

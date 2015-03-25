@@ -1,6 +1,7 @@
 /**
-* 获取或设置 Color 对象的基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSV(HSB) 色彩空间} 的 {@link  http://en.wikipedia.org/wiki/Brightness|明度} 。如要处理基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSV(HSB) 色彩空间} 的 {@link http://en.wikipedia.org/wiki/Lightness|亮度} 请使用 {@link Color#lightness|lightness} 方法。
+* 获取或设置 Color 对象的基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSV(HSB) 色彩空间} 的 {@link  http://en.wikipedia.org/wiki/Brightness|明度} 。如要处理基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSV(HSB) 色彩空间} 的 {@link http://en.wikipedia.org/wiki/Lightness|亮度} 请使用 {@link Color#hslLightness|hslLightness} 方法。
 * @see {@link Color#lightness}
+* @see {@link Color#hslLightness}
 * @see {@link Color#value}
 * @access public
 * @func Color.prototype.brightness
@@ -19,7 +20,7 @@
 * var c = 'black,pink,gray,green,white'.split(',').map(Color);
 * var l = c.length;
 * for(; l--;) {
-*     console.log(c[l].css(0) + ' - HSL: ' + c[l].lightness().toFixed() + ' HSV: ' + c[l].brightness().toFixed()); 
+*     console.log(c[l].css(0) + ' - HSL: ' + c[l].hslLightness().toFixed() + ' HSV: ' + c[l].brightness().toFixed()); 
 * }
 * // #FFFFFF - HSL: 100  HSV: 100
 * // #008000 - HSL:  25  HSV:  50

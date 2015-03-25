@@ -44,7 +44,7 @@ var re =
 		/^rgba?\(\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i,
 		/^#([a-f0-9])([a-f0-9])([a-f0-9])(?:([a-f0-9])([a-f0-9])([a-f0-9]))?$/i
 	],
-	co = [ 'hsl', 'hsv', 'hwb', 'rgb' ],
+	co = [ 'hsl', 'hsv', 'hwb', 'rgb', 'husl' ],
 	gs = fb(function (r, g, b, a, m) {
 		var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
 		return [ x, x, x, a ];
@@ -64,18 +64,18 @@ function Color (v, s) {
 	return !(this instanceof Color) ? new Color(v, s) : v instanceof Color ? (s ? v.clone() : v) : (this.alpha = 100, this.color(s, v));
 }
 cp(Color, {
-keywords    : kw,
-spaces      : cs,
-support     : function (n) {
+keywords      : kw,
+spaces        : cs,
+support       : function (n) {
 	return hasOP.call(cs, rn(n));
 },
-isColor     : function (v) {
+isColor       : function (v) {
 	if (am(v) === 'string') for (var l = re.length; l--;) {
 		if (l ? re[l].test(v) : v in kw) return true;
 	}
 	return v && v instanceof Color;
 },
-temperature : function (k) {
+temperature   : function (k) {
 	k/= 100;
 	return new Color([
 		k <= 66 ? 255 : 329.698727446 * pow(k - 60, -0.1332047592),
@@ -83,22 +83,22 @@ temperature : function (k) {
 		k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * log(k - 10) - 305.0447927307
 	]);
 },
-grayscale   : function (v, b) {
+grayscale     : function (v, b) {
 	v = b ? v * 255 : v;
 	return new Color([ v, v, v ]);
 }
 });
 cp(Color.prototype, {
-toJSON      : tj,
-toString    : tj,
-clone       : function ( ) {
+toJSON        : tj,
+toString      : tj,
+clone         : function ( ) {
 	var n = this.space + 'a';
 	return new Color(this.color(n), n);
 },
-equal       : function (c) {
+equal         : function (c) {
 	return this.css(1, 1) === new Color(c).css(1, 1);
 },
-value       : function (n, i, v, b) {
+value         : function (n, i, v, b) {
 	v = +v;
 	var k = cs[ rn(n) ],
 		l = k.length,
@@ -112,7 +112,7 @@ value       : function (n, i, v, b) {
 	}
 	return  o;
 },
-opacity     : function (v, b) {
+opacity       : function (v, b) {
 	v = +v;
 	var a = this.alpha;
 	if (v === v) {
@@ -121,7 +121,7 @@ opacity     : function (v, b) {
 	}
 	return a;
 },
-color       : function (s, v) {
+color         : function (s, v) {
 	var k,
 		x = re.length,
 		w = x,
@@ -178,7 +178,7 @@ color       : function (s, v) {
 	this.space = s;
 	return t;
 },
-css         : function (v, b) {
+css           : function (v, b) {
 	if (am(v) === 'string') return this.color(0, v);
 	v = 1 + v ? ~~v : 1;
 	b = 1 + b ? b : this.alpha < 100;
@@ -194,10 +194,10 @@ css         : function (v, b) {
 	}
 	return v ? s + '(' + c + ')' : '#' + c.join('').toUpperCase();
 },
-ieFilter    : function () {
+ieFilter      : function () {
 	return this.css(0).replace('#', '#' + kv(round(this.alpha * 2.55), [ 0, 255 ]).toString(16).replace(/^.$/, '0$&').toUpperCase());
 },
-web         : function (b, s) {
+web           : function (b, s) {
 	b = b ? 17 : 51;
 	var c = this.color('rgba'),
 		l = 3;
@@ -205,7 +205,7 @@ web         : function (b, s) {
 	c = new Color(c);
 	return s ? c : c.css(0);
 },
-luminance   : function (b) {
+luminance     : function (b) {
 	b = +b;
 	if (b !== b) b = 1;
 	var c = this.color('rgb'),
@@ -217,15 +217,15 @@ luminance   : function (b) {
 	}
 	return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
 },
-luma        : function ( ) {
+luma          : function ( ) {
 	return (this.color('yiq')[0] * 255).toFixed();
 },
-contrast    : function (c) {
+contrast      : function (c) {
 	c = Color(c).luminance() + 0.05;
 	var b = this.luminance() + 0.05;
 	return b > c ? b / c : c / b;
 },
-difference  : function (c) {
+difference    : function (c) {
 	c = Color(c).color('rgb');
 	var a = this.color('rgb'),
 		o = [ 299, 587, 114 ],
@@ -242,17 +242,22 @@ difference  : function (c) {
 	b = abs(b) / 1000;
 	return [ b, r, (b > 125) + (r > 500) ];
 },
-hue         : fv(0),
-saturation  : fv(1),
-lightness   : fv(2),
-chroma      : fv(1, 1),
-brightness  : fv(2, 1),
-whiteness   : fv(1, 2),
-blackness   : fv(2, 2),
-invert      : fb(function (r, g, b, a) {
+hslHue        : fv(0),
+saturation    : fv(1),
+hslLightness  : fv(2),
+hsvSaturation : fv(1, 1),
+brightness    : fv(2, 1),
+whiteness     : fv(1, 2),
+blackness     : fv(2, 2),
+red           : fv(0, 3),
+green         : fv(1, 3),
+blue          : fv(2, 3),
+hue           : fv(0, 4),
+lightness     : fv(2, 4),
+invert        : fb(function (r, g, b, a) {
 	return [ r ^ 0xFF, g ^ 0xFF, b ^ 0xFF, a ];
 }),
-sepia       : fb(function (r, g, b, a) {
+sepia         : fb(function (r, g, b, a) {
 	return [
 		r * .393 + g * .769 + b * .189,
 		r * .349 + g * .686 + b * .168,
@@ -260,13 +265,13 @@ sepia       : fb(function (r, g, b, a) {
 		a
 	];
 }),
-greyscale   : function (m) {
+greyscale     : function (m) {
 	return m > 2 ? this.clone().saturation(0) : gs.call(this, m);
 },
-complement  : function ( ) {
+complement    : function ( ) {
 	return this.clone().hue(180, true);
 },
-mix         : function (y, p, r) {
+mix           : function (y, p, r) {
     y = new Color(y).color('rgba');
 	var p = isNaN(p) ? .5 : p / 100,
     	w = p * 2 - 1,
@@ -281,7 +286,7 @@ mix         : function (y, p, r) {
 		r ? x[3] * p + y[3] * (1 - p) : x[3]
 	]);
 },
-blend       : function (y, f) {
+blend         : function (y, f) {
 	var x = this.color('rgba'),
 		r = [,,, x[3] ],
 		l = 4;
@@ -290,19 +295,19 @@ blend       : function (y, f) {
 	for(l = 3; l--;) r[l] = f(x[l], y[l]);
 	return new Color(r);
 },
-tint        : function (p) {
+tint          : function (p) {
 	return new Color([ 255, 255, 255, this.alpha ]).mix(this, p);
 },
-shade       : function (p) {
+shade         : function (p) {
 	return new Color([   0,   0,   0, this.alpha ]).mix(this, p);
 },
-tone        : function (p, m) {
+tone          : function (p, m) {
 	return this.greyscale(m).mix(this, p);
 },
-match       : function (y, d) {
+readable      : function (y, d) {
 	return abs(this.luminance() - new Color(y).luminance()) * 100 > (1 + d ? d : 50);
 },
-mate        : function (o) {
+match         : function (o) {
 	var c = am(o) === 'array' ? o : o ? slice.call(arguments) : [ '#000', '#FFF' ],
 		l = c.length,
 		x = this.luminance(),
@@ -320,10 +325,22 @@ mate        : function (o) {
 	}
 	return  r;
 },
-opaque      : function (y, b) {
+opaque        : function (y, b) {
 	y = this.mix(y, this.alpha);
 	y.alpha = 100;
 	return b ? y.css(0) : y;
+},
+scheme        : function (n, m) {
+	var c = this.color('husl'),
+		h = c[0],
+		r = [];
+	n = n || 6;
+	m = m || 360 / n;
+	for(; n--; h+= m) {
+		c[0] = h; 
+		r[n] = new Color(c,'husl');
+	}
+	return r;
 }
 });
 module.Color = Color;

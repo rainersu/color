@@ -1,6 +1,6 @@
 /**
-* 获取或设置 Color 对象的基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSL(HSI) 色彩空间} 的 {@link http://en.wikipedia.org/wiki/Colorfulness|饱和度} 。如要处理基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSV(HSB) 色彩空间} 的饱和度请使用 {@link Color#chroma|chroma} 方法。
-* @see {@link Color#chroma}
+* 获取或设置 Color 对象的基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSL(HSI) 色彩空间} 的 {@link http://en.wikipedia.org/wiki/Colorfulness|饱和度} 。如要处理基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSV(HSB) 色彩空间} 的饱和度请使用 {@link Color#hsvSaturation|hsvSaturation} 方法。
+* @see {@link Color#hsvSaturation}
 * @see {@link Color#value}
 * @access public
 * @func Color.prototype.saturation
@@ -19,7 +19,7 @@
 var c = 'black,pink,gray,green,white'.split(',').map(Color);
 var l = c.length;
 for(; l--;) {
-	console.log(c[l].css(0) + ' - HSL: ' + c[l].saturation().toFixed() + ' HSV: ' + c[l].chroma().toFixed()); 
+	console.log(c[l].css(0) + ' - HSL: ' + c[l].saturation().toFixed() + ' HSV: ' + c[l].hsvSaturation().toFixed()); 
 }
 // #FFFFFF - HSL:   0  HSV:   0
 // #008000 - HSL: 100  HSV: 100

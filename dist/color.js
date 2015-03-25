@@ -596,7 +596,7 @@ Just a JavaScript library for all kinds of color manipulations.
             return b === 0 ? b : max(0, 255 - (255 - f << 8) / b);
         }
     };
-    var re = [ /./, /^hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i, /^rgba?\(\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i, /^#([a-f0-9])([a-f0-9])([a-f0-9])(?:([a-f0-9])([a-f0-9])([a-f0-9]))?$/i ], co = [ "hsl", "hsv", "hwb", "rgb" ], gs = fb(function(r, g, b, a, m) {
+    var re = [ /./, /^hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i, /^rgba?\(\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*,\s*(\d+(?:\.\d+)?)(\%?)\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)$/i, /^#([a-f0-9])([a-f0-9])([a-f0-9])(?:([a-f0-9])([a-f0-9])([a-f0-9]))?$/i ], co = [ "hsl", "hsv", "hwb", "rgb", "husl" ], gs = fb(function(r, g, b, a, m) {
         var x = m ? this.luminance(m - 1) * 255 : r * .3 + g * .59 + b * .11;
         return [ x, x, x, a ];
     });
@@ -753,13 +753,18 @@ Just a JavaScript library for all kinds of color manipulations.
             b = abs(b) / 1e3;
             return [ b, r, (b > 125) + (r > 500) ];
         },
-        hue: fv(0),
+        hslHue: fv(0),
         saturation: fv(1),
-        lightness: fv(2),
-        chroma: fv(1, 1),
+        hslLightness: fv(2),
+        hsvSaturation: fv(1, 1),
         brightness: fv(2, 1),
         whiteness: fv(1, 2),
         blackness: fv(2, 2),
+        red: fv(0, 3),
+        green: fv(1, 3),
+        blue: fv(2, 3),
+        hue: fv(0, 4),
+        lightness: fv(2, 4),
         invert: fb(function(r, g, b, a) {
             return [ r ^ 255, g ^ 255, b ^ 255, a ];
         }),
@@ -793,10 +798,10 @@ Just a JavaScript library for all kinds of color manipulations.
         tone: function(p, m) {
             return this.greyscale(m).mix(this, p);
         },
-        match: function(y, d) {
+        readable: function(y, d) {
             return abs(this.luminance() - new Color(y).luminance()) * 100 > (1 + d ? d : 50);
         },
-        mate: function(o) {
+        match: function(o) {
             var c = am(o) === "array" ? o : o ? slice.call(arguments) : [ "#000", "#FFF" ], l = c.length, x = this.luminance(), y, z = 0, i, r = c[0];
             while (l--) {
                 i = new Color(c[l]);
@@ -812,6 +817,16 @@ Just a JavaScript library for all kinds of color manipulations.
             y = this.mix(y, this.alpha);
             y.alpha = 100;
             return b ? y.css(0) : y;
+        },
+        scheme: function(n, m) {
+            var c = this.color("husl"), h = c[0], r = [];
+            n = n || 6;
+            m = m || 360 / n;
+            for (;n--; h += m) {
+                c[0] = h;
+                r[n] = new Color(c, "husl");
+            }
+            return r;
         }
     });
     module.Color = Color;
