@@ -82,6 +82,7 @@ Just a JavaScript library for all kinds of color manipulations.
         hsi: "hsl",
         hsb: "hsv",
         yxy: "xyy",
+        ciexyy: "xyy",
         ciexyz: "xyz",
         cieluv: "luv",
         cielab: "lab",
