@@ -17,7 +17,7 @@ Features
 - Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmyk, yiq, yuv, xyz, luv, lab, lch, etc..) and CSS keywords. It caches conversions.
 - Color Instances have getters/setters for all channels(red, green, blue, hue, saturation, lightness, opacity, blackness, whiteness, etc..) in all supported colorspaces. 
 - Many useful classes and methods: Gradient, Palette, tint, shade, tone, color blending and color scale, luminance and color difference calculator, scheme generator, etc.
-- So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at **`8kb`** minified and gzipped. 
+- So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at ` 8kb ` minified and gzipped. 
 - Lots more. Take a look at the docs.
 
 Example use
@@ -64,6 +64,8 @@ $ cd color
 $ npm install
 $ grunt
 ```
+
+We provide compiled JS (`color.*`), as well as compiled and minified JS (`color.min.*`). JS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`color.*.map`) are available for use with certain browsers' developer tools.
 
 Build & running documentation locally
 -------------------------------------
