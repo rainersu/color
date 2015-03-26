@@ -86,11 +86,11 @@ Sorry, the documentation is currently offered only in the Chinese language. Do y
 How to contact me
 -----------------
 
-- rainersu@foxmail.com
-- http://cn.linkedin.com/in/rainersu
-- https://www.npmjs.com/~rainersu
-- http://rainersu.github.io
-- http://weibo.com/rainersu
+- [rainersu@foxmail.com](mailto:rainersu@foxmail.com)
+- [http://cn.linkedin.com/in/rainersu](http://cn.linkedin.com/in/rainersu)
+- [https://www.npmjs.com/~rainersu](https://www.npmjs.com/~rainersu)
+- [http://rainersu.github.io](http://rainersu.github.io)
+- [http://weibo.com/rainersu](http://weibo.com/rainersu)
 - ``QQ: 2627001536``
 
 Copyright and license
