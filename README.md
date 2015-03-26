@@ -67,6 +67,13 @@ $ grunt
 
 It provides compiled JS (`color.*`), as well as compiled and minified JS (`color.min.*`). JS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`color.*.map`) are available for use with certain browsers' developer tools.
 
+Running demos for testing
+-------------------------
+
+```bash
+$ grunt test
+```
+
 Build & running documentation locally
 -------------------------------------
 
@@ -75,13 +82,6 @@ $ grunt help
 ```
 
 Sorry, the documentation is currently offered only in the Chinese language. Do you have time to help me with some Chinese - English translations?
-
-Running demos for testing
--------------------------
-
-```bash
-$ grunt test
-```
 
 How to contact me
 -----------------
