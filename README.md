@@ -7,17 +7,50 @@ Target environments
 
 - IE 6+
 - Latest Stable: Firefox, Chrome, Safari, Opera
-- Node.js
+- [Node.js](https://nodejs.org/)
 
 There is no doubt that you can also use this library in browser extensions and other non-browser environments, such as [Rhino](https://github.com/mozilla/rhino) or [SpiderMonkey](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&redirectslug=SpiderMonkey).
 
-Supported color spaces
-----------------------
+Features
+--------
 
-- `RGB` , `RYB` , `CMY` , `CMYK`
-- `HSL(HSI)` , `HSV(HSB)` , `HWB` , `HUSL` , `HUSLp`
-- `YIQ` , `YUV` , `YCbCr` , `YPbPr` , `YDbDr` , `YCgCo(YCoCg)` , 
-- `XYZ(CIEXYZ)` , `XYY(YXY | CIEXYY)` , `LUV(CIELUV)` , `LAB(CIELAB)` , `LCH(CIELCHab | CIELCHuv | CIELCH | LCHab)`
+- Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmyk, yiq, yuv, xyz, luv, lab, lch, etc..) and CSS keywords. It caches conversions.
+- Color Instances have getters/setters for all channels(red, green, blue, hue, saturation, lightness, opacity, blackness, whiteness, etc..) in all supported colorspaces. 
+- Many useful classes and methods: Gradient, Palette, tint, shade, tone, color blending and color scale, luminance and color difference calculator, scheme generator, etc.
+- So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at **`8kb`** minified and gzipped. 
+- Lots more. Take a look at the docs.
+
+Example use
+-----------
+
+Including in a browser:
+
+```html
+<script type='text/javascript' src='/path/to/color-1.0.0.min.js'></script>
+<script type='text/javascript'>
+var Color = sumiColor.Color;
+var tiffanyblue = new Color('#60DFE5');
+window.alert(tiffanyblue.css(2, true));
+</script>
+```
+
+As a module that works with AMD(e.g., [RequireJS](http://requirejs.org/)):
+
+```bash
+define(['/path/to/color-1.0.0.min.js'], function(sumiColor) {
+    var Color = sumiColor.Color;
+    var tiffanyblue = new Color('#60DFE5');
+    window.alert(tiffanyblue.css(2, true));
+});
+```
+
+Including in a CommonJS environment(e.g., [Node.js](https://nodejs.org/)):
+
+```bash
+var Color = require('/path/to/color-1.0.0.min.js').Color;
+var tiffanyblue = new Color('#60DFE5');
+console.log(tiffanyblue.css(2,  true));
+```
 
 Build from source
 -----------------
@@ -53,6 +86,7 @@ How to contact me
 
 - rainersu@foxmail.com
 - http://cn.linkedin.com/in/rainersu
+- https://www.npmjs.com/~rainersu
 - http://rainersu.github.io
 - http://weibo.com/rainersu
 - ``QQ: 2627001536``

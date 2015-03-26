@@ -12,7 +12,7 @@ Just a JavaScript library for all kinds of color manipulations.
     } else if (typeof exports === "object") {
         module.exports = factory();
     } else {
-        factory();
+        root["sumiColor"] = factory();
     }
 })(this, function() {
     var module = {};

@@ -23,6 +23,7 @@ grunt.initConfig({
 		mod : {
 			options: {
 				verbose      : true,
+				globalAlias  : 'sumiColor',
 				src          : MOD_DST_FILE,
 			    dest         : MOD_DST_FILE
 			}
