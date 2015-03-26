@@ -65,7 +65,7 @@ $ npm install
 $ grunt
 ```
 
-We provide compiled JS (`color.*`), as well as compiled and minified JS (`color.min.*`). JS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`color.*.map`) are available for use with certain browsers' developer tools.
+It provides compiled JS (`color.*`), as well as compiled and minified JS (`color.min.*`). JS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`color.*.map`) are available for use with certain browsers' developer tools.
 
 Build & running documentation locally
 -------------------------------------
