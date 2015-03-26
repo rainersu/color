@@ -13,11 +13,21 @@ function(
 	Gradient
 ) {'use strict';
 
-// var tiffanyblue = new Color('#60DFE5');
+var tiffanyblue = new Color('#60DFE5');
+console.log(tiffanyblue.temperature());   // 39999.70245361328
 
-var x=Color.spaces;
-var s='';
-for (var i in x)  s+='`' + i + '` , ';
-console.log(s);
+tiffanyblue.temperature(1000);
+console.log(tiffanyblue.css(0));          // #FF3A00
+console.log(tiffanyblue.temperature());   // 1000.2975463867188
+
+tiffanyblue.temperature(1000, true);
+console.log(tiffanyblue.css(0));          // #FF8B14
+console.log(tiffanyblue.temperature());   // 2000.0534057617188
+
+
+
+
+
+
 
 });

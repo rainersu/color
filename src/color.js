@@ -77,10 +77,18 @@ isColor       : function (v) {
 },
 temperature   : function (k) {
 	k/= 100;
-	return new Color([
-		k <= 66 ? 255 : 329.698727446 * pow(k - 60, -0.1332047592),
-		k <= 66 ? 99.4708025861 * log(k) - 161.1195681661 : 288.1221695283 * pow(k - 60, -0.0755148492),
-		k >= 66 ? 255 : k <= 19 ? 0 : 138.5177312231 * log(k - 10) - 305.0447927307
+	var	p = k < 66,
+		q = k > 20,
+		r = p ? 255 : k - 55,
+		g = p ? k - 2 : k - 50,
+		b = !p ? 255 : q ? k - 10 : 0;
+	return new Color([ 
+		p ? r :
+		     351.97690566805693 + 0.114206453784165   * r -  40.25366309332127 * log(r),
+		p ? -155.25485562709179 - 0.44596950469579133 * g + 104.49216199393888 * log(g) :
+		     325.4494125711974  + 0.07943456536662342 * g -  28.0852963507957  * log(g),
+		p && q ? 
+		    -254.76935184120902 + 0.8274096064007395  * b + 115.67994401066147 * log(b) : b
 	]);
 },
 grayscale     : function (v, b) {
@@ -341,6 +349,28 @@ scheme        : function (n, m) {
 		r[n] = new Color(c,'husl');
 	}
 	return r;
+},
+temperature   : function (t, a) {
+	t = +t;
+	var r = t !== t, 
+		f = Color.temperature,
+		s = 'rgb',
+		o = this.color(s),
+		x = o[2] / o[0],
+		b = 1000,
+		d = 40000,
+		c,
+		m;
+	if (r || a) {
+		while (d - b > 0.4) {
+			m = (d + b) / 2;
+			c = f(m).color(s);
+			if (c[2] / c[0] >= x) d = m;
+			else b = m;
+		}
+		t = a ? t + m : m;
+	}
+	return r ? t : this.color(s, f(t).color(s));
 }
 });
 module.Color = Color;
