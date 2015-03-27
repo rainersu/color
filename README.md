@@ -20,6 +20,16 @@ Features
 - So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at ` 8kb ` minified and gzipped. 
 - Lots more. Take a look at the docs.
 
+Quick start
+-----------
+
+Four quick start options are available:
+
+- [Download the latest release](https://github.com/rainersu/color/archive/v1.0.0.zip).
+- Clone the repo: `git clone https://github.com/rainersu/color.git`.
+- Install with [Bower](http://bower.io): `bower install sumi-color`.
+- Install with [npm](https://www.npmjs.com): `npm install sumi-color`.
+
 Example use
 -----------
 
