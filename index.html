@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Color by rainersu</title>
+    <title>sumi-color by rainersu</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -31,7 +31,7 @@
 
       <section>
         <div id="title">
-          <h1>Color</h1>
+          <h1>sumi-color</h1>
           <p>A standalone Javascript library for all kinds of color manipulations.</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/rainersu">rainersu</a></span>
@@ -39,7 +39,8 @@
         </div>
 
         <h1>
-<a id="color" class="anchor" href="#color" aria-hidden="true"><span class="octicon octicon-link"></span></a>color</h1>
+<a id="sumi-color" class="anchor" href="#sumi-color" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://www.npmjs.com/package/sumi-color">sumi-color</a>
+</h1>
 
 <p>A standalone JavaScript library for all kinds of color manipulations. Tiny but powerful. </p>
 
@@ -66,11 +67,24 @@
 </ul>
 
 <h2>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick start</h2>
+
+<p>Four quick start options are available:</p>
+
+<ul>
+<li>
+<a href="https://github.com/rainersu/color/archive/v1.0.1.zip">Download the latest release</a>.</li>
+<li>Clone the repo: <code>git clone https://github.com/rainersu/color.git</code>.</li>
+<li>Install with <a href="http://bower.io">Bower</a>: <code>bower install sumi-color</code>.</li>
+<li>Install with <a href="https://www.npmjs.com">npm</a>: <code>npm install sumi-color</code>.</li>
+</ul>
+
+<h2>
 <a id="example-use" class="anchor" href="#example-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example use</h2>
 
 <p>Including in a browser:</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>/path/to/color-1.0.0.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color-1.0.1.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 <span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span>&gt;</span>
 <span class="pl-s1"><span class="pl-k">var</span> Color <span class="pl-k">=</span> sumiColor.Color;</span>
 <span class="pl-s1"><span class="pl-k">var</span> tiffanyblue <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Color</span>(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>);</span>
@@ -79,7 +93,7 @@
 
 <p>As a module that works with AMD(e.g., <a href="http://requirejs.org/">RequireJS</a>):</p>
 
-<div class="highlight highlight-bash"><pre>define([<span class="pl-s"><span class="pl-pds">'</span>/path/to/color-1.0.0.min.js<span class="pl-pds">'</span></span>], function(sumiColor) {
+<div class="highlight highlight-bash"><pre>define([<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color<span class="pl-pds">'</span></span>], function(sumiColor) {
     var Color = sumiColor.Color<span class="pl-k">;</span>
     var tiffanyblue = new Color(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>)<span class="pl-k">;</span>
     window.alert(tiffanyblue.css(2, <span class="pl-c1">true</span>))<span class="pl-k">;</span>
@@ -87,7 +101,7 @@
 
 <p>Including in a CommonJS environment(e.g., <a href="https://nodejs.org/">Node.js</a>):</p>
 
-<div class="highlight highlight-bash"><pre>var Color = require(<span class="pl-s"><span class="pl-pds">'</span>/path/to/color-1.0.0.min.js<span class="pl-pds">'</span></span>).Color<span class="pl-k">;</span>
+<div class="highlight highlight-bash"><pre>var Color = require(<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color<span class="pl-pds">'</span></span>).Color<span class="pl-k">;</span>
 var tiffanyblue = new Color(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>)<span class="pl-k">;</span>
 console.log(tiffanyblue.css(2,  <span class="pl-c1">true</span>))<span class="pl-k">;</span></pre></div>
 
@@ -102,7 +116,7 @@ $ <span class="pl-c1">cd</span> color
 $ npm install
 $ grunt</pre></div>
 
-<p>It provides compiled JS (<code>color.*</code>), as well as compiled and minified JS (<code>color.min.*</code>). JS <a href="https://developers.google.com/chrome-developer-tools/docs/css-preprocessors">source maps</a> (<code>color.*.map</code>) are available for use with certain browsers' developer tools.</p>
+<p>It provides compiled JS (<code>sumi-color.*</code>), as well as compiled and minified JS (<code>sumi-color.min.*</code>). JS <a href="https://developers.google.com/chrome-developer-tools/docs/css-preprocessors">source maps</a> (<code>sumi-color.*.map</code>) are available for use with certain browsers' developer tools.</p>
 
 <h2>
 <a id="running-demos-for-testing" class="anchor" href="#running-demos-for-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running demos for testing</h2>
