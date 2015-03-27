@@ -26,7 +26,7 @@ Example use
 Including in a browser:
 
 ```html
-<script type='text/javascript' src='/path/to/color-1.0.0.min.js'></script>
+<script type='text/javascript' src='/path/to/sumi-color-1.0.0.min.js'></script>
 <script type='text/javascript'>
 var Color = sumiColor.Color;
 var tiffanyblue = new Color('#60DFE5');
@@ -37,7 +37,7 @@ window.alert(tiffanyblue.css(2, true));
 As a module that works with AMD(e.g., [RequireJS](http://requirejs.org/)):
 
 ```bash
-define(['/path/to/color-1.0.0.min.js'], function(sumiColor) {
+define(['/path/to/sumi-color'], function(sumiColor) {
     var Color = sumiColor.Color;
     var tiffanyblue = new Color('#60DFE5');
     window.alert(tiffanyblue.css(2, true));
@@ -47,7 +47,7 @@ define(['/path/to/color-1.0.0.min.js'], function(sumiColor) {
 Including in a CommonJS environment(e.g., [Node.js](https://nodejs.org/)):
 
 ```bash
-var Color = require('/path/to/color-1.0.0.min.js').Color;
+var Color = require('/path/to/sumi-color').Color;
 var tiffanyblue = new Color('#60DFE5');
 console.log(tiffanyblue.css(2,  true));
 ```
@@ -65,7 +65,7 @@ $ npm install
 $ grunt
 ```
 
-It provides compiled JS (`color.*`), as well as compiled and minified JS (`color.min.*`). JS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`color.*.map`) are available for use with certain browsers' developer tools.
+It provides compiled JS (`sumi-color.*`), as well as compiled and minified JS (`sumi-color.min.*`). JS [source maps](https://developers.google.com/chrome-developer-tools/docs/css-preprocessors) (`sumi-color.*.map`) are available for use with certain browsers' developer tools.
 
 Running demos for testing
 -------------------------

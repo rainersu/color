@@ -1,5 +1,5 @@
 {
-	"name": "Color",
+	"name": "sumi-color",
 	"version": "1.0.0",
 	"homepage": "http://rainersu.github.io/color",
 	"authors": [
@@ -31,6 +31,7 @@
 	},
 	"keywords": [
 		"color",
+		"sumi-color",
 		"colour",
 		"scheme",
 		"palette",

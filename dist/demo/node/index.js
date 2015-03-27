@@ -1,5 +1,5 @@
 
-var Color = require('../../color.js').Color;
+var Color = require('../../sumi-color.js').Color;
 
 var tiffanyblue = new Color('#60DFE5');
 

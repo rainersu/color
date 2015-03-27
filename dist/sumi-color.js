@@ -1,5 +1,5 @@
 /*!
-Color v1.0.0
+sumi-color v1.0.0
 http://rainersu.github.io/color
 A tiny but powerful JavaScript library for all kinds of color manipulations.
 (c) 2015 Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )

@@ -1,6 +1,6 @@
 {
-  "name": "Color",
-  "title": "Color",
+  "name": "sumi-color",
+  "title": "sumi-color",
   "version": "1.0.0",
   "description": "A tiny but powerful JavaScript library for all kinds of color manipulations.",
   "main": "dist/color.js",
@@ -17,6 +17,7 @@
   },
   "keywords": [
     "color",
+	"sumi-color",
 	"colour",
     "scheme",
     "palette",
