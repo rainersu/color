@@ -10,9 +10,9 @@ bower_components
 
 **/.*
 .git
+.gitignore
 .jshintignore
 .jshintrc
-.gitignore
 
 /.editorconfig
 /.gitattributes
