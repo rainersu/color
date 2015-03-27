@@ -1,6 +1,6 @@
 {
 	"name": "sumi-color",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"homepage": "http://rainersu.github.io/color",
 	"authors": [
 		{
@@ -11,7 +11,7 @@
 		}
 	],
 	"description": "A tiny but powerful JavaScript library for all kinds of color manipulations.",
-	"main": "dist/color.js",
+	"main": "dist/sumi-color.js",
 	"license": "BSD",
 	"ignore": [
 		"_",
@@ -23,7 +23,9 @@
 		"/doc.json",
 		"/Gruntfile.js",
 		"test",
-		"tests"
+		"tests",
+		"logs",
+		"*.log"
 	],
 	"repository": {
 		"type": "git",

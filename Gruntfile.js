@@ -58,7 +58,7 @@ grunt.initConfig({
             src : DOC_DST_PATH
 		},
 		mod     : {
-			src: MOD_DST_PATH + '/*.js'
+			src: [ MOD_DST_PATH + '/*.js', MOD_DST_PATH + '/*.map' ]
 		}
 	},
 	jsdoc       : {
