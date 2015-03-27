@@ -32,7 +32,7 @@
       <section>
         <div id="title">
           <h1>Color</h1>
-          <p>Just a JavaScript library for all kinds of color manipulations.</p>
+          <p>A standalone Javascript library for all kinds of color manipulations.</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/rainersu">rainersu</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
@@ -41,41 +41,80 @@
         <h1>
 <a id="color" class="anchor" href="#color" aria-hidden="true"><span class="octicon octicon-link"></span></a>color</h1>
 
-<p>Just a tiny JavaScript library for all kinds of color manipulations.</p>
+<p>A standalone JavaScript library for all kinds of color manipulations. Tiny but powerful. </p>
 
 <h2>
-<a id="target-environments" class="anchor" href="#target-environments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Target Environments</h2>
+<a id="target-environments" class="anchor" href="#target-environments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Target environments</h2>
 
 <ul>
 <li>IE 6+</li>
 <li>Latest Stable: Firefox, Chrome, Safari, Opera</li>
-<li>Node.js</li>
+<li><a href="https://nodejs.org/">Node.js</a></li>
 </ul>
 
 <p>There is no doubt that you can also use this library in browser extensions and other non-browser environments, such as <a href="https://github.com/mozilla/rhino">Rhino</a> or <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey?redirectlocale=en-US&amp;redirectslug=SpiderMonkey">SpiderMonkey</a>.</p>
 
 <h2>
-<a id="build-from-source" class="anchor" href="#build-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build From Source</h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmyk, yiq, yuv, xyz, luv, lab, lch, etc..) and CSS keywords. It caches conversions.</li>
+<li>Color Instances have getters/setters for all channels(red, green, blue, hue, saturation, lightness, opacity, blackness, whiteness, etc..) in all supported colorspaces. </li>
+<li>Many useful classes and methods: Gradient, Palette, tint, shade, tone, color blending and color scale, luminance and color difference calculator, scheme generator, etc.</li>
+<li>So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at <code>8kb</code> minified and gzipped. </li>
+<li>Lots more. Take a look at the docs.</li>
+</ul>
+
+<h2>
+<a id="example-use" class="anchor" href="#example-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example use</h2>
+
+<p>Including in a browser:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>/path/to/color-1.0.0.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span>&gt;</span>
+<span class="pl-s1"><span class="pl-k">var</span> Color <span class="pl-k">=</span> sumiColor.Color;</span>
+<span class="pl-s1"><span class="pl-k">var</span> tiffanyblue <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Color</span>(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">window</span>.<span class="pl-c1">alert</span>(tiffanyblue.css(<span class="pl-c1">2</span>, <span class="pl-c1">true</span>));</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<p>As a module that works with AMD(e.g., <a href="http://requirejs.org/">RequireJS</a>):</p>
+
+<div class="highlight highlight-bash"><pre>define([<span class="pl-s"><span class="pl-pds">'</span>/path/to/color-1.0.0.min.js<span class="pl-pds">'</span></span>], function(sumiColor) {
+    var Color = sumiColor.Color<span class="pl-k">;</span>
+    var tiffanyblue = new Color(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>)<span class="pl-k">;</span>
+    window.alert(tiffanyblue.css(2, <span class="pl-c1">true</span>))<span class="pl-k">;</span>
+})<span class="pl-k">;</span></pre></div>
+
+<p>Including in a CommonJS environment(e.g., <a href="https://nodejs.org/">Node.js</a>):</p>
+
+<div class="highlight highlight-bash"><pre>var Color = require(<span class="pl-s"><span class="pl-pds">'</span>/path/to/color-1.0.0.min.js<span class="pl-pds">'</span></span>).Color<span class="pl-k">;</span>
+var tiffanyblue = new Color(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>)<span class="pl-k">;</span>
+console.log(tiffanyblue.css(2,  <span class="pl-c1">true</span>))<span class="pl-k">;</span></pre></div>
+
+<h2>
+<a id="build-from-source" class="anchor" href="#build-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build from source</h2>
 
 <p>First, you need to have <a href="https://nodejs.org/">Node.js</a> and <a href="http://gruntjs.com/">Grunt</a> installed.</p>
 
 <div class="highlight highlight-bash"><pre>$ git clone git@github.com:rainersu/color.git
 $ npm install -g grunt-cli
-$ <span class="pl-s3">cd</span> color
+$ <span class="pl-c1">cd</span> color
 $ npm install
 $ grunt</pre></div>
 
-<h2>
-<a id="build--running-documentation-locally" class="anchor" href="#build--running-documentation-locally" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build &amp; running documentation locally</h2>
-
-<div class="highlight highlight-bash"><pre>$ grunt <span class="pl-s3">help</span></pre></div>
-
-<p>Sorry, the documentation is currently offered only in the Chinese language. Do you have time to help me with some Chinese - English translations?</p>
+<p>It provides compiled JS (<code>color.*</code>), as well as compiled and minified JS (<code>color.min.*</code>). JS <a href="https://developers.google.com/chrome-developer-tools/docs/css-preprocessors">source maps</a> (<code>color.*.map</code>) are available for use with certain browsers' developer tools.</p>
 
 <h2>
 <a id="running-demos-for-testing" class="anchor" href="#running-demos-for-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running demos for testing</h2>
 
-<div class="highlight highlight-bash"><pre>$ grunt <span class="pl-s3">test</span></pre></div>
+<div class="highlight highlight-bash"><pre>$ grunt <span class="pl-c1">test</span></pre></div>
+
+<h2>
+<a id="build--running-documentation-locally" class="anchor" href="#build--running-documentation-locally" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build &amp; running documentation locally</h2>
+
+<div class="highlight highlight-bash"><pre>$ grunt <span class="pl-c1">help</span></pre></div>
+
+<p>Sorry, the documentation is currently offered only in the Chinese language. Do you have time to help me with some Chinese - English translations?</p>
 
 <h2>
 <a id="how-to-contact-me" class="anchor" href="#how-to-contact-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to contact me</h2>
@@ -83,6 +122,8 @@ $ grunt</pre></div>
 <ul>
 <li><a href="mailto:rainersu@foxmail.com">rainersu@foxmail.com</a></li>
 <li><a href="http://cn.linkedin.com/in/rainersu">http://cn.linkedin.com/in/rainersu</a></li>
+<li><a href="https://www.npmjs.com/%7Erainersu">https://www.npmjs.com/~rainersu</a></li>
+<li><a href="http://rainersu.github.io">http://rainersu.github.io</a></li>
 <li><a href="http://weibo.com/rainersu">http://weibo.com/rainersu</a></li>
 <li><code>QQ: 2627001536</code></li>
 </ul>
@@ -90,7 +131,7 @@ $ grunt</pre></div>
 <h2>
 <a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and license</h2>
 
-<p>Copyright 2015 <a href="mailto:rainersu@foxmail.com">Rainer Su</a> (<a href="http://cn.linkedin.com/in/rainersu">Suyu</a>).</p>
+<p>Copyright 2015 <a href="mailto:rainersu@foxmail.com">Rainer Su</a> (<a href="http://cn.linkedin.com/in/rainersu">苏昱</a>).</p>
 
 <p>Code and documentation is free to use under the <a href="https://github.com/rainersu/color/blob/master/LICENSE.md">BSD license</a>.</p>
       </section>
