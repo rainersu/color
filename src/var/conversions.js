@@ -106,7 +106,7 @@ var X1 =
 	X7 = .19783000664283,
 	X8 = .46831999493879,
 cv = {
-rgb2ryb   : function (e) {
+rgb2ryb       : function (e) {
 	var w = min.apply(M, e),
 		r = e[0] - w,
 		g = e[1] - w,
@@ -125,7 +125,7 @@ rgb2ryb   : function (e) {
 	p = g ? p / g : 1;
 	return [ r * p + w, y * p + w, b * p + w ];
 },
-ryb2rgb   : function (e) {
+ryb2rgb       : function (e) {
 	var w = min.apply(M, e),
 		r = e[0] - w, 
 		y = e[1] - w, 
@@ -144,7 +144,7 @@ ryb2rgb   : function (e) {
 	y = y ? p / y : 1;
 	return [ r * y + w, g * y + w, b * y + w ];
 },
-rgb2hsl   : function (e) {
+rgb2hsl       : function (e) {
 	var r = e[0] / 255,
 		g = e[1] / 255,
 		b = e[2] / 255,
@@ -164,7 +164,7 @@ rgb2hsl   : function (e) {
 		l * 100
 	];
 },
-hsl2rgb   : function (e) {
+hsl2rgb       : function (e) {
 	var h = e[0] /  60,
 		s = e[1] / 100,
 		l = e[2] / 100,
@@ -183,7 +183,7 @@ hsl2rgb   : function (e) {
 	}
 	return r;
 },
-rgb2hsv   : function (e) {
+rgb2hsv       : function (e) {
 	var r = e[0],
 		g = e[1],
 		b = e[2],
@@ -195,7 +195,7 @@ rgb2hsv   : function (e) {
 		x * 100 / 255
 	];
 },
-hsv2rgb   : function (e) {
+hsv2rgb       : function (e) {
 	var h = e[0] /  60,
 		s = e[1] / 100,
 		v = e[2] / 100 * 255,
@@ -212,7 +212,7 @@ hsv2rgb   : function (e) {
 	       z > 1 ? [p, v, t] :
 	       z     ? [q, v, p] : [v, t, p];
 },
-rgb2yuv   : function (e) {
+rgb2yuv       : function (e) {
 	var r = e[0],
 		g = e[1],
 		b = e[2],
@@ -223,7 +223,7 @@ rgb2yuv   : function (e) {
 		((r - y) * 0.877 + 155) / 312 * 255
 	];
 },
-yuv2rgb   : function (e) {
+yuv2rgb       : function (e) {
 	var y = e[0],
 		u = e[1] / 255 * 222 - 111,
 		v = e[2] / 255 * 312 - 155;
@@ -233,19 +233,19 @@ yuv2rgb   : function (e) {
 		y + u / 0.493
 	];
 },
-rgb2cmy   : function (e) {
+rgb2cmy       : function (e) {
 	for(var l = 3, r = []; l--;) {
 		r[l] = (1 - e[l] / 255) * 100;
 	}
 	return r;
 },
-cmy2rgb   : function (e) {
+cmy2rgb       : function (e) {
 	for(var l = 3, r = []; l--;) {
 		r[l] = (1 - e[l] / 100) * 255;
 	}
 	return r;
 },
-rgb2cmyk  : function (e) {
+rgb2cmyk      : function (e) {
 	var r = e[0],
 		g = e[1],
 		b = e[2],
@@ -257,7 +257,7 @@ rgb2cmyk  : function (e) {
 	}
 	return a;
 },
-cmyk2rgb  : function (e) {
+cmyk2rgb      : function (e) {
 	var k = e[3] / 100,
 		l = 1 - k,
 		a = e.slice(0, 3),
@@ -267,7 +267,7 @@ cmyk2rgb  : function (e) {
 	}
 	return a;
 },
-rgb2yiq   : function (e) {
+rgb2yiq       : function (e) {
 	var r = e[0] / 255,
 		g = e[1] / 255,
 		b = e[2] / 255;
@@ -277,7 +277,7 @@ rgb2yiq   : function (e) {
 		0.211 * r - 0.523 * g + 0.312 * b
 	];
 },
-yiq2rgb   : function (e) {
+yiq2rgb       : function (e) {
 	var y = e[0],
 		i = e[1],
 		q = e[2];
@@ -287,7 +287,7 @@ yiq2rgb   : function (e) {
 		(y - 1.106 * i + 1.703 * q) * 255
 	];
 },
-rgb2ycgco : function (e) {
+rgb2ycgco     : function (e) {
 	var r = e[0] / 255,
 		g = e[1] / 255,
 		b = e[2] / 255;
@@ -297,14 +297,14 @@ rgb2ycgco : function (e) {
 		r / 2 - b / 2
 	];
 },
-ycgco2rgb : function (e) {
+ycgco2rgb     : function (e) {
 	var y = e[0] * 255,
 		g = e[1] * 255,
 		o = e[2] * 255,
 		m = y - g;
 	return [ m + o, y + g, m - o ];
 },
-rgb2ydbdr : function (e) {
+rgb2ydbdr     : function (e) {
 	var r = e[0] / 255,
 		g = e[1] / 255,
 		b = e[2] / 255;
@@ -314,7 +314,7 @@ rgb2ydbdr : function (e) {
 		0.217 * b + 1.116 * g - 1.333 * r
 	];
 },
-ydbdr2rgb : function (e) {
+ydbdr2rgb     : function (e) {
 	var x = e[0],
 		y = e[1],
 		z = e[2];
@@ -324,14 +324,14 @@ ydbdr2rgb : function (e) {
 		255 * (x + 0.664679059978955 * y - 0.000079202543533 * z)
 	];
 },
-rgb2ypbpr : function (e) {
+rgb2ypbpr     : function (e) {
 	var r = e[0],
 		g = e[1],
 		b = e[2],
 		y = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 	return [ y, b - y, r - y ];
 },
-ypbpr2rgb : function (e) {
+ypbpr2rgb     : function (e) {
 	var y = e[0],
 		r = e[2] + y,
 		b = e[1] + y;
@@ -341,7 +341,7 @@ ypbpr2rgb : function (e) {
 		b
 	];
 },
-rgb2ycbcr : function (e) {
+rgb2ycbcr     : function (e) {
 	var r = e[0],
 		g = e[1],
 		b = e[2];
@@ -351,7 +351,7 @@ rgb2ycbcr : function (e) {
 		128 + 0.5 * r - 0.418688 * g - 0.081312 * b
 	];
 },
-ycbcr2rgb : function (e) {
+ycbcr2rgb     : function (e) {
 	var y = e[0],
 		b = e[1],
 		r = e[2],
@@ -363,7 +363,7 @@ ycbcr2rgb : function (e) {
 		y + 1.772   * n
 	];
 },
-rgb2xyz   : function (e) {
+rgb2xyz       : function (e) {
 	var l = 3,
 		a = 0.055,
 		f = [],
@@ -377,7 +377,7 @@ rgb2xyz   : function (e) {
 	}
 	return c;
 },
-xyz2rgb   : function (e) {
+xyz2rgb       : function (e) {
 	var c = [],
 		l = 3,
 		i;
@@ -387,7 +387,7 @@ xyz2rgb   : function (e) {
 	}
 	return c;
 },
-rgb2hwb   : function (e) {
+rgb2hwb       : function (e) {
 	var r = e[0],
 		g = e[1],
 		b = e[2],
@@ -398,7 +398,7 @@ rgb2hwb   : function (e) {
 		100 - x * max(r, max(g, b))
 	];
 },
-hwb2rgb   : function (e) {
+hwb2rgb       : function (e) {
 	var w = e[1] / 100,
 		b = e[2] / 100,
 		i = 3,
@@ -408,42 +408,42 @@ hwb2rgb   : function (e) {
 	}
 	return r;
 },
-hsv2hwb   : function (e) {
+hsv2hwb       : function (e) {
 	return [
 		e[0],
 		e[2] * (100 - e[1]) / 100,
 		100 - e[2]
 	];
 },
-hwb2hsv   : function (e) {
+hwb2hsv       : function (e) {
 	return [
 		e[0],
 		100 - e[1] / (1 - e[2] / 100),
 		100 - e[2]
 	];
 },
-rgb2xyy   : function (v) {
+rgb2xyy       : function (v) {
 	return cv.xyz2xyy(cv.rgb2xyz(v));
 },
-xyz2xyy   : function (e) {
+xyz2xyy       : function (e) {
 	var x = e[0],
 		y = e[1],
 		n = x + y + e[2];
 	return n ? [ x / n, y / n, y ] : [ 0, 0, y ];
 },
-xyy2rgb   : function (v) {
+xyy2rgb       : function (v) {
 	return cv.xyz2rgb(cv.xyy2xyz(v));
 },
-xyy2xyz   : function (e) {
+xyy2xyz       : function (e) {
 	var x = e[0],
 		y = e[1],
 		z = e[2];
 	return y ? [ x * z / y, z, (1 - x - y) * z / y ] : [ 0, 0, 0 ];
 },
-rgb2lab   : function (v) {
+rgb2lab       : function (v) {
 	return cv.xyz2lab(cv.rgb2xyz(v));
 },
-xyz2lab   : function (e) {
+xyz2lab       : function (e) {
 	var v,
 		l = 3;
 	for(; l--;) {
@@ -459,10 +459,10 @@ xyz2lab   : function (e) {
 		200 * (v - e)
 	];
 },
-lab2rgb   : function (v) {
+lab2rgb       : function (v) {
 	return cv.xyz2rgb(cv.lab2xyz(v));
 },
-lab2xyz   : function (e) {
+lab2xyz       : function (e) {
 	var l = e[0],
 		a = e[1],
 		b = e[2],
@@ -476,10 +476,10 @@ lab2xyz   : function (e) {
 	}
 	return a;
 },
-rgb2luv   : function (v) {
+rgb2luv       : function (v) {
 	return cv.xyz2luv(cv.rgb2xyz(v));
 },
-xyz2luv   : function (e) {
+xyz2luv       : function (e) {
 	var x = e[0],
 		y = e[1],
 		d = x + 15 * y + 3 * e[2],
@@ -490,10 +490,10 @@ xyz2luv   : function (e) {
 		13 * l * (9 * y / d - X8)
 	];
 },
-luv2rgb   : function (v) {
+luv2rgb       : function (v) {
 	return cv.xyz2rgb(cv.luv2xyz(v));
 },
-luv2xyz   : function (e) {
+luv2xyz       : function (e) {
 	if (!e[0]) return [ 0, 0, 0 ];
 	var l = e[0],
 		u = e[1],
@@ -508,10 +508,10 @@ luv2xyz   : function (e) {
 		(9 * y - (15 * n * y) - (n * x)) / (3 * n)
 	];
 },
-rgb2lch   : function (v) {
+rgb2lch       : function (v) {
 	return cv.luv2lch(cv.rgb2luv(v));
 },
-luv2lch   : function (e) {
+luv2lch       : function (e) {
 	var u = e[1], 
 		v = e[2];
 	return [
@@ -520,10 +520,10 @@ luv2lch   : function (e) {
 		atan2(v, u) * 180 / PI
 	];
 },
-lch2rgb   : function (v) {
+lch2rgb       : function (v) {
 	return cv.luv2rgb(cv.lch2luv(v));
 },
-lch2luv   : function (e) {
+lch2luv       : function (e) {
     var c = e[1],
 		d = e[2] / 360 * 2 * PI;
 	return [
@@ -532,10 +532,10 @@ lch2luv   : function (e) {
 		sin(d) * c
 	];
 },
-rgb2husl  : function (v) {
+rgb2husl      : function (v) {
 	return cv.lch2husl(cv.rgb2lch(v));
 },
-lch2husl  : function (e) {
+lch2husl      : function (e) {
 	var l = e[0],
 		h = e[2];
 	return [
@@ -544,10 +544,10 @@ lch2husl  : function (e) {
 		l
 	];
 },
-husl2rgb  : function (v) {
+husl2rgb      : function (v) {
 	return cv.lch2rgb(cv.husl2lch(v));
 },
-husl2lch  : function (e) {
+husl2lch      : function (e) {
 	var h = e[0],
 		l = e[2];
 	return [
@@ -556,10 +556,10 @@ husl2lch  : function (e) {
 		h
 	];
 },
-rgb2huslp : function (v) {
+rgb2huslp     : function (v) {
 	return cv.lch2huslp(cv.rgb2lch(v));
 },
-lch2huslp : function (e) {
+lch2huslp     : function (e) {
 	var l = e[0],
 		h = e[2];
 	return [
@@ -568,16 +568,44 @@ lch2huslp : function (e) {
 		l
 	];
 },
-huslp2rgb : function (v) {
+huslp2rgb     : function (v) {
 	return cv.lch2rgb(cv.huslp2lch(v));
 },
-huslp2lch : function (e) {
+huslp2lch     : function (e) {
 	var h = e[0],
 		l = e[2];
 	return [
 		l,
 		0 < l && l < 100 ? mL(l) / 100 * e[1] : 0,
 		h
+	];
+},
+rgb2hunterlab : function (v) {
+	return cv.xyz2hunterlab(cv.rgb2xyz(v));
+},
+xyz2hunterlab : function (e) {
+    var x = e[0],
+		y = e[1],
+		z = e[2];
+	e =  sqrt(y);
+	return [
+	    100 * e,
+	    y ? 175 * (1.02 * x - y) / e : 0,
+	    y ?  70 * (y - .847 * z) / e : 0
+	];
+},
+hunterlab2rgb : function (v) {
+	return cv.xyz2rgb(cv.hunterlab2xyz(v));
+},
+hunterlab2xyz : function (e) {
+	var n = e[0] /100,
+		x = e[1] * n / 175,
+		y = n * n,
+		z = e[2] * n / 70;
+	return [
+		(x + y) / 1.02,
+		 y,
+		(y - z) / .847
 	];
 }
 };

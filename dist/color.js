@@ -1,7 +1,7 @@
 /*!
 Color v1.0.0
 http://rainersu.github.io/color
-Just a JavaScript library for all kinds of color manipulations.
+A tiny but powerful JavaScript library for all kinds of color manipulations.
 (c) 2015 Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )
 */
 (function(root, factory) {
@@ -67,6 +67,7 @@ Just a JavaScript library for all kinds of color manipulations.
         xyy: C3,
         luv: C3,
         lab: C3,
+        hunterlab: C3,
         lch: [ S6, S6, S5 ],
         husl: C2,
         huslp: C3,
@@ -535,6 +536,21 @@ Just a JavaScript library for all kinds of color manipulations.
         huslp2lch: function(e) {
             var h = e[0], l = e[2];
             return [ l, 0 < l && l < 100 ? mL(l) / 100 * e[1] : 0, h ];
+        },
+        rgb2hunterlab: function(v) {
+            return cv.xyz2hunterlab(cv.rgb2xyz(v));
+        },
+        xyz2hunterlab: function(e) {
+            var x = e[0], y = e[1], z = e[2];
+            e = sqrt(y);
+            return [ 100 * e, y ? 175 * (1.02 * x - y) / e : 0, y ? 70 * (y - .847 * z) / e : 0 ];
+        },
+        hunterlab2rgb: function(v) {
+            return cv.xyz2rgb(cv.hunterlab2xyz(v));
+        },
+        hunterlab2xyz: function(e) {
+            var n = e[0] / 100, x = e[1] * n / 175, y = n * n, z = e[2] * n / 70;
+            return [ (x + y) / 1.02, y, (y - z) / .847 ];
         }
     };
     var bl = {

@@ -1,0 +1,49 @@
+{
+	"name": "Color",
+	"version": "1.0.0",
+	"homepage": "http://rainersu.github.io/color",
+	"authors": [
+		{
+			"name": "Rainer Su",
+			"email": "rainersu@foxmail.com",
+			"url": "http://cn.linkedin.com/in/rainersu",
+			"qq": "2627001536"
+		}
+	],
+	"description": "A tiny but powerful JavaScript library for all kinds of color manipulations.",
+	"main": "dist/color.js",
+	"license": "BSD",
+	"ignore": [
+		"_",
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"/doc",
+		"/src",
+		"/doc.json",
+		"/Gruntfile.js",
+		"test",
+		"tests"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/rainersu/color.git"
+	},
+	"keywords": [
+		"color",
+		"colour",
+		"scheme",
+		"palette",
+		"gradient",
+		"chroma",
+		"tone",
+		"tint",
+		"shade",
+		"gamma",
+		"spectrum",
+		"browser",
+		"library",
+		"css",
+		"javascript"
+	]
+}

@@ -14,20 +14,19 @@ function(
 ) {'use strict';
 
 var tiffanyblue = new Color('#60DFE5');
-console.log(tiffanyblue.temperature());   // 39999.70245361328
 
-tiffanyblue.temperature(1000);
-console.log(tiffanyblue.css(0));          // #FF3A00
-console.log(tiffanyblue.temperature());   // 1000.2975463867188
+function f (x, a) {
+    return x.color(a).map(function (i) { return +i.toFixed(1); }).join(' , ');
+}
+var a = 'rgb', b = 'hunterlab', x = Color('#60DFE5');
 
-tiffanyblue.temperature(1000, true);
-console.log(tiffanyblue.css(0));          // #FF8B14
-console.log(tiffanyblue.temperature());   // 2000.0534057617188
+console.log(a + ' : ' + f(x, a) + '  -  ' + b + ' : ' + f(x, b));
 
+// rgb : 96 , 223 , 229  -  hunterlab : 78 , -32.9 , -8.8
 
+x = Color(x.color(b), b);
+console.log(b + ' : ' + f(x, b) + '  -  ' + a + ' : ' + f(x, a));
 
-
-
-
+// hunterlab : 78 , -32.9 , -8.8  -  rgb : 96 , 223 , 229
 
 });

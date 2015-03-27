@@ -13,15 +13,15 @@ var pkg = grunt.file.readJSON("package.json"),
 	MOD_MIN_FILE = MOD_DST_PATH + '/' + MOD_NAME + '-' + pkg.version + '.min.js'; 
 
 grunt.initConfig({
-	pkg     : pkg,
-	bytesize: {
-		mod : {
+	pkg         : pkg,
+	bytesize    : {
+		mod     : {
 			src : [ MOD_DST_FILE, MOD_MIN_FILE ]
 		}
 	},
-	umd     : {
-		mod : {
-			options: {
+	umd         : {
+		mod     : {
+			options : {
 				verbose      : true,
 				globalAlias  : 'sumiColor',
 				src          : MOD_DST_FILE,
@@ -29,12 +29,12 @@ grunt.initConfig({
 			}
 		}
 	},
-	uglify  : {
+	uglify      : {
 		options : {
 			preserveComments : false,
 			banner           : COPYRIGHT
 		},
-		mod : {
+		mod     : {
 			options : {
 				beautify     : true,
 				compress     : false,
@@ -53,16 +53,16 @@ grunt.initConfig({
 			files   : [{ src : MOD_DST_FILE, dest: MOD_MIN_FILE }]
 		}
 	},
-    clean   : {
-        doc : {
-            src: DOC_DST_PATH
+    clean       : {
+        doc     : {
+            src : DOC_DST_PATH
 		},
-		mod : {
+		mod     : {
 			src: MOD_DST_PATH + '/*.js'
 		}
 	},
-	jsdoc   : {
-		doc : {
+	jsdoc       : {
+		doc     : {
 			src     : [ DOC_SRC_PATH + '/**/*.js', 'README.md' ],
 			options : {
 				verbose     : true,
@@ -72,8 +72,8 @@ grunt.initConfig({
 			}
 		}
 	},
-	connect : {
-		doc : {
+	connect     : {
+		doc     : {
 			options : {
 				verbose      : true,
 				hostname     : '*',
@@ -88,6 +88,28 @@ grunt.initConfig({
                     ];
                 }*/
 			}
+		}
+	},
+	update_json : {
+		options : {
+			src    : 'package.json',
+			indent : '\t'
+		},
+		bower   : { 
+			dest   : 'bower.json',
+			fields : [
+				'name',
+				'version',
+				'homepage',
+				'description',
+				'main',
+				'keywords',
+				'repository',
+				{
+					authors: [ 'author' ],
+					license : 'licenses/0/type'
+				}
+			]
 		}
 	}
 });
@@ -113,7 +135,7 @@ grunt.registerTask('showtime', function () {
 });
 
 grunt.registerTask('distdoc', [ 'clean:doc', 'jsdoc' ]);
-grunt.registerTask('distmod', [ 'clean:mod', 'compile', 'umd', 'uglify', 'bytesize' ]);
+grunt.registerTask('distmod', [ 'clean:mod', 'compile', 'umd', 'uglify', 'update_json', 'bytesize' ]);
 grunt.registerTask('help', [ 'distdoc', 'connect:doc' ]);
 grunt.registerTask('test', [ 'distmod', 'showtime'    ]);
 	
