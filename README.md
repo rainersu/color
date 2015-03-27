@@ -1,4 +1,4 @@
-# color
+# [sumi-color](https://www.npmjs.com/package/sumi-color)
 A standalone JavaScript library for all kinds of color manipulations. Tiny but powerful. 
 
 
