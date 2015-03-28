@@ -132,6 +132,16 @@ map      : function (x, y) {
 	this.stops = t;
 	this.cache = r;
 	return this;
+},
+split    : function (n) {
+	n = n || this.stops.length;
+	var r = [],
+		x = 100,
+		y = x / (n - 1);
+	for(; n--; x-= y) {
+		r[n] = this.scale(n && x, true);
+	}
+	return r;
 }
 });
 module.Gradient = Gradient;

@@ -1,5 +1,5 @@
 /**
-* 获取当前色彩渐变路径上指定坐标处的色彩，作为 Color 对象返回。注意： {@link Color#alpha|alpha} 通道也会纳入计算。
+* 获取当前色彩渐变路径上指定坐标处的色彩，作为 {@link Color} 对象返回。注意： {@link Color#alpha|alpha} 通道也会纳入计算。
 * @access public
 * @func Gradient.prototype.scale
 * @param {number} point - 绝对坐标值或取值范围为 0 - 100 的百分比值。

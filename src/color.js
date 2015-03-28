@@ -1,5 +1,6 @@
 define([
 	'./var/module',
+	'./var/random',
 	'./var/pow',
 	'./var/abs',
 	'./var/log',
@@ -19,6 +20,7 @@ define([
 ],
 function(
 	module,
+	random,
 	pow,
 	abs,
 	log,
@@ -94,6 +96,18 @@ temperature   : function (k) {
 grayscale     : function (v, b) {
 	v = b ? v * 255 : v;
 	return new Color([ v, v, v ]);
+},
+random        : function (n, m) {
+	var s = 'husl',
+		c = cs[s],
+		r = [],
+		l = 3; 
+	for(r[l] = 100; l--;) {
+		r[l] = random(c[l]);
+	}
+	n = +n || 1;
+	r = new Color(r, s);
+	return n > 1 ? r.scheme(n, m) : r;
 }
 });
 cp(Color.prototype, {
@@ -340,13 +354,12 @@ opaque        : function (y, b) {
 },
 scheme        : function (n, m) {
 	var c = this.color('husl'),
-		h = c[0],
-		r = [];
-	n = n || 6;
+		r = [ this.clone() ];
+	n = n || 12;
 	m = m || 360 / n;
-	for(; n--; h+= m) {
-		c[0] = h; 
-		r[n] = new Color(c,'husl');
+	for(n--; n--;) {
+		c[0]+= m; 
+		r.push(new Color(c,'husl'));
 	}
 	return r;
 },

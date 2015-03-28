@@ -15,18 +15,10 @@ function(
 
 var tiffanyblue = new Color('#60DFE5');
 
-function f (x, a) {
-    return x.color(a).map(function (i) { return +i.toFixed(1); }).join(' , ');
-}
-var a = 'rgb', b = 'hunterlab', x = Color('#60DFE5');
+new Gradient(['#60DFE5', '#EEE'], [33, 66]).split(7).forEach(function (i) {
+	console.log(i.css(0));
+});
 
-console.log(a + ' : ' + f(x, a) + '  -  ' + b + ' : ' + f(x, b));
-
-// rgb : 96 , 223 , 229  -  hunterlab : 78 , -32.9 , -8.8
-
-x = Color(x.color(b), b);
-console.log(b + ' : ' + f(x, b) + '  -  ' + a + ' : ' + f(x, a));
-
-// hunterlab : 78 , -32.9 , -8.8  -  rgb : 96 , 223 , 229
+// #60DFE5   #A7E7EA   #EEEEEE
 
 });

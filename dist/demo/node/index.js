@@ -7,7 +7,7 @@ var n = 'rgb',
     f = function (i) {
 		return i.toFixed(2); 
 	},
-	x = '        ';
+	x = '         ';
 
 console.log('\r\nTIFFANY BLUE :\r\n');
 

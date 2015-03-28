@@ -30,6 +30,7 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
     var log = M.log;
     var round = M.round;
     var hasOP = O.prototype.hasOwnProperty;
+    var slice = Array.prototype.slice;
     var keys = O.keys || function(o) {
         var r = [], i;
         for (i in o) if (hasOP.call(o, i)) {
@@ -57,6 +58,18 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
     }
     function tj() {
         return this.css();
+    }
+    function iln(v) {
+        v = +v;
+        v = v.toString().split("e");
+        v[0] = v[0].replace(/\d$/, function(i) {
+            return +i + 1;
+        });
+        return +(v[1] ? v.join("e") : v[0]);
+    }
+    function random(v) {
+        var b = am(v) === "array", y = b ? iln(v[1]) : v, x = b ? v[0] : 0;
+        return kv(M.random() * (y - x) + x, v);
     }
     var S0 = [ 0, 255 ], S1 = [ 0, 100 ], S5 = 360, S6 = null, C1 = [ S0, S0, S0 ], C2 = [ S5, S1, S1 ], C3 = [ S6, S6, S6 ], cs = {
         rgb: C1,
@@ -652,6 +665,15 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
         grayscale: function(v, b) {
             v = b ? v * 255 : v;
             return new Color([ v, v, v ]);
+        },
+        random: function(n, m) {
+            var s = "husl", c = cs[s], r = [], l = 3;
+            for (r[l] = 100; l--; ) {
+                r[l] = random(c[l]);
+            }
+            n = +n || 1;
+            r = new Color(r, s);
+            return n > 1 ? r.scheme(n, m) : r;
         }
     });
     cp(Color.prototype, {
@@ -837,12 +859,12 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
             return b ? y.css(0) : y;
         },
         scheme: function(n, m) {
-            var c = this.color("husl"), h = c[0], r = [];
-            n = n || 6;
+            var c = this.color("husl"), r = [ this.clone() ];
+            n = n || 12;
             m = m || 360 / n;
-            for (;n--; h += m) {
-                c[0] = h;
-                r[n] = new Color(c, "husl");
+            for (n--; n--; ) {
+                c[0] += m;
+                r.push(new Color(c, "husl"));
             }
             return r;
         },
@@ -1005,6 +1027,14 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
             this.stops = t;
             this.cache = r;
             return this;
+        },
+        split: function(n) {
+            n = n || this.stops.length;
+            var r = [], x = 100, y = x / (n - 1);
+            for (;n--; x -= y) {
+                r[n] = this.scale(n && x, true);
+            }
+            return r;
         }
     });
     module.Gradient = Gradient;
