@@ -1,7 +1,7 @@
 {
   "name": "sumi-color",
   "title": "sumi-color",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A tiny but powerful JavaScript library for all kinds of color manipulations.",
   "main": "dist/sumi-color.js",
   "homepage": "http://rainersu.github.io/color",
