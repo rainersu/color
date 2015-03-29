@@ -1,7 +1,7 @@
 Software License Agreement (BSD License)
 ========================================
 
-(c) 2015 Rainer Su( rainersu@foxmail.com | QQ: 2627001536 ). All rights reserved.
+Copyright (c) 2015 苏昱( rainersu@foxmail.com | QQ: 2627001536 ). All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:

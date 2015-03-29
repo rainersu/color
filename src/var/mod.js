@@ -1,7 +1,7 @@
 define(function () {'use strict';
 
-var module = {};
+var mod = {};
 
-return module;
+return mod;
 
 });

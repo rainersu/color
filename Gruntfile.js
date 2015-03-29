@@ -125,7 +125,7 @@ grunt.registerTask('compile',  function () {
 	})).forEach(function (n) {
 		out+= grunt.file.read(n).replace(/^[^;]+\{\'use strict\'\;/, '').replace(/return\s+\w+\s*;\s*\}\);\s*$/, '');
 	});
-	grunt.file.write(MOD_DST_FILE, out + 'return module;');
+	grunt.file.write(MOD_DST_FILE, out + 'return mod;');
 	grunt.log.ok('1 file created.');
 });
 

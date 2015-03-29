@@ -1,5 +1,6 @@
 define([
-	'./var/module',
+	'./var/mod',
+	'./var/reg',
 	'./var/random',
 	'./var/pow',
 	'./var/abs',
@@ -19,7 +20,8 @@ define([
 	'./var/blendings'
 ],
 function(
-	module,
+	mod,
+	reg,
 	random,
 	pow,
 	abs,
@@ -386,8 +388,7 @@ temperature   : function (t, a) {
 	return r ? t : this.color(s, f(t).color(s));
 }
 });
-module.Color = Color;
+reg(Color, 'Color');
 
 return Color;
-
 });

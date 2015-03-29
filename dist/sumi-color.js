@@ -1,5 +1,5 @@
 /*!
-sumi-color v1.0.3
+sumi-color v1.0.5
 http://rainersu.github.io/color
 A tiny but powerful JavaScript library for all kinds of color manipulations.
 (c) 2015 Rainer Su( rainersu@foxmail.com | http://cn.linkedin.com/in/rainersu | QQ: 2627001536 )
@@ -15,7 +15,14 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
         root["sumiColor"] = factory();
     }
 })(this, function() {
-    var module = {};
+    var mod = {};
+    var udf = "" + void 0, win = typeof window !== udf ? window : typeof global !== udf ? global : this;
+    function reg(m, n) {
+        if (win) {
+            win[n] = win[n] || m;
+        }
+        return mod[n] = m;
+    }
     var O = Object;
     var M = Math;
     var max = M.max;
@@ -882,7 +889,7 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
             return r ? t : this.color(s, f(t).color(s));
         }
     });
-    module.Color = Color;
+    reg(Color, "Color");
     function Palette(m, n, a) {
         if (!(this instanceof Palette)) return new Palette(m, n, a);
         this.cache = {};
@@ -951,7 +958,7 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
             return this.mix().css(v, b);
         }
     });
-    module.Palette = Palette;
+    reg(Palette, "Palette");
     function ap(a, p, c) {
         a[p] = new Color(c).color("rgba");
     }
@@ -1037,6 +1044,6 @@ A tiny but powerful JavaScript library for all kinds of color manipulations.
             return r;
         }
     });
-    module.Gradient = Gradient;
-    return module;
+    reg(Gradient, "Gradient");
+    return mod;
 });

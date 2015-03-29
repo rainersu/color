@@ -1,5 +1,6 @@
 define([
-	'./var/module',
+	'./var/mod',
+	'./var/reg',
 	'./var/round',
 	'./var/min',
 	'./var/max',
@@ -13,7 +14,8 @@ define([
 	'./color'
 ],
 function(
-	module,
+	mod,
+	reg,
 	round,
 	min,
 	max,
@@ -144,8 +146,7 @@ split    : function (n) {
 	return r;
 }
 });
-module.Gradient = Gradient;
+reg(Gradient, 'Gradient');
 
 return Gradient;
-
 });

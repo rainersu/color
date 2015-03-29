@@ -1,5 +1,6 @@
 define([
-	'./module',
+	'./mod',
+	'./reg',
 	'./object',
 	'./math',
 	'./max',

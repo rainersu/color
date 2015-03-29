@@ -1,5 +1,6 @@
 define([
-	'./var/module',
+	'./var/mod',
+	'./var/reg',
 	'./var/round',
 	'./var/min',
 	'./var/max',
@@ -11,7 +12,8 @@ define([
 	'./color'
 ],
 function(
-	module,
+	mod,
+	reg,
 	round,
 	min,
 	max,
@@ -100,8 +102,7 @@ css : function (v, b) {
 	return this.mix().css(v, b);
 }
 });
-module.Palette = Palette;
+reg(Palette, 'Palette');
 
 return Palette;
-
 });
