@@ -25,10 +25,10 @@ Quick start
 
 Four quick start options are available:
 
-- [Download the latest release](https://github.com/rainersu/color/archive/v1.0.5.zip).
-- Clone the repo: `git clone https://github.com/rainersu/color.git`.
-- Install with [Bower](http://bower.io): `bower install sumi-color`.
-- Install with [npm](https://www.npmjs.com): `npm install sumi-color`.
+- [Download the latest release](https://github.com/rainersu/color/archive/v1.0.5.zip)
+- Clone the repo: `git clone https://github.com/rainersu/color.git`
+- Install with [Bower](http://bower.io): `bower install sumi-color`
+- Install with [npm](https://www.npmjs.com): `npm install sumi-color`
 
 Example use
 -----------
@@ -98,9 +98,8 @@ How to contact me
 
 - [rainersu@foxmail.com](mailto:rainersu@foxmail.com)
 - [http://cn.linkedin.com/in/rainersu](http://cn.linkedin.com/in/rainersu)
-- [https://www.npmjs.com/~rainersu](https://www.npmjs.com/~rainersu)
+- [http://site.douban.com/185696/](http://site.douban.com/185696/)
 - [http://rainersu.github.io](http://rainersu.github.io)
-- [http://weibo.com/rainersu](http://weibo.com/rainersu)
 - ``QQ: 2627001536``
 
 Copyright and license
