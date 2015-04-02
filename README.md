@@ -14,11 +14,11 @@ There is no doubt that you can also use this library in browser extensions and o
 Features
 --------
 
-- Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmyk, yiq, yuv, xyz, luv, lab, lch, etc..) and CSS keywords. It caches conversions.
+- Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmy, cmyk, yiq, yuv, xyz, xyy, luv, lab, lch, etc..) and CSS keywords. It caches conversions.
 - Color Instances have getters/setters for all channels(red, green, blue, hue, saturation, lightness, opacity, blackness, whiteness, etc..) in all supported colorspaces. 
 - Many useful classes and methods: Gradient, Palette, tint, shade, tone, color blending and color scale, luminance and color difference calculator, scheme generator, etc.
 - So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at ` 8kb ` minified and gzipped. 
-- Lots more. Take a look at the docs.
+- Lots more. Take a look at the documentation immediately.
 
 Quick start
 -----------
