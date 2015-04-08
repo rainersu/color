@@ -13,6 +13,6 @@ function(
 	Gradient
 ) {'use strict';
 
-var tiffanyblue = new Color('#60DFE5');
+
 
 });

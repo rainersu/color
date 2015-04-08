@@ -40,7 +40,9 @@ Including in a browser:
 <script type='text/javascript'>
 var Color = sumiColor.Color;
 var tiffanyblue = new Color('#60DFE5');
-window.alert(tiffanyblue.css(2, true));
+
+window.alert(tiffanyblue.css(2, true));   // hsla(183, 72%, 64%, 1)
+
 </script>
 ```
 
@@ -48,9 +50,13 @@ As a module that works with AMD(e.g., [RequireJS](http://requirejs.org/)):
 
 ```JavaScript
 define(['/path/to/sumi-color'], function(sumiColor) {
-    var Color = sumiColor.Color;
-    var tiffanyblue = new Color('#60DFE5');
-    window.alert(tiffanyblue.css(2, true));
+    var Gradient = sumiColor.Gradient;
+	var rad = new Gradient([ 'black', '#60DFE5', 'white' ], [ -0.2, 0.1, 0.2 ]);
+
+	console.log(rad.css());
+	
+	// linear-gradient(0deg, rgb(0, 0, 0), rgb(96, 223, 229) 75%, rgb(255, 255, 255))
+
 });
 ```
 
@@ -58,8 +64,9 @@ Including in a CommonJS environment(e.g., [Node.js](https://nodejs.org/)):
 
 ```JavaScript
 var Color = require('/path/to/sumi-color').Color;
-var tiffanyblue = new Color('#60DFE5');
-console.log(tiffanyblue.css(2,  true));
+var pat = new Palette([ '#FFF', '#000', '#60DFE5' ], [ 1, 2, 3 ], 22);
+
+console.log(pat.css());   // rgba(91, 154, 157, 0.22)
 ```
 
 Build from source
