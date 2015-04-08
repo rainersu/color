@@ -46,7 +46,7 @@ window.alert(tiffanyblue.css(2, true));
 
 As a module that works with AMD(e.g., [RequireJS](http://requirejs.org/)):
 
-```bash
+```JavaScript
 define(['/path/to/sumi-color'], function(sumiColor) {
     var Color = sumiColor.Color;
     var tiffanyblue = new Color('#60DFE5');
@@ -56,7 +56,7 @@ define(['/path/to/sumi-color'], function(sumiColor) {
 
 Including in a CommonJS environment(e.g., [Node.js](https://nodejs.org/)):
 
-```bash
+```JavaScript
 var Color = require('/path/to/sumi-color').Color;
 var tiffanyblue = new Color('#60DFE5');
 console.log(tiffanyblue.css(2,  true));
@@ -67,7 +67,7 @@ Build from source
 
 First, you need to have [Node.js](https://nodejs.org/) and [Grunt](http://gruntjs.com/) installed.
 
-```bash
+```Shell
 $ git clone git@github.com:rainersu/color.git
 $ npm install -g grunt-cli
 $ cd color
@@ -80,14 +80,14 @@ It provides compiled JS (`sumi-color.*`), as well as compiled and minified JS (`
 Running demos for testing
 -------------------------
 
-```bash
+```Shell
 $ grunt test
 ```
 
 Build & running documentation locally
 -------------------------------------
 
-```bash
+```Shell
 $ grunt help
 ```
 
