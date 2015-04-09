@@ -1,44 +1,25 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>sumi-color by rainersu</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/rainersu/color">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/rainersu/color/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/rainersu/color/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+    <section class="page-header">
+      <h1 class="project-name">sumi-color</h1>
+      <h2 class="project-tagline">A standalone Javascript library for all kinds of color manipulations.</h2>
+      <a href="https://github.com/rainersu/color" class="btn">View on GitHub</a>
+      <a href="https://github.com/rainersu/color/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rainersu/color/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>sumi-color</h1>
-          <p>A standalone Javascript library for all kinds of color manipulations.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/rainersu">rainersu</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="sumi-color" class="anchor" href="#sumi-color" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://www.npmjs.com/package/sumi-color">sumi-color</a>
 </h1>
 
@@ -59,11 +40,11 @@
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li>Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmyk, yiq, yuv, xyz, luv, lab, lch, etc..) and CSS keywords. It caches conversions.</li>
+<li>Seamless conversion between dozens of color space(rgb, ryb, hsl, hsv, hwb, cmy, cmyk, yiq, yuv, xyz, xyy, luv, lab, lch, etc..) and CSS keywords. It caches conversions.</li>
 <li>Color Instances have getters/setters for all channels(red, green, blue, hue, saturation, lightness, opacity, blackness, whiteness, etc..) in all supported colorspaces. </li>
 <li>Many useful classes and methods: Gradient, Palette, tint, shade, tone, color blending and color scale, luminance and color difference calculator, scheme generator, etc.</li>
 <li>So powerful but ridiculously tiny. It has no dependencies. The entire set of modules clocks in at <code>8kb</code> minified and gzipped. </li>
-<li>Lots more. Take a look at the docs.</li>
+<li>Lots more. Take a look at the documentation immediately.</li>
 </ul>
 
 <h2>
@@ -72,11 +53,13 @@
 <p>Four quick start options are available:</p>
 
 <ul>
-<li>
-<a href="https://github.com/rainersu/color/archive/v1.0.3.zip">Download the latest release</a>.</li>
-<li>Clone the repo: <code>git clone https://github.com/rainersu/color.git</code>.</li>
-<li>Install with <a href="http://bower.io">Bower</a>: <code>bower install sumi-color</code>.</li>
-<li>Install with <a href="https://www.npmjs.com">npm</a>: <code>npm install sumi-color</code>.</li>
+<li><a href="https://github.com/rainersu/color/archive/v1.0.6.zip">Download the latest release</a></li>
+<li>Clone the repo: <code>git clone https://github.com/rainersu/color.git</code>
+</li>
+<li>Install with <a href="http://bower.io">Bower</a>: <code>bower install sumi-color</code>
+</li>
+<li>Install with <a href="https://www.npmjs.com">npm</a>: <code>npm install sumi-color</code>
+</li>
 </ul>
 
 <h2>
@@ -84,33 +67,40 @@
 
 <p>Including in a browser:</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color-1.0.3.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color-1.0.6.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
 <span class="pl-s1">&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">'</span>text/javascript<span class="pl-pds">'</span></span>&gt;</span>
 <span class="pl-s1"><span class="pl-k">var</span> Color <span class="pl-k">=</span> sumiColor.Color;</span>
 <span class="pl-s1"><span class="pl-k">var</span> tiffanyblue <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Color</span>(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1"><span class="pl-c1">window</span>.<span class="pl-c1">alert</span>(tiffanyblue.css(<span class="pl-c1">2</span>, <span class="pl-c1">true</span>));</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">window</span>.<span class="pl-c1">alert</span>(tiffanyblue.css(<span class="pl-c1">2</span>, <span class="pl-c1">true</span>));   <span class="pl-c">// hsla(183, 72%, 64%, 1)</span></span>
+<span class="pl-s1"></span>
 <span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
 
 <p>As a module that works with AMD(e.g., <a href="http://requirejs.org/">RequireJS</a>):</p>
 
-<div class="highlight highlight-bash"><pre>define([<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color<span class="pl-pds">'</span></span>], function(sumiColor) {
-    var Color = sumiColor.Color<span class="pl-k">;</span>
-    var tiffanyblue = new Color(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>)<span class="pl-k">;</span>
-    window.alert(tiffanyblue.css(2, <span class="pl-c1">true</span>))<span class="pl-k">;</span>
-})<span class="pl-k">;</span></pre></div>
+<div class="highlight highlight-JavaScript"><pre>define([<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color<span class="pl-pds">'</span></span>], <span class="pl-k">function</span>(<span class="pl-smi">sumiColor</span>) {
+    <span class="pl-k">var</span> Gradient <span class="pl-k">=</span> sumiColor.Gradient;
+    <span class="pl-k">var</span> rad <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Gradient</span>([ <span class="pl-s"><span class="pl-pds">'</span>black<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>white<span class="pl-pds">'</span></span> ], [ <span class="pl-k">-</span><span class="pl-c1">0.2</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">0.2</span> ]);
+
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(rad.css());
+
+    <span class="pl-c">// linear-gradient(0deg, rgb(0, 0, 0), rgb(96, 223, 229) 75%, rgb(255, 255, 255))</span>
+
+});</pre></div>
 
 <p>Including in a CommonJS environment(e.g., <a href="https://nodejs.org/">Node.js</a>):</p>
 
-<div class="highlight highlight-bash"><pre>var Color = require(<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color<span class="pl-pds">'</span></span>).Color<span class="pl-k">;</span>
-var tiffanyblue = new Color(<span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span>)<span class="pl-k">;</span>
-console.log(tiffanyblue.css(2,  <span class="pl-c1">true</span>))<span class="pl-k">;</span></pre></div>
+<div class="highlight highlight-JavaScript"><pre><span class="pl-k">var</span> Color <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>/path/to/sumi-color<span class="pl-pds">'</span></span>).Color;
+<span class="pl-k">var</span> pat <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Palette</span>([ <span class="pl-s"><span class="pl-pds">'</span>#FFF<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#000<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>#60DFE5<span class="pl-pds">'</span></span> ], [ <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span> ], <span class="pl-c1">22</span>);
+
+<span class="pl-en">console</span><span class="pl-c1">.log</span>(pat.css());   <span class="pl-c">// rgba(91, 154, 157, 0.22)</span></pre></div>
 
 <h2>
 <a id="build-from-source" class="anchor" href="#build-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build from source</h2>
 
 <p>First, you need to have <a href="https://nodejs.org/">Node.js</a> and <a href="http://gruntjs.com/">Grunt</a> installed.</p>
 
-<div class="highlight highlight-bash"><pre>$ git clone git@github.com:rainersu/color.git
+<div class="highlight highlight-Shell"><pre>$ git clone git@github.com:rainersu/color.git
 $ npm install -g grunt-cli
 $ <span class="pl-c1">cd</span> color
 $ npm install
@@ -121,12 +111,12 @@ $ grunt</pre></div>
 <h2>
 <a id="running-demos-for-testing" class="anchor" href="#running-demos-for-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running demos for testing</h2>
 
-<div class="highlight highlight-bash"><pre>$ grunt <span class="pl-c1">test</span></pre></div>
+<div class="highlight highlight-Shell"><pre>$ grunt <span class="pl-c1">test</span></pre></div>
 
 <h2>
 <a id="build--running-documentation-locally" class="anchor" href="#build--running-documentation-locally" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build &amp; running documentation locally</h2>
 
-<div class="highlight highlight-bash"><pre>$ grunt <span class="pl-c1">help</span></pre></div>
+<div class="highlight highlight-Shell"><pre>$ grunt <span class="pl-c1">help</span></pre></div>
 
 <p>Sorry, the documentation is currently offered only in the Chinese language. Do you have time to help me with some Chinese - English translations?</p>
 
@@ -136,9 +126,8 @@ $ grunt</pre></div>
 <ul>
 <li><a href="mailto:rainersu@foxmail.com">rainersu@foxmail.com</a></li>
 <li><a href="http://cn.linkedin.com/in/rainersu">http://cn.linkedin.com/in/rainersu</a></li>
-<li><a href="https://www.npmjs.com/%7Erainersu">https://www.npmjs.com/~rainersu</a></li>
+<li><a href="http://site.douban.com/185696/">http://site.douban.com/185696/</a></li>
 <li><a href="http://rainersu.github.io">http://rainersu.github.io</a></li>
-<li><a href="http://weibo.com/rainersu">http://weibo.com/rainersu</a></li>
 <li><code>QQ: 2627001536</code></li>
 </ul>
 
@@ -148,10 +137,16 @@ $ grunt</pre></div>
 <p>Copyright 2015 <a href="mailto:rainersu@foxmail.com">Rainer Su</a> (<a href="http://cn.linkedin.com/in/rainersu">苏昱</a>).</p>
 
 <p>Code and documentation is free to use under the <a href="https://github.com/rainersu/color/blob/master/LICENSE.md">BSD license</a>.</p>
-      </section>
 
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rainersu/color">sumi-color</a> is maintained by <a href="https://github.com/rainersu">rainersu</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
+
