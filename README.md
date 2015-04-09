@@ -25,7 +25,7 @@ Quick start
 
 Four quick start options are available:
 
-- [Download the latest release](https://github.com/rainersu/color/archive/v1.0.5.zip)
+- [Download the latest release](https://github.com/rainersu/color/archive/v1.0.6.zip)
 - Clone the repo: `git clone https://github.com/rainersu/color.git`
 - Install with [Bower](http://bower.io): `bower install sumi-color`
 - Install with [npm](https://www.npmjs.com): `npm install sumi-color`
@@ -36,7 +36,7 @@ Example use
 Including in a browser:
 
 ```html
-<script type='text/javascript' src='/path/to/sumi-color-1.0.5.min.js'></script>
+<script type='text/javascript' src='/path/to/sumi-color-1.0.6.min.js'></script>
 <script type='text/javascript'>
 var Color = sumiColor.Color;
 var tiffanyblue = new Color('#60DFE5');

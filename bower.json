@@ -1,5 +1,5 @@
 {
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"name": "sumi-color",
 	"main": "dist/sumi-color.js",
 	"homepage": "http://rainersu.github.io/color",
