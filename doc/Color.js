@@ -1,12 +1,12 @@
 /**
-* 色彩类。提供全能高效的色彩管理功能。包括但不限于在各种色彩格式间的自由转换，基于各种算法的色彩混合，色度、明度、亮度、灰度、透明度的自由调节，滤镜和配色功能，等等。
+* 色彩类。提供全能高效的色彩管理功能。包括但不限于在各种色彩格式间的自由转换，基于各种算法的色彩混合，色度、明度、亮度、灰度、饱和度、透明度的自由调节，滤镜和配色功能，等等。
 * @class Color
 * @see {@link http://www.w3.org/TR/css3-color/}
 * @see {@link http://dev.w3.org/csswg/css-color/}
 * @see {@link https://cdn.rawgit.com/dfcreative/color-space/master/test/index.html}
 * @see {@link https://developer.mozilla.org/en-US/docs/Web/CSS/color_value}
-* @param {string|array} data - 任何符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串，或符合由 space 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 的命名分量顺序的色值数组。
-* @param {string} [space=rgb] - 当 data 参数格式为数组时，指定所对应的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 名称。当前已支持的所有色彩空间名称可通过 {@link Color.spaces} 查看。
+* @param {string|array} data - 任何符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串，或符合由 `space` 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 的命名分量顺序的色值数组。
+* @param {string} [space=rgb] - 当 `data` 参数格式为数组时，指定所对应的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 名称。当前已支持的所有色彩空间名称可通过 {@link Color.spaces} 查看。
 * @example
 * var color = Color('#FF0');
 * var color = Color('hsl(80, 5%, 3%)');

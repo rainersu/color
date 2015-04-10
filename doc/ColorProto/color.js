@@ -6,7 +6,7 @@
 * @access public
 * @func Color.prototype.color
 * @param {string} space - 指定 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 名称。已支持的色彩空间请见 {@link Color.spaces} 。
-* @param {string|array} [data] - 任何符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串，或符合由 space 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 的命名分量顺序的色值数组。如果省略此参数，则将当前色彩值转换至由 space 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 并返回。否则将根据本参数修改当前 Color 对象的色彩值，并返回当前 Color 对象。
+* @param {string|array} [data] - 任何符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串，或符合由 `space` 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 的命名分量顺序的色值数组。如果省略此参数，则将当前色彩值转换至由 `space` 参数指定的 {@link http://en.wikipedia.org/wiki/Color_space 色彩空间} 并返回。否则将根据本参数修改当前 Color 对象的色彩值，并返回当前 Color 对象。
 * @returns {Color|array}
 * @example
 * var color = new Color('rgb(255, 0, 0, 0.5)');

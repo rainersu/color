@@ -5,10 +5,10 @@
 * @see {@link Color#value}
 * @access public
 * @func Color.prototype.lightness
-* @param {number}  [value] - 亮度。取值范围为 0 - 100 。如果省略此参数则获取并返回当前值。否则将根据本参数修改当前值并返回当前 Color 对象。
+* @param {number}  [value] - 亮度。取值范围为 `0 - 100` 。如果省略此参数则获取并返回当前值。否则将根据本参数修改当前值并返回当前 Color 对象。
 * @param {boolean} [relative=false]
-* @param {boolean}  relative.false  - 绝对赋值。将 Color 对象的亮度值设置为 value
-* @param {boolean}  relative.true   - 增量赋值。将 Color 对象当前亮度值增加 value
+* @param {boolean}  relative.false  - 绝对赋值。将 Color 对象的亮度值设置为 `value` 。
+* @param {boolean}  relative.true   - 增量赋值。将 Color 对象当前亮度值增加 `value` 。
 * @returns {Color|number}
 * @example
 * var tiffanyblue = new Color('#60DFE5');

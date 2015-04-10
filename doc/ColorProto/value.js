@@ -8,8 +8,8 @@
 * @param {number} channel - 分量 (通道) 索引。
 * @param {number}  [value] - 要设置的分量 (通道) 值。如果省略此参数则获取并返回当前的值。否则将返回当前 Color 对象。
 * @param {boolean} [relative=false]
-* @param {boolean}  relative.false  - 绝对赋值。将分量 (通道) 值直接设置为 value
-* @param {boolean}  relative.true   - 增量赋值。将当前的分量 (通道) 值增加 value
+* @param {boolean}  relative.false  - 绝对赋值。将分量 (通道) 值直接设置为 `value` 。
+* @param {boolean}  relative.true   - 增量赋值。将当前的分量 (通道) 值增加 `value` 。
 * @returns {Color|number}
 * @example
 * var red = Color('red');                               // 0

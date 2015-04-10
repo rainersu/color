@@ -4,10 +4,10 @@
 * @see {@link Color#value}
 * @access public
 * @func Color.prototype.saturation
-* @param {number}  [value] - 饱和度。取值范围为 0 - 100 。如果省略此参数则获取并返回当前的饱和度值。否则将根据本参数修改当前 Color 对象基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSL 色彩空间} 的饱和度值，并返回当前 Color 对象。
+* @param {number}  [value] - 饱和度。取值范围为 `0 - 100` 。如果省略此参数则获取并返回当前的饱和度值。否则将根据本参数修改当前 Color 对象基于 {@link http://en.wikipedia.org/wiki/HSL_and_HSV|HSL 色彩空间} 的饱和度值，并返回当前 Color 对象。
 * @param {boolean} [relative=false]
-* @param {boolean}  relative.false  - 绝对赋值。将对象的饱和度设置为 value
-* @param {boolean}  relative.true   - 增量赋值。将对象当前饱和度增加 value
+* @param {boolean}  relative.false  - 绝对赋值。将对象的饱和度设置为 `value` 。
+* @param {boolean}  relative.true   - 增量赋值。将对象当前饱和度增加 `value` 。
 * @returns {Color|number}
 * @example
 * var red = Color('red');

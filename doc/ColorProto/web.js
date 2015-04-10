@@ -6,8 +6,8 @@
 * @access public
 * @func Color.prototype.web
 * @param {boolean} [smart=false]
-* @param {boolean}  smart.false - 调整至 216 色的 {@link http://en.wikipedia.org/wiki/Web_colors#Web-safe_colors|Web-safe} 色盘。
-* @param {boolean}  smart.true  - 调整至 4096 色的 {@link http://cloford.com/resources/colours/websmart1.htm|Web-Smart} 色盘。
+* @param {boolean}  smart.false - 调整至 `216` 色的 {@link http://en.wikipedia.org/wiki/Web_colors#Web-safe_colors|Web-safe} 色盘。
+* @param {boolean}  smart.true  - 调整至 `4096` 色的 {@link http://cloford.com/resources/colours/websmart1.htm|Web-Smart} 色盘。
 * @param {boolean} [obj=false]
 * @param {boolean}  obj.false - 直接返回 \#RRGGBB 的样式表格式值。
 * @param {boolean}  obj.true  - 返回完整 Color 对象。

@@ -3,10 +3,10 @@
 * @see {@link Color.temperature}
 * @access public
 * @func Color.prototype.temperature
-* @param {number}  [kelvin] - 色温。取值范围为 1000 - 40000 开氏温标单位(K)。如果省略此参数则获取并返回当前的色温。否则将根据本参数修改当前 Color 对象的色温，并返回当前 Color 对象。
+* @param {number}  [kelvin] - 色温。取值范围为 `1000 - 40000` 开氏温标单位(K)。如果省略此参数则获取并返回当前的色温。否则将根据本参数修改当前 Color 对象的色温，并返回当前 Color 对象。
 * @param {boolean} [relative=false]
-* @param {boolean}  relative.false  - 绝对赋值。将对象的色温设置为 value 。
-* @param {boolean}  relative.true   - 增量赋值。将对象当前色温增加 value 。
+* @param {boolean}  relative.false  - 绝对赋值。将对象的色温设置为 `value` 。
+* @param {boolean}  relative.true   - 增量赋值。将对象当前色温增加 `value` 。
 * @returns {Color|number}
 * @example
 * var tiffanyblue = new Color('#60DFE5');

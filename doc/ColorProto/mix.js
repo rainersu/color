@@ -8,7 +8,7 @@
 * @access public
 * @func Color.prototype.mix
 * @param {Color|string} color - 要与之混色的另一种颜色。
-* @param {number} [weight=50] - 当前颜色在混色结果中所占的比重。取值范围为 0 -100 。
+* @param {number} [weight=50] - 当前颜色在混色结果中所占的比重。取值范围为 `0 -100` 。
 * @param {boolean} [alpha=false] - 是否将 {@link Color#alpha|alpha} 通道的不透明度值也纳入混色计算。
 * @returns {Color} 
 * @example

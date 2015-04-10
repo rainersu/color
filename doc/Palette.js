@@ -4,7 +4,7 @@
 * @see {@link Color}
 * @see {@link Gradient}
 * @param {Color[]} colors - 为调色板定义基色的数组。可以使用 {@link Color} 对象也可以是符合 {@link http://www.w3.org/TR/css3-color/|CSS Color Module Level 3} 标准定义格式的字符串。
-* @param {number[]} [ratios] - 依次序为 colors 里每种基色定义份量的数组。注意是份量而非比例，各基色的实际比例等于份量 / 总份量。如果省略此参数则所有基色都默认为 1 份。
+* @param {number[]} [ratios] - 依次序为 `colors` 里每种基色定义份量的数组。注意是份量而非比例，各基色的实际比例等于份量 / 总份量。如果省略此参数则所有基色都默认为 `1` 份。
 * @param {number}  [alpha=100] - 不透明度。参见 {@link Palette#alpha|alpha}
 * @example
 * var tiffanyblue = '#60DFE5';

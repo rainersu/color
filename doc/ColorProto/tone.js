@@ -6,7 +6,7 @@
 * @see {@link Color.grayscale}
 * @access public
 * @func Color.prototype.tone
-* @param {number} [amount=50] - 灰色在混色结果中所占的比重。取值范围为 0 -100 。
+* @param {number} [amount=50] - 灰色在混色结果中所占的比重。取值范围为 `0 -100` 。
 * @param {number} [algorithm=0] - 使用何种算法计算当前 Color 对象所对应的灰度色值。参见 {@link Color.grayscale|grayscale} 方法。
 * @returns {Color} 
 * @example

@@ -1,5 +1,5 @@
 /**
-* 计算出当前 Color 对象在以 background 为背景色的情况下，受 {@link Color#alpha|alpha} 通道值影响，实际显示为的颜色，作为新 Color 对象返回。
+* 计算出当前 Color 对象在以 `background` 为背景色的情况下，受 {@link Color#alpha|alpha} 通道值影响，实际显示为的颜色，作为新 Color 对象返回。
 * @see {@link Color#mix}
 * @see {@link Color#tint}
 * @see {@link Color#tone}

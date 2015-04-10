@@ -4,10 +4,10 @@
 * @see {@link Color#value}
 * @access public
 * @func Color.prototype.opacity
-* @param {number}  [value] - 不透明度。取值范围为 0 - 100 。如果省略此参数则获取并返回当前的不透明度值。否则将根据本参数修改当前 Color 对象的不透明度值，并返回当前 Color 对象。
+* @param {number}  [value] - 不透明度。取值范围为 `0 - 100` 。如果省略此参数则获取并返回当前的不透明度值。否则将根据本参数修改当前 Color 对象的不透明度值，并返回当前 Color 对象。
 * @param {boolean} [relative=false]
-* @param {boolean}  relative.false  - 绝对赋值。将对象的不透明度设置为 value
-* @param {boolean}  relative.true   - 增量赋值。将对象当前不透明度增加 value
+* @param {boolean}  relative.false  - 绝对赋值。将对象的不透明度设置为 `value` 。
+* @param {boolean}  relative.true   - 增量赋值。将对象当前不透明度增加 `value` 。
 * @returns {Color|number}
 * @example
 * var red = Color('red');

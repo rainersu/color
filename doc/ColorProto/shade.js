@@ -5,7 +5,7 @@
 * @see {@link Color#mix}
 * @access public
 * @func Color.prototype.shade
-* @param {number} [amount=50] - 黑色在混色结果中所占的比重。取值范围为 0 -100 。
+* @param {number} [amount=50] - 黑色在混色结果中所占的比重。取值范围为 `0 -100` 。
 * @returns {Color} 
 * @example
 * var sienna = new Color('#A0522D');

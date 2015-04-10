@@ -6,7 +6,7 @@
 * @access public
 * @func Color.random
 * @param {number}  [count=1] - 配色方案总色彩数。
-* @param {number}  [amount]  - 如果 count 大于 1 ，旋转色轮时的步进增量。
+* @param {number}  [amount]  - 如果 `count` 大于 `1` ，旋转色轮时的步进增量。
 * @returns {Color|Color[]}
 * @example
 * console.log(Color.random().css(1, true));   // rgba(25,24,24,1)
